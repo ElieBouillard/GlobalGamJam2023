@@ -254,6 +254,7 @@ MonoBehaviour:
   _camera: {fileID: 1821146014}
   _movementSpeed: 15
   _cameraRotationSpeed: {x: 45, y: 30}
+  _cameraPitchLimit: {x: -45, y: 45}
   _dashDuration: 0.3
   _dashDistance: 5
 --- !u!54 &596289176
