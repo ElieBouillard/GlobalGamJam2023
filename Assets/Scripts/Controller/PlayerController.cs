@@ -5,14 +5,10 @@ public class PlayerController : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Rigidbody _rigidbody = null;
-    [SerializeField] private Camera _camera = null;
+    [SerializeField] private CameraController _cameraController = null;
 
     [Header("Movement")]
     [SerializeField, Min(0f)] private float _movementSpeed = 10f;
-    
-    [Header("Camera")]
-    [SerializeField] private Vector2 _cameraRotationSpeed = new Vector2(45f, 45f);
-    [SerializeField] private Vector2 _cameraPitchLimit = new Vector2(-60f, 60f);
 
     [Header("Dash")]
     [SerializeField, Min(0f)] private float _dashDuration = 0.5f;
@@ -39,28 +35,10 @@ public class PlayerController : MonoBehaviour
         _dashInput = false;
     }
 
-    private void RotateCamera()
-    {
-        Vector2 speed = _cameraRotationSpeed / 0.016f;
-        Vector3 angularVelocity = new Vector3(_mouseInput.x * speed.x, _mouseInput.y * speed.y);
-        angularVelocity *= Time.deltaTime;
-
-        Vector3 eulerAngles = _camera.transform.localEulerAngles;
-        eulerAngles.y += angularVelocity.x;
-        eulerAngles.x -= angularVelocity.y;
-
-        bool lookingUp = _camera.transform.forward.y > 0f;
-        eulerAngles.x = lookingUp
-                        ? Mathf.Max(eulerAngles.x - 360f, _cameraPitchLimit.x) + 360f
-                        : Mathf.Min(eulerAngles.x, _cameraPitchLimit.y);
-
-        _camera.transform.localEulerAngles = eulerAngles;
-    }
-
     private void Move()
     {
-        Vector3 velocity = new Vector3(_movementInput.x, 0f, _movementInput.y);
-        velocity = Quaternion.Euler(0f, _camera.transform.localEulerAngles.y, 0f) * velocity;
+        Vector3 velocity = new Vector3(_movementInput.x, _rigidbody.velocity.y, _movementInput.y);
+        _cameraController.ModifyMovementVelocity(ref velocity);
         velocity.Normalize();
         velocity *= _movementSpeed;
         _rigidbody.velocity = velocity;
@@ -78,6 +56,6 @@ public class PlayerController : MonoBehaviour
 
     private void LateUpdate()
     {
-        RotateCamera();
+        _cameraController.Rotate(_mouseInput);
     }
 }
