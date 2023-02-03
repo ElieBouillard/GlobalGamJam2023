@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
             return;
 
         _slideCooldownTimer = _slideCooldown;
-        StartCoroutine(SlideCoroutine(_movementInput));
+        StartCoroutine(SlideCoroutine(Vector3.Magnitude(_movementInput) > 0.1f ? _movementInput : new Vector3(0f, 1f)));
         _cameraController.SetTrauma(_slideTrauma);
     }
 
