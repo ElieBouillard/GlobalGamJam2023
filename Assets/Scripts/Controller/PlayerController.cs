@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Min(0f)] private float _movementSpeed = 10f;
     
     [Header("Camera")]
-    [SerializeField, Min(0f)] private float _cameraRotationSpeed = 180f;
+    [SerializeField] private Vector2 _cameraRotationSpeed = new Vector2(45f, 45f);
 
     [Header("Dash")]
     [SerializeField, Min(0f)] private float _dashDuration = 0.5f;
@@ -33,14 +33,15 @@ public class PlayerController : MonoBehaviour
     private void CleanupInputs()
     {
         _movementInput = Vector2.zero;
+        _mouseInput = Vector2.zero;
         _attackInput = false;
         _dashInput = false;
     }
 
     private void RotateCamera()
     {
-        float speed = _cameraRotationSpeed / 0.016f;
-        Vector3 angularVelocity = new Vector3(_mouseInput.x * speed, _mouseInput.y * speed);
+        Vector2 speed = _cameraRotationSpeed / 0.016f;
+        Vector3 angularVelocity = new Vector3(_mouseInput.x * speed.x, _mouseInput.y * speed.y);
         angularVelocity *= Time.deltaTime;
 
         Vector3 eulerAngles = _camera.transform.localEulerAngles;
@@ -63,13 +64,13 @@ public class PlayerController : MonoBehaviour
         RegisterInputs();
     }
 
-    private void LateUpdate()
-    {
-        RotateCamera();
-    }
-
     private void FixedUpdate()
     {
         Move();
+    }
+
+    private void LateUpdate()
+    {
+        RotateCamera();
     }
 }
