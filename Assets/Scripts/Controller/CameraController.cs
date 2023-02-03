@@ -2,8 +2,39 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    [Header("General")]
     [SerializeField] private Vector2 _cameraRotationSpeed = new Vector2(45f, 45f);
     [SerializeField] private Vector2 _cameraPitchLimit = new Vector2(-60f, 60f);
+
+    [Header("Shake")]
+    [SerializeField] private Transform _cameraShaker = null;
+    [SerializeField] private Shake.ShakeSettings _shakeSettings = Shake.ShakeSettings.Default;
+
+    private Shake _shake;
+
+    public void UpdateCamera(Vector2 mouseInput)
+    {
+        Rotate(mouseInput);
+
+        (Vector3 pos, Quaternion rot)? shakeData = _shake.Evaluate(_cameraShaker);
+        _cameraShaker.localPosition = shakeData?.pos ?? Vector3.zero;
+    }
+
+    public void AddTrauma(float trauma)
+    {
+        _shake?.AddTrauma(trauma);
+    }
+
+    public void SetTrauma(float trauma)
+    {
+        _shake?.SetTrauma(trauma);
+    }
+
+    public void ToggleCursor(bool state)
+    {
+        Cursor.visible = state;
+        Cursor.lockState = state ? CursorLockMode.None : CursorLockMode.Locked;
+    }
 
     public void Rotate(Vector2 mouseInput)
     {
@@ -28,9 +59,12 @@ public class CameraController : MonoBehaviour
         velocity = Quaternion.Euler(0f, transform.localEulerAngles.y, 0f) * velocity;
     }
 
-    private void Start()
+    private System.Collections.IEnumerator Start()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        ToggleCursor(false);
+        _shake = new Shake(_shakeSettings);
+
+        yield return new WaitForEndOfFrame();
+        transform.localEulerAngles = Vector3.zero;
     }
 }

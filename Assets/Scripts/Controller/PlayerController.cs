@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Min(0f)] private float _slideDuration = 0.5f;
     [SerializeField, Min(0f)] private float _slideSpeed = 30f;
     [SerializeField, Min(0f)] private float _slideCooldown = 0.5f;
+    [SerializeField, Range(0f, 1f)] private float _slideTrauma = 0.5f;
 
     private Vector2 _movementInput;
     private Vector2 _mouseInput;
@@ -49,6 +50,7 @@ public class PlayerController : MonoBehaviour
 
         _slideCooldownTimer = _slideCooldown;
         StartCoroutine(SlideCoroutine(_movementInput));
+        _cameraController.SetTrauma(_slideTrauma);
     }
 
     private IEnumerator SlideCoroutine(Vector3 direction)
@@ -106,7 +108,7 @@ public class PlayerController : MonoBehaviour
 
     private void LateUpdate()
     {
-        _cameraController.Rotate(_mouseInput);
+        _cameraController.UpdateCamera(_mouseInput);
     }
 
     private void OnDrawGizmos()
