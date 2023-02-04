@@ -271,9 +271,37 @@
             },
             "m_InputSlot": {
                 "m_Node": {
+                    "m_Id": "55078f5e60c9407787b28d5dec9ebd25"
+                },
+                "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "77bb08da1e294fc29c9c9cffd9813204"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
                     "m_Id": "89fe26d19ca04e4bae0752a7e4c8b967"
                 },
                 "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "77bb08da1e294fc29c9c9cffd9813204"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "f3206edc6cdb4c72b2ebb0dc41e9fbeb"
+                },
+                "m_SlotId": 0
             }
         },
         {
@@ -302,20 +330,6 @@
                     "m_Id": "8fbe514b79514220ba321eb446ab1c70"
                 },
                 "m_SlotId": 0
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
-                    "m_Id": "89fe26d19ca04e4bae0752a7e4c8b967"
-                },
-                "m_SlotId": 2
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "55078f5e60c9407787b28d5dec9ebd25"
-                },
-                "m_SlotId": 1
             }
         },
         {
@@ -397,6 +411,20 @@
             },
             "m_InputSlot": {
                 "m_Node": {
+                    "m_Id": "55078f5e60c9407787b28d5dec9ebd25"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "9ed127a0c2a54f87940fc76e0392e5d1"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
                     "m_Id": "e08129d7f79c4f60b25494798abe5fe2"
                 },
                 "m_SlotId": 0
@@ -447,20 +475,6 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
-                    "m_Id": "a922a962b8894607a4e51384c3a1260c"
-                },
-                "m_SlotId": 3
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "f3206edc6cdb4c72b2ebb0dc41e9fbeb"
-                },
-                "m_SlotId": 0
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
                     "m_Id": "ab4ef4c9ab6d49d79a69bdb702b6c54f"
                 },
                 "m_SlotId": 0
@@ -498,20 +512,6 @@
                     "m_Id": "9ca8aabff4544f6f9618c873e7529ad0"
                 },
                 "m_SlotId": 2
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
-                    "m_Id": "e08129d7f79c4f60b25494798abe5fe2"
-                },
-                "m_SlotId": 3
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "55078f5e60c9407787b28d5dec9ebd25"
-                },
-                "m_SlotId": 0
             }
         },
         {
@@ -1334,7 +1334,7 @@
     "m_RefNameGeneratedByDisplayName": "AlphaClip",
     "m_DefaultReferenceName": "_AlphaClip",
     "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
+    "m_GeneratePropertyBlock": false,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
     "m_Precision": 0,
@@ -1601,10 +1601,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -835.0000610351563,
-            "y": 454.0000305175781,
+            "x": -671.0,
+            "y": 405.0000305175781,
             "width": 208.0,
-            "height": 302.0000305175781
+            "height": 301.9999694824219
         }
     },
     "m_Slots": [
@@ -1963,7 +1963,7 @@
     "m_RefNameGeneratedByDisplayName": "DissolveScale",
     "m_DefaultReferenceName": "_DissolveScale",
     "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
+    "m_GeneratePropertyBlock": false,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
     "m_Precision": 0,
@@ -2011,10 +2011,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1390.0,
-            "y": 968.0,
-            "width": 208.0,
-            "height": 435.0001220703125
+            "x": -1266.0,
+            "y": 1115.0,
+            "width": 208.0001220703125,
+            "height": 434.9998779296875
         }
     },
     "m_Slots": [
@@ -2296,7 +2296,7 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"6ff6d11369b758a4aabfae7f22a78751\",\"type\":3}}",
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"f459b7c943da0f14b8b2e4f5b1d50ee4\",\"type\":3}}",
         "m_Guid": ""
     },
     "isMainTexture": false,
@@ -2462,10 +2462,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -69.0,
-            "y": 443.0,
-            "width": 0.0,
-            "height": 0.0
+            "x": -255.99993896484376,
+            "y": 463.0000305175781,
+            "width": 125.00001525878906,
+            "height": 33.999969482421878
         }
     },
     "m_Slots": [
@@ -2726,9 +2726,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1422.0001220703125,
-            "y": 77.00003814697266,
-            "width": 117.0001220703125,
+            "x": -892.0,
+            "y": 171.00003051757813,
+            "width": 117.0,
             "height": 33.99998474121094
         }
     },
@@ -3288,7 +3288,7 @@
     "m_RefNameGeneratedByDisplayName": "DissolveSpeed",
     "m_DefaultReferenceName": "_DissolveSpeed",
     "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
+    "m_GeneratePropertyBlock": false,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
     "m_Precision": 0,
@@ -3369,7 +3369,7 @@
     "m_RefNameGeneratedByDisplayName": "Color02",
     "m_DefaultReferenceName": "_Color02",
     "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
+    "m_GeneratePropertyBlock": false,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
     "m_Precision": 0,
