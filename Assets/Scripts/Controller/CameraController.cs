@@ -3,6 +3,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour, IShakable
 {
     [Header("General")]
+    [SerializeField] private Camera _camera = null;
     [SerializeField] private Vector2 _cameraRotationSpeed = new Vector2(45f, 45f);
     [SerializeField] private Vector2 _cameraPitchLimit = new Vector2(-60f, 60f);
 
@@ -11,6 +12,8 @@ public class CameraController : MonoBehaviour, IShakable
     [SerializeField] private Shake.ShakeSettings _shakeSettings = Shake.ShakeSettings.Default;
 
     private Shake _shake;
+    private Coroutine _setFOVCoroutine;
+    private float _initFOV;
 
     public void UpdateCamera(Vector2 mouseInput)
     {
@@ -59,10 +62,37 @@ public class CameraController : MonoBehaviour, IShakable
         velocity = Quaternion.Euler(0f, transform.localEulerAngles.y, 0f) * velocity;
     }
 
+    public void ResetFOV(float duration)
+    {
+        SetFOV(_initFOV, duration);
+    }
+
+    public void SetFOV(float targetFOV, float duration)
+    {
+        if (_setFOVCoroutine != null)
+            StopCoroutine(_setFOVCoroutine);
+
+        _setFOVCoroutine = StartCoroutine(SetFOVCoroutine(targetFOV, duration));
+    }
+
+    private System.Collections.IEnumerator SetFOVCoroutine(float targetFOV, float duration)
+    {
+        float startingFOV = _camera.fieldOfView;
+
+        for (float t = 0f; t < 1f; t += Time.unscaledDeltaTime / duration)
+        {
+            _camera.fieldOfView = Mathf.Lerp(startingFOV, targetFOV, t);
+            yield return null;
+        }
+
+        _camera.fieldOfView = targetFOV;
+    }
+
     private System.Collections.IEnumerator Start()
     {
         ToggleCursor(false);
         _shake = new Shake(_shakeSettings);
+        _initFOV = _camera.fieldOfView;
 
         yield return new WaitForEndOfFrame();
         transform.localEulerAngles = Vector3.zero;

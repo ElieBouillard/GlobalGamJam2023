@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float _slideTrauma = 0.5f;
     [SerializeField, Min(0f)] private float _slideSpeedDecrementDuration = 3f;
     [SerializeField] private AnimationCurve _slideSpeedDecrementCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
+    [SerializeField] private float _slideFOV = 120f;
 
     [Header("Attack")]
     [SerializeField] private Weapon _startingWeapon = null;
@@ -64,8 +65,15 @@ public class PlayerController : MonoBehaviour
             return;
 
         _slideCooldownTimer = _slideCooldown;
-        StartCoroutine(SlideCoroutine(Vector3.Magnitude(_movementInput) > 0.1f ? _movementInput : new Vector3(0f, 1f)));
+        Vector3 direction = Vector3.Magnitude(_movementInput) > 0.1f ? _movementInput : new Vector3(0f, 1f);
+
+        StartCoroutine(SlideCoroutine(direction));
+
+        if (direction.y > direction.x)
+            _cameraController.SetFOV(_slideFOV, _slideDuration * 0.5f);
+    
         _cameraController.SetTrauma(_slideTrauma);
+        // TODO: slide audio.
     }
 
     private IEnumerator SlideCoroutine(Vector3 direction)
@@ -76,6 +84,8 @@ public class PlayerController : MonoBehaviour
 
         _slideSpeedBuffer = _slideSpeed;
         _slideSpeedBufferDecrementCoroutine = StartCoroutine(DecrementSlideSpeedBufferCoroutine());
+
+        _cameraController.ResetFOV(0.15f);
     }
 
     private bool CanSlide()
