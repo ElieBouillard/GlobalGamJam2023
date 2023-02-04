@@ -199,7 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPersistant: 1
   UseSteam: 0
-  _useLocalHost: 1
+  _useLocalHost: 0
   _port: 7777
   MaxPlayer: 4
   LocalPlayer: {fileID: 0}
