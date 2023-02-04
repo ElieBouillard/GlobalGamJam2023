@@ -8,6 +8,7 @@ public class ClientMessages : MonoBehaviour
         ClientConnected = 1,
         StartGame,
         Ready,
+        Movements,
     }
     
     #region Send
@@ -27,6 +28,13 @@ public class ClientMessages : MonoBehaviour
     public void SendReady()
     {
         Message message = Message.Create(MessageSendMode.reliable, MessagesId.Ready);
+        NetworkManager.Instance.Client.Send(message);
+    }
+
+    public void SendMovements(Vector3 pos)
+    {
+        Message message = Message.Create(MessageSendMode.unreliable, MessagesId.Movements);
+        message.AddVector3(pos);
         NetworkManager.Instance.Client.Send(message);
     }
     #endregion
@@ -53,7 +61,6 @@ public class ClientMessages : MonoBehaviour
                 GameManager.Instance.RemovePlayerFromGame(id);
                 break;
         }
-        
     } 
     
     [MessageHandler((ushort) ServerMessages.MessagesId.StartGame)]
@@ -66,6 +73,12 @@ public class ClientMessages : MonoBehaviour
     private static void OnServerInitializeClient(Message message)
     {
         GameManager.Instance.SpawnPlayers();
+    }
+
+    [MessageHandler((ushort)ServerMessages.MessagesId.Movements)]
+    private static void OnServerMovementsClient(Message message)
+    {
+        ((PlayerGameIdentity)NetworkManager.Instance.Players[message.GetUShort()]).MovementReceiver.SetMovements(message.GetVector3());
     }
     #endregion
 }

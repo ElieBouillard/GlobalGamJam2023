@@ -53,6 +53,12 @@ public class SceneLoader : MonoBehaviour
     {
         EditorSceneManager.OpenScene("Assets/Scenes/GameplayScene.unity", OpenSceneMode.Single);
     }
+    
+    [MenuItem("SceneLoader/Load PlayerControllerScene")]
+    private static void LoadPlayerControllerScene()
+    {
+        EditorSceneManager.OpenScene("Assets/Scenes/PlayerControllerScene.unity", OpenSceneMode.Single);
+    }
 #endif
 }
 

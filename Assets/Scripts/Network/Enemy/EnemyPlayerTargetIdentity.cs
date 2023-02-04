@@ -31,6 +31,7 @@ public class EnemyPlayerTargetIdentity : EnemyIdentity
             else
             {
                 _agent.SetDestination(_playerTarget.position);
+                
                 if(!_animator.GetBool(WalkAnimKey)) _animator.SetBool(WalkAnimKey, true);
                 if(_attackClock != 0) _attackClock = 0;
             }

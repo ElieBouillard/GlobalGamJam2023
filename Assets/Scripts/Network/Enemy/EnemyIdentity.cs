@@ -17,6 +17,7 @@ public class EnemyIdentity : MonoBehaviour
     //References
     protected NavMeshAgent _agent;
     protected Animator _animator;
+    private AudioSource _audioSource;
     
     protected bool _isInAttack;
     protected float _attackClock;
@@ -28,6 +29,7 @@ public class EnemyIdentity : MonoBehaviour
     {
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponentInChildren<Animator>();
+        _audioSource = GetComponent<AudioSource>();
     }
     
     protected void Initialize(int id)
@@ -56,8 +58,11 @@ public class EnemyIdentity : MonoBehaviour
         _animator.SetTrigger(AttackAnimKey);
     }
 
-    public virtual void Attack(){}
-
+    public virtual void Attack()
+    {
+        if (_audioSource.clip != null) 
+            _audioSource.Play();
+    }
 
     public virtual void EndAttack()
     {

@@ -1,3 +1,4 @@
+using System.Security.Cryptography.X509Certificates;
 using RiptideNetworking;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ public class ServerMessages : MonoBehaviour
         PlayerDisconnected,
         StartGame,
         InitializeGameplay,
-        PlayerDisconnectedFromGame,
+        Movements,
     }
 
     #region Send
@@ -47,6 +48,14 @@ public class ServerMessages : MonoBehaviour
         Message message = Message.Create(MessageSendMode.reliable, MessagesId.InitializeGameplay);
         NetworkManager.Instance.Server.Send(message, id);
     }
+
+    private static void SendClientMovements(ushort id, Vector3 pos)
+    {
+        Message message = Message.Create(MessageSendMode.unreliable, MessagesId.Movements);
+        message.AddUShort(id);
+        message.AddVector3(pos);
+        NetworkManager.Instance.Server.SendToAll(message, id);
+    }
     #endregion
 
     #region Received
@@ -66,7 +75,23 @@ public class ServerMessages : MonoBehaviour
     [MessageHandler((ushort) ClientMessages.MessagesId.Ready)]
     private static void OnClientReady(ushort id, Message message)
     {
-        SendInitializeClient(id);
+        NetworkManager networkManager = NetworkManager.Instance;
+
+        networkManager.PlayersReady++;
+
+        if (networkManager.PlayersReady == networkManager.Players.Count)
+        {
+            foreach (var playerId in networkManager.Players.Keys)
+            {
+                SendInitializeClient(playerId);
+            }
+        }
+    }
+
+    [MessageHandler((ushort)ClientMessages.MessagesId.Movements)]
+    private static void OnClientMovements(ushort id, Message message)
+    {
+        SendClientMovements(id, message.GetVector3());
     }
     #endregion
 }

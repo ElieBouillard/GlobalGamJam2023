@@ -28,6 +28,8 @@ public class NetworkManager : Singleton<NetworkManager>
     public PlayerIdentity  LocalPlayer;
     public ClientMessages ClientMessages { private set; get; }
     public ServerMessages ServerMessages { private set; get; }
+
+    public int PlayersReady = 0;
     #endregion
     
     protected override void Awake()
@@ -119,6 +121,8 @@ public class NetworkManager : Singleton<NetworkManager>
         }
         
         GameState = GameState.OffLine;
+
+        PlayersReady = 0;
         
         if(!UseSteam) return;
         SteamLobbyManager.Instance.LeaveLobby();

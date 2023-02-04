@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 8427563419864182535}
   - component: {fileID: 8427563419864182536}
   - component: {fileID: 5563274374730081184}
+  - component: {fileID: 459839368203618498}
   m_Layer: 0
   m_Name: LocalGamePlayer
   m_TagString: Untagged
@@ -341,6 +342,7 @@ MonoBehaviour:
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  _groundSnapDistance: 100
   _slideDuration: 0.2
   _slideSpeed: 50
   _slideCooldown: 0.25
@@ -357,6 +359,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80f5c9cc38c53b74d9a8f5aca862775f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &459839368203618498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8427563419864182537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7609e7e181c924049bd80a215d822a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &9009148808758287352
