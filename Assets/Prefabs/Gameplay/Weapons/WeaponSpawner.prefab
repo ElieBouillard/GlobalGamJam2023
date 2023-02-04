@@ -492,6 +492,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4928930289783441487}
   - component: {fileID: 4928930289783441486}
+  - component: {fileID: 75699322763752343}
   m_Layer: 0
   m_Name: WeaponSpawner
   m_TagString: Untagged
@@ -537,6 +538,20 @@ MonoBehaviour:
   _generateOnStartChance: 1
   _previewsContainer: {fileID: 589263784888238957}
   _previewRotationSpeed: 180
+--- !u!136 &75699322763752343
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4928930289783441489}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &4928930290206695922
 GameObject:
   m_ObjectHideFlags: 0
