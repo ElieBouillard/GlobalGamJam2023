@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
         if (!CanAttack())
             return;
 
-        _attackModule.CurrentWeapon.TriggerAttack();
+        _attackModule.Attack();
     }
 
     private bool CanAttack()

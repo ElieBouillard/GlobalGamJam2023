@@ -353,4 +353,4 @@ MonoBehaviour:
   _radius: 1
   _distance: 1
   _damage: 10
-  _cooldown: 0.33
+  _cooldown: 0.5

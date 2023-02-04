@@ -13,9 +13,16 @@ public class Weapon : MonoBehaviour
     [SerializeField, Min(0f)] private float _damage = 10f;
     [SerializeField, Min(0f)] private float _cooldown = 0.33f;
 
-    public virtual void TriggerAttack()
+    public float Cooldown => _cooldown;
+
+    public virtual void PlayAttackAnimation()
     {
         _animator.SetTrigger(ANIM_PARAM_ATTACK);
+    }
+
+    public void Attack()
+    {
+        // TODO: Check for enemies in attack range.
     }
 
     public virtual void OnEquiped()
