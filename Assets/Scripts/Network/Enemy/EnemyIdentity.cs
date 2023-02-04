@@ -71,7 +71,7 @@ public class EnemyIdentity : MonoBehaviour, IHittable
         {
             if (collider.TryGetComponent(out IHittable hittable))
             {
-                hittable.OnHit(new HitData(){Team = Team.Enemy});
+                hittable.OnHit(new HitData(){Team = Team.Enemy, Damage = 1});
             }
         }
     }

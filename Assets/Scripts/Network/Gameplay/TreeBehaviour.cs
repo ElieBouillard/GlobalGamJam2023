@@ -26,7 +26,7 @@ public class TreeBehaviour : MonoBehaviour, IHittable
         
         _renderer.material.color = Color.red;
         StartCoroutine(ResetColor());
-        _currLife -= _initialLife;
+        _currLife -= hitData.Damage;
 
         Debug.Log($"Tree Take Damage : Current Life -> {_currLife}");
         
