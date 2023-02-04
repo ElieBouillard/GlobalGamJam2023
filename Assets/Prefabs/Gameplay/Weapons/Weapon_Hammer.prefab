@@ -365,12 +365,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 1397787108480512218}
   _weaponType: 2
-  _radius: 1
-  _distance: {x: 1, y: 0}
+  _radius: 1.69
+  _distance: {x: 1.89, y: 0}
   _damage: 10
-  _maximumHits: 5
-  _cooldown: 0.12
-  _backToIdleDelay: 0.4
+  _maximumHits: 7
+  _cooldown: 0.8
+  _backToIdleDelay: 0.8
   _hitParticles: {fileID: 155692, guid: 77d6e8e3fa15a0b419d018e3e16931f6, type: 3}
   _hitForwardAdd: 1.5
   _noHitTrauma: 0.1
