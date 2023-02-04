@@ -46,8 +46,6 @@ public class Weapon : MonoBehaviour
         _playerAttackModule = attackModule;
         _shookOnAttack = shookOnAttack;
 
-        //Attack();
-
         if (gameObject.activeSelf)
         {
             StopBackToIdleCoroutine();

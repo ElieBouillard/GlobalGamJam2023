@@ -57,6 +57,8 @@ public class PlayerController : MonoBehaviour, IHittable
     public delegate void HealthChangedEventHandler(int previousHealth, int currentHealth);
     public HealthChangedEventHandler HealthChanged;
 
+    public bool IsDead => _currentHealth <= 0;
+
     #region Movement
     private Vector3 GetMovementDirection()
     {
@@ -233,18 +235,10 @@ public class PlayerController : MonoBehaviour, IHittable
         _currentHealth--;
         HealthChanged?.Invoke(previousHealth, _currentHealth);
 
-        if (_currentHealth == 0)
-        {
-            _cameraController.AddTrauma(_deathTrauma);
-            FreezeFrameManager.FreezeFrame(0, _deathFreezeDuration, 0, true);
-            // TODO: Death.
-        }
+        if (IsDead)
+            this.OnDeath();
         else
-        {
-            _cameraController.AddTrauma(_damageTrauma);
-            FreezeFrameManager.FreezeFrame(0, _damageFreezeDuration, 0, true);
-            // TODO: Damage VFX.
-        }
+            this.OnDamaged();
     }
 
     public void RestoreHealth(int amount = 1)
@@ -252,6 +246,21 @@ public class PlayerController : MonoBehaviour, IHittable
         int previousHealth = _currentHealth;
         _currentHealth = Mathf.Min(_currentHealth + amount, _maxHealth);
         HealthChanged?.Invoke(previousHealth, _currentHealth);
+    }
+
+    private void OnDamaged()
+    {
+        _cameraController.AddTrauma(_damageTrauma);
+        FreezeFrameManager.FreezeFrame(0, _damageFreezeDuration, 0, true);
+    }
+
+    private void OnDeath()
+    {
+        _attackModule.SetWeapon(null);
+        _cameraController.OnPlayerDeath();
+
+        _cameraController.AddTrauma(_deathTrauma);
+        FreezeFrameManager.FreezeFrame(0, _deathFreezeDuration, 0, true);
     }
     #endregion // Health
 
@@ -268,10 +277,20 @@ public class PlayerController : MonoBehaviour, IHittable
         }
 
         _currentHealth = _maxHealth;
+
+        // Debug.
+        DebugConsole.OverrideCommand(new Command("player_kill", "Instantly kills the player.", true, false, () =>
+        {
+            _currentHealth = 0;
+            OnDeath();
+        }));
     }
 
     private void Update()
     {
+        if (IsDead)
+            return;
+
         RegisterInputs();
         _attackModule.Update();
 
@@ -280,9 +299,6 @@ public class PlayerController : MonoBehaviour, IHittable
 
         if (_attackInput)
             Attack();
-
-        if (Input.GetKeyDown(KeyCode.Space))
-            OnHit(HitData.Empty);
 
         UpdateSlideCooldown();
     }

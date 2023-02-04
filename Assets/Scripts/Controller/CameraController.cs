@@ -4,6 +4,7 @@ public class CameraController : MonoBehaviour, IShakable
 {
     [Header("General")]
     [SerializeField] private Camera _camera = null;
+    [SerializeField] private Animator _animator = null;
     [SerializeField] private Vector2 _cameraRotationSpeed = new Vector2(45f, 45f);
     [SerializeField] private Vector2 _cameraPitchLimit = new Vector2(-60f, 60f);
 
@@ -55,6 +56,17 @@ public class CameraController : MonoBehaviour, IShakable
                         : Mathf.Min(eulerAngles.x, _cameraPitchLimit.y);
 
         transform.localEulerAngles = eulerAngles;
+    }
+
+    public void ResetRotation()
+    {
+        transform.localEulerAngles = Vector3.zero;
+    }
+
+    public void OnPlayerDeath()
+    {
+        ResetRotation();
+        _animator.SetTrigger("Death");
     }
 
     public void ModifyMovementVelocity(ref Vector3 velocity)
