@@ -38,7 +38,7 @@ public class EnemyTreeTargetIdentity : EnemyIdentity
         {
             if (collider.TryGetComponent(out TreeBehaviour tree))
             {
-                tree.TakeDamage();
+                // tree.TakeDamage();
             }
         }
     }

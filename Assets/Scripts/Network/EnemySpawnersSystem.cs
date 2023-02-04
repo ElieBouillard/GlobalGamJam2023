@@ -16,11 +16,14 @@ public class EnemySpawnersSystem : Singleton<EnemySpawnersSystem>
     [SerializeField] private GameObject _enemyTreeTargetPrefab;
     [SerializeField] private GameObject _enemyPlayerTargetPrefab;
 
+    public List<EnemyIdentity> Enemies { private set; get; } = new List<EnemyIdentity>();
+    
     private NetworkManager _networkManager;
     
     private float _spawnClock = -1;
 
     private int _enemyIdCount = 0;
+
 
     protected override void Awake()
     {
@@ -108,6 +111,13 @@ public class EnemySpawnersSystem : Singleton<EnemySpawnersSystem>
         {
             enemyInstance.GetComponent<EnemyPlayerTargetIdentity>().Initialize(enemyId, _networkManager.Players[playerId].transform);
         }
+        
+        Enemies.Add(enemyPrefab.GetComponent<EnemyIdentity>());
+    }
+
+    public void RemoveEnemy(EnemyIdentity enemy)
+    {
+        Enemies.Remove(enemy);
     }
 }
 
