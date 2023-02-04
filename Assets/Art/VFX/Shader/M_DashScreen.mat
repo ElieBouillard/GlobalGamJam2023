@@ -34,9 +34,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Center_maskedge: 0.5
+    - _Center_masksize: 0.06
+    - _Line_Count: 30
+    - _Line_Density: 0
+    - _Line_Falloff: 0.25
+    - _NumberofFrame: 12
     - _QueueControl: 0
     - _QueueOffset: 0
-    m_Colors: []
+    - _SpeedFrame: 1
+    m_Colors:
+    - _Center: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &1383717112043002574
 MonoBehaviour:

@@ -14,6 +14,12 @@ public class LocalPlayerHealth : MonoBehaviour
 
     private void Start()
     {
+        if (_playerController == null)
+        {
+            Debug.LogError($"{nameof(LocalPlayerHealth)} reference is missing!");
+            return;
+        }
+
         _playerController.HealthChanged += OnHealthChanged;
 
         foreach (HeartUI heart in _hearts)
@@ -22,6 +28,9 @@ public class LocalPlayerHealth : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (_playerController == null)
+            return;
+
         _playerController.HealthChanged -= OnHealthChanged;
     }
 }

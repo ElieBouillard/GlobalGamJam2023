@@ -409,6 +409,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _slideFOV: 115
+  _slideLinesMaterial: {fileID: 2100000, guid: e79a5b0bc2a579142b580f349bfcd48c, type: 2}
   _startingWeapon: {fileID: 657061071093415688}
   _canSlideAttack: 1
   _maxHealth: 3

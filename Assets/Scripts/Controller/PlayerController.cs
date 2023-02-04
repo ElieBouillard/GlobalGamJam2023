@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour, IHittable
     [SerializeField, Min(0f)] private float _slideSpeedDecrementDuration = 3f;
     [SerializeField] private AnimationCurve _slideSpeedDecrementCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
     [SerializeField] private float _slideFOV = 120f;
+    [SerializeField] private Material _slideLinesMaterial = null;
 
     [Header("Attack")]
     [SerializeField] private Weapon _startingWeapon = null;
@@ -39,6 +40,7 @@ public class PlayerController : MonoBehaviour, IHittable
     private float _slideCooldownTimer;
     private float _slideSpeedBuffer;
     private Coroutine _slideSpeedBufferDecrementCoroutine;
+    private static readonly int _lineDensityId = Shader.PropertyToID("_Line_Density");
 
     // Attack.
     private PlayerAttackModule _attackModule;
@@ -88,13 +90,44 @@ public class PlayerController : MonoBehaviour, IHittable
     private IEnumerator SlideCoroutine(Vector3 direction)
     {
         _slideDirection = new Vector3(direction.x, 0f, direction.y);
-        yield return new WaitForSeconds(_slideDuration);
-        _slideDirection = null;
 
+        StartCoroutine(SlideLinesCoroutine());
+
+        yield return new WaitForSeconds(_slideDuration);
+        
+        _slideDirection = null;
         _slideSpeedBuffer = _slideSpeed;
         _slideSpeedBufferDecrementCoroutine = StartCoroutine(DecrementSlideSpeedBufferCoroutine());
 
         _cameraController.ResetFOV(0.15f);
+
+        if (_slideLinesMaterial != null)
+            _slideLinesMaterial.SetFloat("_Line_Density", 0f);
+    }
+
+    private IEnumerator SlideLinesCoroutine()
+    {
+        if (_slideLinesMaterial == null)
+            yield break;
+
+        const float targetDensity = 0.45f;
+        float stepDuration = _slideDuration / 2f;
+
+        for (float t = 0f; t < 1f; t += Time.deltaTime / stepDuration)
+        {
+            _slideLinesMaterial.SetFloat(_lineDensityId, targetDensity * t);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(stepDuration);
+
+        for (float t = 0f; t < 1f; t += Time.deltaTime / (stepDuration * 5))
+        {
+            _slideLinesMaterial.SetFloat(_lineDensityId, targetDensity * (1 - t));
+            yield return null;
+        }
+        
+        _slideLinesMaterial.SetFloat(_lineDensityId, 0f);
     }
 
     private bool CanSlide()
