@@ -13,6 +13,7 @@ public class ServerMessages : MonoBehaviour
         InitializeGameplay,
         Movements,
         SpawnEnemies,
+        EnemyDeath,
     }
 
     #region Send
@@ -75,6 +76,13 @@ public class ServerMessages : MonoBehaviour
         
         NetworkManager.Instance.Server.SendToAll(message, NetworkManager.Instance.LocalPlayer.GetId);
     }
+
+    private static void SendEnemyDeath(ushort playerId, int enemyId)
+    {
+        Message message = Message.Create(MessageSendMode.reliable, MessagesId.EnemyDeath);
+        message.AddInt(enemyId);
+        NetworkManager.Instance.Server.SendToAll(message, playerId);
+    }
     #endregion
 
     #region Received
@@ -111,6 +119,12 @@ public class ServerMessages : MonoBehaviour
     private static void OnClientMovements(ushort id, Message message)
     {
         SendClientMovements(id, message.GetVector3());
+    }
+
+    [MessageHandler((ushort)ClientMessages.MessagesId.EnemyDeath)]
+    private static void OnEnemyDeath(ushort id, Message message)
+    {
+        SendEnemyDeath(id, message.GetInt());
     }
     #endregion
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class TreeBehaviour : MonoBehaviour, IHittable
 {
@@ -21,13 +22,15 @@ public class TreeBehaviour : MonoBehaviour, IHittable
 
     public void OnHit(HitData hitData)
     {
+        if (hitData.Team != Team.Enemy) return;
+        
         _renderer.material.color = Color.red;
         StartCoroutine(ResetColor());
         _currLife -= _initialLife;
 
         if (_currLife <= 0)
         {
-            
+            //Todo : Game Over
         }
     }
     

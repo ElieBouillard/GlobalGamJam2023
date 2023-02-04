@@ -9,6 +9,7 @@ public class ClientMessages : MonoBehaviour
         StartGame,
         Ready,
         Movements,
+        EnemyDeath,
     }
     
     #region Send
@@ -35,6 +36,14 @@ public class ClientMessages : MonoBehaviour
     {
         Message message = Message.Create(MessageSendMode.unreliable, MessagesId.Movements);
         message.AddVector3(pos);
+        NetworkManager.Instance.Client.Send(message);
+    }
+
+    public void SendEnemyDeath(int id)
+    {
+        Message message = Message.Create(MessageSendMode.reliable, MessagesId.EnemyDeath);
+        message.AddInt(id);
+        
         NetworkManager.Instance.Client.Send(message);
     }
     #endregion
@@ -92,6 +101,12 @@ public class ClientMessages : MonoBehaviour
         {
             spawnersSystem.Spawn(message.GetInt(), message.GetInt(), message.GetInt(), message.GetUShort());
         }
+    }
+
+    [MessageHandler((ushort)ServerMessages.MessagesId.EnemyDeath)]
+    private static void OnServerEnemyDeath(Message message)
+    {
+        GameManager.Instance.EnemySpawners.GetEnemy(message.GetInt()).Death();
     }
     #endregion
 }

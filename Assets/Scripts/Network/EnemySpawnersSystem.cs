@@ -112,12 +112,25 @@ public class EnemySpawnersSystem : Singleton<EnemySpawnersSystem>
             enemyInstance.GetComponent<EnemyPlayerTargetIdentity>().Initialize(enemyId, _networkManager.Players[playerId].transform);
         }
         
-        Enemies.Add(enemyPrefab.GetComponent<EnemyIdentity>());
+        Enemies.Add(enemyInstance.GetComponent<EnemyIdentity>());
     }
 
     public void RemoveEnemy(EnemyIdentity enemy)
     {
         Enemies.Remove(enemy);
+    }
+
+    public EnemyIdentity GetEnemy(int id)
+    {
+        foreach (var enemy in Enemies)
+        {
+            if (enemy.Id == id)
+            {
+                return enemy;
+            }
+        }
+
+        return null;
     }
 }
 

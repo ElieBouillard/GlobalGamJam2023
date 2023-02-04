@@ -14,7 +14,7 @@ public class Weapon : MonoBehaviour
     [Header("Data")]
     [SerializeField, Min(0f)] private float _radius = 1f;
     [SerializeField, Min(0f)] private Vector2 _distance = new Vector2(1f, 0f);
-    [SerializeField, Min(0f)] private float _damage = 10f;
+    [SerializeField, Min(0)] private int _damage = 1;
     [SerializeField, Min(0f)] private float _cooldown = 0.33f;
 
     [Header("Animation")]
@@ -52,7 +52,8 @@ public class Weapon : MonoBehaviour
 
         HitData hitData = new HitData
         {
-            Team = Team.Player
+            Team = Team.Player,
+            Damage = _damage,
         };
 
         foreach (IHittable hittable in hittables)
