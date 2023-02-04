@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
@@ -19,6 +20,8 @@ public class EnemyIdentity : MonoBehaviour, IHittable
     protected NavMeshAgent _agent;
     protected Animator _animator;
     private AudioSource _audioSource;
+
+    private NetworkManager _networkManager;
     
     protected bool _isInAttack;
     protected float _attackClock;
@@ -26,12 +29,15 @@ public class EnemyIdentity : MonoBehaviour, IHittable
     
     protected static readonly int AttackAnimKey = Animator.StringToHash("Attack");
     protected static readonly int WalkAnimKey = Animator.StringToHash("Walk");
+    private static readonly int DieAnimKey = Animator.StringToHash("Die");
 
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponentInChildren<Animator>();
         _audioSource = GetComponent<AudioSource>();
+
+        _networkManager = NetworkManager.Instance;
     }
     
     protected void Initialize(int id)
@@ -91,8 +97,6 @@ public class EnemyIdentity : MonoBehaviour, IHittable
     {
         if (hitData.Team != Team.Player) return;
 
-        //Todo: Play Feedbacks.
-        
         if(hitData.Damage == 0) return;
 
         _currLife -= hitData.Damage;
@@ -100,13 +104,25 @@ public class EnemyIdentity : MonoBehaviour, IHittable
         if (_currLife <= 0)
         {
             NetworkManager.Instance.ClientMessages.SendEnemyDeath(Id);
-            Death();
+            Death(hitData.PlayerSourceId);
         }
     }
 
-    public void Death()
+    public void Death(ushort playerId)
     {
+        transform.forward = (_networkManager.Players[playerId].transform.position - transform.position).WithY(0).normalized;
+
+        _animator.SetTrigger(DieAnimKey);
+        GetComponent<Collider>().enabled = false;
+        _agent.enabled = false;
         GameManager.Instance.EnemySpawners.RemoveEnemy(this);
-        Destroy(gameObject);
+
+        StartCoroutine(Delete());
+    }
+
+    private IEnumerator Delete()
+    {
+        yield return new WaitForSeconds(1.5f);
+        transform.DOMoveY(transform.position.y - 2f, 1f).SetEase(Ease.Linear).OnComplete(()=> Destroy(gameObject));
     }
 }

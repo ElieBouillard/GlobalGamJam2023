@@ -34,7 +34,7 @@ public class CameraController : MonoBehaviour, IShakable
         _shake?.SetTrauma(trauma);
     }
 
-    public void ToggleCursor(bool state)
+    public static void ToggleCursor(bool state)
     {
         Cursor.visible = state;
         Cursor.lockState = state ? CursorLockMode.None : CursorLockMode.Locked;

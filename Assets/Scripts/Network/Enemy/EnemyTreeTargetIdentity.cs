@@ -17,6 +17,8 @@ public class EnemyTreeTargetIdentity : EnemyIdentity
 
     protected override void Update()
     {
+        if (!_agent.enabled) return;
+        
         if (!_isInAttack)
         {
             if ((_targetPos.Value - transform.position).magnitude <= _attackRange)

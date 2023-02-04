@@ -81,6 +81,7 @@ public class ServerMessages : MonoBehaviour
     {
         Message message = Message.Create(MessageSendMode.reliable, MessagesId.EnemyDeath);
         message.AddInt(enemyId);
+        message.AddUShort(playerId);
         NetworkManager.Instance.Server.SendToAll(message, playerId);
     }
     #endregion

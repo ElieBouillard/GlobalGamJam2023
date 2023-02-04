@@ -15,6 +15,8 @@ public class EnemyPlayerTargetIdentity : EnemyIdentity
 
     protected override void Update()
     {
+        if (!_agent.enabled) return;
+        
         if (_playerTarget == null) return; 
         
         if (!_isInAttack)

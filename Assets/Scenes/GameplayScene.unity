@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPersistant: 0
-  _spawnTime: 5
+  _spawnTime: 2
   _enemyCount: 5
   _spawnPoints:
   - {fileID: 1500766363}

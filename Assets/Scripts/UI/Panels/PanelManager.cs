@@ -34,6 +34,8 @@ public class PanelManager : Singleton<PanelManager>
                     if (panel.PanelType == PanelType.Pause) panel.gameObject.SetActive(!_isPause);
                     _isPause = !_isPause;
                 }
+                
+                CameraController.ToggleCursor(_isPause);
             }
         }
     }

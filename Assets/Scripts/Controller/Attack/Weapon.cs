@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,11 +35,18 @@ public class Weapon : MonoBehaviour
     private IShakable _shookOnAttack;
     private PlayerAttackModule _playerAttackModule;
 
+    private ushort _playerId;
+    
     public WeaponType WeaponType => _weaponType;
 
     public int MaximumHits => _maximumHits;
 
     public float Cooldown => _cooldown;
+
+    private void Awake()
+    {
+        _playerId = GetComponentInParent<PlayerIdentity>().GetId;
+    }
 
     public virtual void PlayAttackAnimation(PlayerAttackModule attackModule, IShakable shookOnAttack = null)
     {
@@ -66,6 +74,7 @@ public class Weapon : MonoBehaviour
         {
             Team = Team.Player,
             Damage = _damage,
+            PlayerSourceId = _playerId,
         };
 
         foreach (IHittable hittable in hittables)

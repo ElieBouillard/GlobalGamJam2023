@@ -43,7 +43,6 @@ public class ClientMessages : MonoBehaviour
     {
         Message message = Message.Create(MessageSendMode.reliable, MessagesId.EnemyDeath);
         message.AddInt(id);
-        
         NetworkManager.Instance.Client.Send(message);
     }
     #endregion
@@ -106,7 +105,7 @@ public class ClientMessages : MonoBehaviour
     [MessageHandler((ushort)ServerMessages.MessagesId.EnemyDeath)]
     private static void OnServerEnemyDeath(Message message)
     {
-        GameManager.Instance.EnemySpawners.GetEnemy(message.GetInt()).Death();
+        GameManager.Instance.EnemySpawners.GetEnemy(message.GetInt()).Death(message.GetUShort());
     }
     #endregion
 }
