@@ -16,13 +16,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Min(0f)] private float _slideCooldown = 0.5f;
     [SerializeField, Range(0f, 1f)] private float _slideTrauma = 0.5f;
 
+    [Header("Attack")]
+    [SerializeField] private Weapon _startingWeapon = null;
+    [SerializeField] private bool _canSlideAttack = true;
+
+    // Inputs.
     private Vector2 _movementInput;
     private Vector2 _mouseInput;
     private bool _attackInput;
     private bool _slideInput;
 
+    // Slide.
     private Vector3? _slideDirection;
     private float _slideCooldownTimer;
+
+    // Attack.
+    private PlayerAttackModule _attackModule;
 
     #region Inputs
     private void RegisterInputs()
@@ -72,6 +81,22 @@ public class PlayerController : MonoBehaviour
     }
     #endregion // Slide
 
+    #region Attack
+    private void Attack()
+    {
+        if (!CanAttack())
+            return;
+
+        _attackModule.Attack(shookOnAttack: _cameraController);
+    }
+
+    private bool CanAttack()
+    {
+        return (_slideDirection == null || _canSlideAttack)
+               && _attackModule?.CanAttack() == true;
+    }
+    #endregion Attack
+
     private Vector3 GetMovementDirection()
     {
         return _slideDirection ?? new Vector3(_movementInput.x, _rigidbody.velocity.y, _movementInput.y);
@@ -91,12 +116,22 @@ public class PlayerController : MonoBehaviour
         _rigidbody.velocity = velocity;
     }
 
+    private void Start()
+    {
+        _attackModule = new PlayerAttackModule();
+        _attackModule.SetWeapon(_startingWeapon);
+    }
+
     private void Update()
     {
         RegisterInputs();
-        
+        _attackModule.Update();
+
         if (_slideInput)
             Slide();
+
+        if (_attackInput)
+            Attack();
 
         UpdateSlideCooldown();
     }

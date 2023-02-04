@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class CameraController : MonoBehaviour, IShakable
 {
     [Header("General")]
     [SerializeField] private Vector2 _cameraRotationSpeed = new Vector2(45f, 45f);
