@@ -354,8 +354,10 @@ MonoBehaviour:
   _radius: 1
   _distance: {x: 1, y: 0}
   _damage: 10
+  _maximumHits: 5
   _cooldown: 0.12
   _backToIdleDelay: 0.4
+  _hitParticles: {fileID: 155692, guid: 77d6e8e3fa15a0b419d018e3e16931f6, type: 3}
   _noHitTrauma: 0.1
   _hitTrauma: 0.4
   _freezeFrameDelay: 0

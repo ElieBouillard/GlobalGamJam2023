@@ -23,6 +23,8 @@ public class Weapon : MonoBehaviour
     [SerializeField, Min(0f)] private float _backToIdleDelay = 0.5f;
 
     [Header("VFX")]
+    [SerializeField] private GameObject _hitParticles = null;
+    [SerializeField, Min(0f)] private float _hitForwardAdd = 1f;
     [SerializeField, Range(0f, 1f)] private float _noHitTrauma = 0.1f;
     [SerializeField, Range(0f, 1f)] private float _hitTrauma = 0.2f;
     [SerializeField, Min(0)] private int _freezeFrameDelay = 0;
@@ -57,7 +59,8 @@ public class Weapon : MonoBehaviour
 
     public void Attack()
     {
-        Collider[] targets = Physics.OverlapSphere(transform.position + transform.forward * _distance.x + transform.up * _distance.y, _radius);
+        Vector3 attackPosition = transform.position + transform.forward * _distance.x + transform.up * _distance.y;
+        Collider[] targets = Physics.OverlapSphere(attackPosition, _radius);
         IEnumerable<IHittable> hittables = targets.Where(o => o.TryGetComponent<IHittable>(out _) && !o.TryGetComponent<PlayerController>(out _))
                                                   .Select(o => o.GetComponent<IHittable>());
 
@@ -73,7 +76,10 @@ public class Weapon : MonoBehaviour
         if (hittables.Any())
         {
             _playerAttackModule.OnWeaponHit();
-
+    
+            if (_hitParticles != null)
+                Instantiate(_hitParticles, attackPosition + transform.forward * _hitForwardAdd, _hitParticles.transform.rotation);
+            
             FreezeFrameManager.FreezeFrame(_freezeFrameDelay, _freezeFrameDuration, 0f, true);
             _shookOnAttack?.SetTrauma(_hitTrauma);
             // TODO: any target hit audio.
