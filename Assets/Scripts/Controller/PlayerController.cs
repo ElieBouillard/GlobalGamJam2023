@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement")]
     [SerializeField, Min(0f)] private float _movementSpeed = 10f;
+    [SerializeField, Min(0f)] private LayerMask _groundLayerMask = 0;
+    [SerializeField, Min(10f)] private float _groundSnapDistance = 100f;
 
     [Header("Slide")]
     [SerializeField, Min(0f)] private float _slideDuration = 0.5f;
@@ -116,6 +118,16 @@ public class PlayerController : MonoBehaviour
         _rigidbody.velocity = velocity;
     }
 
+    private void SnapToGround()
+    {
+        Physics.Raycast(transform.position + Vector3.up * 0.5f, Vector3.down, out RaycastHit hit, _groundSnapDistance, _groundLayerMask);
+
+        if (hit.collider == null)
+            return;
+
+        transform.position = new Vector3(transform.position.x, hit.point.y + 0.05f, transform.position.z);
+    }
+
     private void Start()
     {
         _attackModule = new PlayerAttackModule();
@@ -139,6 +151,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
+        SnapToGround();
     }
 
     private void LateUpdate()
