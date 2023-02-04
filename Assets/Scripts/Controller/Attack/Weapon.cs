@@ -23,6 +23,8 @@ public class Weapon : MonoBehaviour
     [Header("VFX")]
     [SerializeField, Range(0f, 1f)] private float _noHitTrauma = 0.1f;
     [SerializeField, Range(0f, 1f)] private float _hitTrauma = 0.2f;
+    [SerializeField, Min(0)] private int _freezeFrameDelay = 0;
+    [SerializeField, Min(0f)] private float _freezeFrameDuration = 0.05f;
 
     private Coroutine _backToIdleCoroutine;
     private IShakable _shookOnAttack;
@@ -33,6 +35,7 @@ public class Weapon : MonoBehaviour
     {
         _animator.SetTrigger(ANIM_PARAM_ATTACK);
         _shookOnAttack = shookOnAttack;
+
         Attack();
 
         StopBackToIdleCoroutine();
@@ -47,7 +50,15 @@ public class Weapon : MonoBehaviour
         foreach (IHittable hittable in hittables)
             hittable.OnHit(HitData.Empty);
 
-        _shookOnAttack?.SetTrauma(hittables.Any() ? _hitTrauma : _noHitTrauma);
+        if (hittables.Any())
+        {
+            FreezeFrameManager.FreezeFrame(_freezeFrameDelay, _freezeFrameDuration, 0f, true);
+            _shookOnAttack?.SetTrauma(_hitTrauma);
+        }
+        else
+        {
+            _shookOnAttack?.SetTrauma(_noHitTrauma);
+        }
     }
 
     public virtual void OnEquiped()

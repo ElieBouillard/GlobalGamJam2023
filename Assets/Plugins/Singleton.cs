@@ -30,6 +30,8 @@ public abstract class Singleton<T> : MonoBehaviour where T : class {
         if(!isPersistant) ResetInstance();
     }
 
+    public static bool Exists() => instance != null;
+
     public static void ResetInstance() => Singleton<T>.instance = null;
 
     public void DestroyInstance() {

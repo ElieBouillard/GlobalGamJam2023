@@ -357,3 +357,5 @@ MonoBehaviour:
   _backToIdleDelay: 0.4
   _noHitTrauma: 0.1
   _hitTrauma: 0.4
+  _freezeFrameDelay: 0
+  _freezeFrameDuration: 0.08

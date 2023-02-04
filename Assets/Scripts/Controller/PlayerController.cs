@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
         _slideSpeedBuffer = _slideSpeed;
         _slideSpeedBufferDecrementCoroutine = StartCoroutine(DecrementSlideSpeedBufferCoroutine());
 
-        _cameraController.ResetFOV(0.2f);
+        _cameraController.ResetFOV(0.15f);
     }
 
     private bool CanSlide()
