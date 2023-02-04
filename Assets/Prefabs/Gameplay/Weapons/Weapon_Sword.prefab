@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1397787108480512219}
   - component: {fileID: 1397787108480512218}
+  - component: {fileID: 1254167020763432291}
   m_Layer: 0
   m_Name: Sword_Pivot
   m_TagString: Untagged
@@ -55,6 +56,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1254167020763432291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1397787108480512216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1dd27f92d3561542b3c3507c7aef611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weapon: {fileID: 1397787109172244719}
 --- !u!1 &1397787108848193326
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,6 +372,7 @@ MonoBehaviour:
   _cooldown: 0.12
   _backToIdleDelay: 0.4
   _hitParticles: {fileID: 108496, guid: 9acec412cf3cb0b4ea6bd5b99ee797bc, type: 3}
+  _hitForwardAdd: 1
   _noHitTrauma: 0.1
   _hitTrauma: 0.4
   _freezeFrameDelay: 0
