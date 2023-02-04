@@ -31,6 +31,7 @@ public class EnemyPlayerTargetIdentity : EnemyIdentity
             else
             {
                 if(_animator.GetBool(WalkAnimKey)) _animator.SetBool(WalkAnimKey, false);
+                transform.forward = (_playerTarget.position - transform.position).WithY(0).normalized;
                 AttackFeedback();
                 _isInAttack = true;
                 _attackClock = _attackCooldown;
