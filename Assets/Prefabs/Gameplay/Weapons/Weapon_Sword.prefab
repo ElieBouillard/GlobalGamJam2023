@@ -354,6 +354,6 @@ MonoBehaviour:
   _distance: {x: 1, y: 0}
   _damage: 10
   _cooldown: 0.12
-  _backToIdleDelay: 0.3
+  _backToIdleDelay: 0.4
   _noHitTrauma: 0.1
   _hitTrauma: 0.4
