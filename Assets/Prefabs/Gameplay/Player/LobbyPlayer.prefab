@@ -488,8 +488,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: PlayerPseudo
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a37ca1b6d0bfcf3419a0cf6446fda29e, type: 2}
+  m_sharedMaterial: {fileID: -3095570056646326556, guid: a37ca1b6d0bfcf3419a0cf6446fda29e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
