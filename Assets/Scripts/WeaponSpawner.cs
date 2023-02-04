@@ -67,6 +67,8 @@ public class WeaponSpawner : MonoBehaviour
 
         if (Random.value < _generateOnStartChance)
             GenerateWeapon();
+        else
+            StartCoroutine(RespawnWeapon());
 
         if (_previewsContainer != null)
             _previewsContainer.Rotate(0f, Random.Range(0, 360f), 0f, Space.World);

@@ -535,7 +535,7 @@ MonoBehaviour:
     Preview: {fileID: 4928930288768839726}
   - WeaponType: 2
     Preview: {fileID: 7876962419174657058}
-  _generateOnStartChance: 1
+  _generateOnStartChance: 0.5
   _previewsContainer: {fileID: 589263784888238957}
   _previewRotationSpeed: 180
 --- !u!136 &75699322763752343
