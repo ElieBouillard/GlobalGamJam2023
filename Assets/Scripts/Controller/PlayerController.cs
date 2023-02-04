@@ -98,6 +98,8 @@ public class PlayerController : MonoBehaviour
             _slideSpeedBuffer = Mathf.Lerp(0f, initialBuffer, _slideSpeedDecrementCurve.Evaluate(t));
             yield return null;
         }
+
+        _slideSpeedBuffer = 0f;
     }
     #endregion // Slide
 
