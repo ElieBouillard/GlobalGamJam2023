@@ -29,17 +29,4 @@ public class EnemyTreeTargetIdentity : EnemyIdentity
         
         base.Update();
     }
-
-    public override void Attack()
-    {
-        Collider[] colliders = Physics.OverlapSphere(transform.position + Vector3.up + transform.forward * _attackRange, _attackRadius);
-
-        foreach (var collider in colliders)
-        {
-            if (collider.TryGetComponent(out TreeBehaviour tree))
-            {
-                // tree.TakeDamage();
-            }
-        }
-    }
 }

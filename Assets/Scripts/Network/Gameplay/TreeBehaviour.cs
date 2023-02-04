@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class TreeBehaviour : MonoBehaviour, IHittable
 {
@@ -17,17 +18,22 @@ public class TreeBehaviour : MonoBehaviour, IHittable
     {
         _renderer = GetComponentInChildren<Renderer>();
         Position = transform.position;
+        _currLife = _initialLife;
     }
 
     public void OnHit(HitData hitData)
     {
+        if (hitData.Team != Team.Enemy) return;
+        
         _renderer.material.color = Color.red;
         StartCoroutine(ResetColor());
-        _currLife -= _initialLife;
+        _currLife -= hitData.Damage;
 
+        Debug.Log($"Tree Take Damage : Current Life -> {_currLife}");
+        
         if (_currLife <= 0)
         {
-            
+            Debug.Log("Tree Is DEAD / GAME OVER");
         }
     }
     

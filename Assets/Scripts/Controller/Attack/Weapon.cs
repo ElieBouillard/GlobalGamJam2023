@@ -12,15 +12,19 @@ public class Weapon : MonoBehaviour
     [SerializeField] private Animator _animator = null;
 
     [Header("Data")]
+    [SerializeField, Min(0f)] private WeaponType _weaponType = WeaponType.None;
     [SerializeField, Min(0f)] private float _radius = 1f;
     [SerializeField, Min(0f)] private Vector2 _distance = new Vector2(1f, 0f);
-    [SerializeField, Min(0f)] private float _damage = 10f;
+    [SerializeField, Min(0)] private int _damage = 1;
+    [SerializeField, Min(1)] private int _maximumHits = 5;
     [SerializeField, Min(0f)] private float _cooldown = 0.33f;
 
     [Header("Animation")]
     [SerializeField, Min(0f)] private float _backToIdleDelay = 0.5f;
 
     [Header("VFX")]
+    [SerializeField] private GameObject _hitParticles = null;
+    [SerializeField, Min(0f)] private float _hitForwardAdd = 1f;
     [SerializeField, Range(0f, 1f)] private float _noHitTrauma = 0.1f;
     [SerializeField, Range(0f, 1f)] private float _hitTrauma = 0.2f;
     [SerializeField, Min(0)] private int _freezeFrameDelay = 0;
@@ -28,31 +32,42 @@ public class Weapon : MonoBehaviour
 
     private Coroutine _backToIdleCoroutine;
     private IShakable _shookOnAttack;
+    private PlayerAttackModule _playerAttackModule;
+
+    public WeaponType WeaponType => _weaponType;
+
+    public int MaximumHits => _maximumHits;
 
     public float Cooldown => _cooldown;
 
-    public virtual void PlayAttackAnimation(IShakable shookOnAttack = null)
+    public virtual void PlayAttackAnimation(PlayerAttackModule attackModule, IShakable shookOnAttack = null)
     {
         _animator.SetTrigger(ANIM_PARAM_ATTACK);
+        _playerAttackModule = attackModule;
         _shookOnAttack = shookOnAttack;
 
-        Attack();
+        //Attack();
 
-        StopBackToIdleCoroutine();
-        _backToIdleCoroutine = StartCoroutine(BackToIdleCoroutine());
+        if (gameObject.activeSelf)
+        {
+            StopBackToIdleCoroutine();
+            _backToIdleCoroutine = StartCoroutine(BackToIdleCoroutine());
+        }
 
         // TODO: attack audio.
     }
 
     public void Attack()
     {
-        Collider[] targets = Physics.OverlapSphere(transform.position + transform.forward * _distance.x + transform.up * _distance.y, _radius);
+        Vector3 attackPosition = transform.position + transform.forward * _distance.x + transform.up * _distance.y;
+        Collider[] targets = Physics.OverlapSphere(attackPosition, _radius);
         IEnumerable<IHittable> hittables = targets.Where(o => o.TryGetComponent<IHittable>(out _) && !o.TryGetComponent<PlayerController>(out _))
                                                   .Select(o => o.GetComponent<IHittable>());
 
         HitData hitData = new HitData
         {
-            Team = Team.Player
+            Team = Team.Player,
+            Damage = _damage,
         };
 
         foreach (IHittable hittable in hittables)
@@ -60,6 +75,11 @@ public class Weapon : MonoBehaviour
 
         if (hittables.Any())
         {
+            _playerAttackModule.OnWeaponHit();
+    
+            if (_hitParticles != null)
+                Instantiate(_hitParticles, attackPosition + transform.forward * _hitForwardAdd, _hitParticles.transform.rotation);
+            
             FreezeFrameManager.FreezeFrame(_freezeFrameDelay, _freezeFrameDuration, 0f, true);
             _shookOnAttack?.SetTrauma(_hitTrauma);
             // TODO: any target hit audio.
@@ -72,7 +92,7 @@ public class Weapon : MonoBehaviour
 
     public virtual void OnEquiped()
     {
-        // Equip animation?
+        _animator.SetTrigger(ANIM_PARAM_IDLE); // Equip animation.
         gameObject.SetActive(true);
         // TODO: weapon audio.
     }
