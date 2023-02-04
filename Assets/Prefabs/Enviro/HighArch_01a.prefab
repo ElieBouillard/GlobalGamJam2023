@@ -41,6 +41,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5968884964607183467}
+  - component: {fileID: 2442985380041086872}
+  - component: {fileID: 2619640583383677307}
   m_Layer: 0
   m_Name: HighArch_01a
   m_TagString: Untagged
@@ -64,6 +66,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2442985380041086872
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5968884964607183466}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.07, y: 12.5, z: 5.12}
+  m_Center: {x: 0, y: 6.07, z: 3.04}
+--- !u!65 &2619640583383677307
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5968884964607183466}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.07, y: 12.5, z: 5.9}
+  m_Center: {x: 0, y: 6.07, z: 12.87}
 --- !u!1001 &4543281273253522871
 PrefabInstance:
   m_ObjectHideFlags: 0
