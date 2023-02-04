@@ -950,7 +950,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackRange: 1.25
   _attackRadius: 0.5
-  _attackCooldown: 3
+  _attackCooldown: 4
 --- !u!195 &3755498120140851512
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -961,7 +961,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 2.5
   m_Acceleration: 9999
   avoidancePriority: 50
   m_AngularSpeed: 9999
