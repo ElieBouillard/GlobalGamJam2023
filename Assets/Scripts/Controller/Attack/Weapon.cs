@@ -40,6 +40,8 @@ public class Weapon : MonoBehaviour
 
         StopBackToIdleCoroutine();
         _backToIdleCoroutine = StartCoroutine(BackToIdleCoroutine());
+
+        // TODO: attack audio.
     }
 
     public void Attack()
@@ -54,6 +56,7 @@ public class Weapon : MonoBehaviour
         {
             FreezeFrameManager.FreezeFrame(_freezeFrameDelay, _freezeFrameDuration, 0f, true);
             _shookOnAttack?.SetTrauma(_hitTrauma);
+            // TODO: any target hit audio.
         }
         else
         {
@@ -65,6 +68,7 @@ public class Weapon : MonoBehaviour
     {
         // Equip animation?
         gameObject.SetActive(true);
+        // TODO: weapon audio.
     }
 
     public virtual void OnUnequiped()

@@ -73,6 +73,7 @@ public class PlayerController : MonoBehaviour
             _cameraController.SetFOV(_slideFOV, _slideDuration * 0.5f);
     
         _cameraController.SetTrauma(_slideTrauma);
+        // TODO: slide audio.
     }
 
     private IEnumerator SlideCoroutine(Vector3 direction)
