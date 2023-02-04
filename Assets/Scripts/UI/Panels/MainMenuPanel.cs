@@ -12,6 +12,7 @@ public class MainMenuPanel : Panel
     private void Start()
     {
         _joinGameButton.gameObject.SetActive(!NetworkManager.Instance.UseSteam);
+        CameraController.ToggleCursor(true);
     }
     
     protected override void AssignButtonsReference()

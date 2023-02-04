@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class EnemyPlayerTargetIdentity : EnemyIdentity
@@ -17,25 +18,32 @@ public class EnemyPlayerTargetIdentity : EnemyIdentity
     {
         if (!_agent.enabled) return;
         
-        if (_playerTarget == null) return; 
-        
-        if (!_isInAttack)
+        if (_playerTarget == null) return;
+
+        if ((_playerTarget.position - transform.position).magnitude <= _attackRange)
         {
-            if ((_playerTarget.position - transform.position).magnitude <= _attackRange)
+            if(_agent.hasPath) _agent.ResetPath();
+            
+            if (_attackClock > 0)
             {
-                _agent.ResetPath();
-                _animator.SetBool(WalkAnimKey, false);
-                _isInAttack = true;
+                _attackClock -= Time.deltaTime;
             }
             else
             {
-                _agent.SetDestination(_playerTarget.position);
-                
-                if(!_animator.GetBool(WalkAnimKey)) _animator.SetBool(WalkAnimKey, true);
-                if(_attackClock != 0) _attackClock = 0;
+                if(_animator.GetBool(WalkAnimKey)) _animator.SetBool(WalkAnimKey, false);
+                AttackFeedback();
+                _isInAttack = true;
+                _attackClock = _attackCooldown;
             }
         }
-        
-        base.Update();
+        else
+        {
+            if (!_isInAttack)
+            {
+                if(!_animator.GetBool(WalkAnimKey)) _animator.SetBool(WalkAnimKey, true);
+                _agent.SetDestination(_playerTarget.position);
+                _attackClock = 0;
+            }
+        }
     }
 }

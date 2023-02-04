@@ -18,17 +18,32 @@ public class EnemyTreeTargetIdentity : EnemyIdentity
     protected override void Update()
     {
         if (!_agent.enabled) return;
-        
-        if (!_isInAttack)
+
+        if ((_targetPos.Value - transform.position).magnitude <= _attackRange && !_isInAttack)
         {
-            if ((_targetPos.Value - transform.position).magnitude <= _attackRange)
-            {
-                _agent.ResetPath();
-                _animator.SetBool(WalkAnimKey, false);
-                _isInAttack = true;
-            }
+            _agent.ResetPath();
+            _animator.SetBool(WalkAnimKey, false);
+            _isInAttack = true;
+        }
+
+        if ((_targetPos.Value - transform.position).magnitude >= _attackRange && !_isInAttack)
+        {
+            _agent.SetDestination(_targetPos.Value);
+            _animator.SetBool(WalkAnimKey, true);
+            if(_attackClock != 0) _attackClock = 0;
         }
         
-        base.Update();
+        if (_isInAttack)
+        {
+            if (_attackClock > 0)
+            {
+                _attackClock -= Time.deltaTime;
+            }
+            else
+            {
+                _attackClock = _attackCooldown; 
+                AttackFeedback();
+            }
+        }
     }
 }

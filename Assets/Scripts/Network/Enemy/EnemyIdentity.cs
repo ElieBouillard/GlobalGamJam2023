@@ -47,22 +47,9 @@ public class EnemyIdentity : MonoBehaviour, IHittable
         _currLife = _initialLife;
     }
 
-    protected virtual void Update()
-    {
-        if(!_isInAttack) return;
-        
-        if (_attackClock > 0)
-        {
-            _attackClock -= Time.deltaTime;
-        }
-        else
-        {
-            _attackClock = _attackCooldown; 
-            AttackFeedback();
-        }
-    }
+    protected virtual void Update() { }
 
-    private void AttackFeedback()
+    protected void AttackFeedback()
     {
         _animator.SetTrigger(AttackAnimKey);
     }
