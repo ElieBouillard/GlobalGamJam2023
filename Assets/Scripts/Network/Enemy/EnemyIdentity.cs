@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyIdentity : MonoBehaviour
+public class EnemyIdentity : MonoBehaviour, IHittable
 {
     //UnityInspector
     [SerializeField] protected float _attackRange = 1f;
@@ -14,7 +14,7 @@ public class EnemyIdentity : MonoBehaviour
     
     public int Id { private set; get; }
 
-    //References
+    [Header("References")]
     protected NavMeshAgent _agent;
     protected Animator _animator;
     private AudioSource _audioSource;
@@ -64,7 +64,7 @@ public class EnemyIdentity : MonoBehaviour
             _audioSource.Play();
     }
 
-    public virtual void EndAttack()
+    public void EndAttack()
     {
         _isInAttack = false;
     }
@@ -73,5 +73,10 @@ public class EnemyIdentity : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position + Vector3.up + transform.forward * _attackRange, _attackRadius);
+    }
+
+    public void OnHit(HitData hitData)
+    {
+        gameObject.SetActive(false);
     }
 }

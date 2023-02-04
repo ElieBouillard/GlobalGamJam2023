@@ -5,12 +5,7 @@ using UnityEngine;
 
 public class EnemyPlayerTargetIdentity : EnemyIdentity
 {
-    [SerializeField] private Transform _playerTarget;
-
-    private void Start()
-    {
-        Initialize(0);
-    }
+    private Transform _playerTarget;
 
     public void Initialize(int id, Transform playerTarget)
     {
@@ -20,6 +15,8 @@ public class EnemyPlayerTargetIdentity : EnemyIdentity
 
     protected override void Update()
     {
+        if (_playerTarget == null) return; 
+        
         if (!_isInAttack)
         {
             if ((_playerTarget.position - transform.position).magnitude <= _attackRange)
