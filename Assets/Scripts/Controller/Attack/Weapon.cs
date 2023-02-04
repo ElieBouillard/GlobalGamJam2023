@@ -47,10 +47,16 @@ public class Weapon : MonoBehaviour
     public void Attack()
     {
         Collider[] targets = Physics.OverlapSphere(transform.position + transform.forward * _distance.x + transform.up * _distance.y, _radius);
-        IEnumerable<IHittable> hittables = targets.Where(o => o.TryGetComponent<IHittable>(out _)).Select(o => o.GetComponent<IHittable>());
+        IEnumerable<IHittable> hittables = targets.Where(o => o.TryGetComponent<IHittable>(out _) && !o.TryGetComponent<PlayerController>(out _))
+                                                  .Select(o => o.GetComponent<IHittable>());
+
+        HitData hitData = new HitData
+        {
+            Team = Team.Player
+        };
 
         foreach (IHittable hittable in hittables)
-            hittable.OnHit(HitData.Empty);
+            hittable.OnHit(hitData);
 
         if (hittables.Any())
         {

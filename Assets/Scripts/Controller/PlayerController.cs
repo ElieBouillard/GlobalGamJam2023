@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IHittable
 {
     [Header("References")]
     [SerializeField] private Rigidbody _rigidbody = null;
@@ -25,6 +25,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Weapon _startingWeapon = null;
     [SerializeField] private bool _canSlideAttack = true;
 
+    [Header("Health")]
+    [SerializeField] private int _maxHealth = 3;
+
     // Inputs.
     private Vector2 _movementInput;
     private Vector2 _mouseInput;
@@ -39,6 +42,12 @@ public class PlayerController : MonoBehaviour
 
     // Attack.
     private PlayerAttackModule _attackModule;
+
+    // Current health.
+    private int _currentHealth;
+
+    public delegate void HealthChangedEventHandler(int previousHealth, int currentHealth);
+    public HealthChangedEventHandler HealthChanged;
 
     #region Inputs
     private void RegisterInputs()
@@ -129,6 +138,29 @@ public class PlayerController : MonoBehaviour
     }
     #endregion Attack
 
+    public void OnHit(HitData hitData)
+    {
+        // Ignore friendly fire.
+        if (hitData.Team == Team.Player)
+            return;
+
+        int previousHealth = _currentHealth;
+        _currentHealth--;
+        HealthChanged?.Invoke(previousHealth, _currentHealth);
+
+        if (_currentHealth == 0)
+        {
+            Debug.Log("Death.", gameObject);
+            // TODO: Death.
+        }
+    }
+
+    [ContextMenu("Hit")]
+    private void Hit()
+    {
+        OnHit(HitData.Empty);
+    }
+
     private Vector3 GetMovementDirection()
     {
         return _slideDirection ?? new Vector3(_movementInput.x, _rigidbody.velocity.y, _movementInput.y);
@@ -176,6 +208,7 @@ public class PlayerController : MonoBehaviour
     {
         _attackModule = new PlayerAttackModule();
         _attackModule.SetWeapon(_startingWeapon);
+        _currentHealth = _maxHealth;
     }
 
     private void Update()
