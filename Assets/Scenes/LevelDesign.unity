@@ -2767,6 +2767,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 739743001}
     m_Modifications:
+    - target: {fileID: 8104197206699346664, guid: 93d30d11906e96b4281b0343f0264304, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8104197206699346666, guid: 93d30d11906e96b4281b0343f0264304, type: 3}
       propertyPath: m_Name
       value: KingTree
@@ -2815,7 +2819,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8104197206699346664, guid: 93d30d11906e96b4281b0343f0264304, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 93d30d11906e96b4281b0343f0264304, type: 3}
 --- !u!1 &911414544 stripped
 GameObject:
@@ -2834,7 +2839,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00456ed79e0d6f44da02d6641b9000dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialLife: 0
+  _initialLife: 10
+--- !u!136 &911414546
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911414544}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2.57
+  m_Height: 10.1
+  m_Direction: 1
+  m_Center: {x: 0, y: 3.49, z: 0}
 --- !u!1001 &1063935969
 PrefabInstance:
   m_ObjectHideFlags: 0
