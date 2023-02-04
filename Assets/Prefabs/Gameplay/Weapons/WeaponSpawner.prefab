@@ -530,9 +530,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnData: {fileID: 11400000, guid: b41019b18399b1c4f993e4083fc431f9, type: 2}
   _previews:
-  - WeaponPrefab: {fileID: 1397787109172244719, guid: 51885e3f8bebd6a4cbcc3842869d0bca, type: 3}
+  - WeaponType: 1
     Preview: {fileID: 4928930288768839726}
-  - WeaponPrefab: {fileID: 1397787109172244719, guid: 8f966b85d37fdaf40aab1f1f7140a6b3, type: 3}
+  - WeaponType: 2
     Preview: {fileID: 7876962419174657058}
   _generateOnStartChance: 1
   _previewsContainer: {fileID: 589263784888238957}

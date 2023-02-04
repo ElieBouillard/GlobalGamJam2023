@@ -6,12 +6,16 @@ public class WeaponSpawner : MonoBehaviour
     [System.Serializable]
     public struct WeaponPickup
     {
-        public static WeaponPickup Empty => new WeaponPickup();
+        public static WeaponPickup Empty => new WeaponPickup
+        {
+            WeaponType = WeaponType.None,
+            Preview = null
+        };
 
-        public Weapon WeaponPrefab;
+        public WeaponType WeaponType;
         public GameObject Preview;
 
-        public bool IsEmpty => WeaponPrefab == null;
+        public bool IsEmpty => WeaponType == WeaponType.None;
     }
 
     [Header("Generation Data")]
@@ -27,7 +31,7 @@ public class WeaponSpawner : MonoBehaviour
 
     public void OnWeaponPickedUp()
     {
-        UnityEngine.Assertions.Assert.IsFalse(Weapon.IsEmpty, $"Picked up an empty weapon!");
+        UnityEngine.Assertions.Assert.IsTrue(CanPickup(), $"Picked up an empty weapon!");
 
         Weapon.Preview.SetActive(false);
         Weapon = WeaponPickup.Empty;
@@ -35,10 +39,15 @@ public class WeaponSpawner : MonoBehaviour
         StartCoroutine(RespawnWeapon());
     }
 
+    public bool CanPickup()
+    {
+        return !Weapon.IsEmpty;
+    }
+
     private void GenerateWeapon()
     {
-        Weapon weapon = _spawnData.GetRandomWeapon();
-        WeaponPickup pickup = _previews.FirstOrDefault(o => o.WeaponPrefab == weapon);
+        WeaponType weaponType = _spawnData.GetRandomWeaponType();
+        WeaponPickup pickup = _previews.FirstOrDefault(o => o.WeaponType == weaponType);
         Weapon = pickup;
         UnityEngine.Assertions.Assert.IsFalse(Weapon.IsEmpty, $"Generated an empty weapon!");
         Weapon.Preview.SetActive(true);

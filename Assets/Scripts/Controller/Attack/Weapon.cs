@@ -12,6 +12,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private Animator _animator = null;
 
     [Header("Data")]
+    [SerializeField, Min(0f)] private WeaponType _weaponType = WeaponType.None;
     [SerializeField, Min(0f)] private float _radius = 1f;
     [SerializeField, Min(0f)] private Vector2 _distance = new Vector2(1f, 0f);
     [SerializeField, Min(0f)] private float _damage = 10f;
@@ -28,6 +29,8 @@ public class Weapon : MonoBehaviour
 
     private Coroutine _backToIdleCoroutine;
     private IShakable _shookOnAttack;
+
+    public WeaponType WeaponType => _weaponType;
 
     public float Cooldown => _cooldown;
 

@@ -7,7 +7,7 @@ public class WeaponSpawnData : ScriptableObject
     [System.Serializable]
     public struct WeaponItem
     {
-        public Weapon WeaponPrefab;
+        public WeaponType WeaponType;
         public int Weight;
     }
 
@@ -16,7 +16,7 @@ public class WeaponSpawnData : ScriptableObject
 
     public Vector2 CooldownMinMax => _cooldownMinMax;
 
-    public Weapon GetRandomWeapon()
+    public WeaponType GetRandomWeaponType()
     {
         int totalWeight = _weapons.Sum(o => o.Weight);
         int currentWeight = 0;
@@ -27,9 +27,9 @@ public class WeaponSpawnData : ScriptableObject
             WeaponItem weaponItem = _weapons[i];
             currentWeight += weaponItem.Weight;
             if (currentWeight > random)
-                return weaponItem.WeaponPrefab;
+                return weaponItem.WeaponType;
         }
 
-        return _weapons[^1].WeaponPrefab;
+        return _weapons[^1].WeaponType;
     }
 }

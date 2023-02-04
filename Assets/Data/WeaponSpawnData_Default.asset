@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: WeaponSpawnData_Default
   m_EditorClassIdentifier: 
   _weapons:
-  - WeaponPrefab: {fileID: 1397787109172244719, guid: 51885e3f8bebd6a4cbcc3842869d0bca, type: 3}
+  - WeaponType: 1
     Weight: 1
-  - WeaponPrefab: {fileID: 1397787109172244719, guid: 8f966b85d37fdaf40aab1f1f7140a6b3, type: 3}
+  - WeaponType: 2
     Weight: 1
   _cooldownMinMax: {x: 10, y: 10}

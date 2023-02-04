@@ -350,6 +350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 1397787108480512218}
+  _weaponType: 2
   _radius: 1
   _distance: {x: 1, y: 0}
   _damage: 10
