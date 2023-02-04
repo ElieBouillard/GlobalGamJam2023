@@ -8,11 +8,6 @@ public class EnemyTreeTargetIdentity : EnemyIdentity
 {
     private Vector3? _targetPos;
 
-    private void Start()
-    {
-        Initialize(0, TreeBehaviour.Position);
-    }
-
     public void Initialize(int id, Vector3 targetPos)
     {
         Initialize(id);

@@ -80,5 +80,18 @@ public class ClientMessages : MonoBehaviour
     {
         ((PlayerGameIdentity)NetworkManager.Instance.Players[message.GetUShort()]).MovementReceiver.SetMovements(message.GetVector3());
     }
+
+    [MessageHandler((ushort)ServerMessages.MessagesId.SpawnEnemies)]
+    private static void OnServerSpawnEnemies(Message message)
+    {
+        EnemySpawnersSystem spawnersSystem = EnemySpawnersSystem.Instance;
+        
+        int enemiesCount = message.GetInt();
+
+        for (int i = 0; i < enemiesCount; i++)
+        {
+            spawnersSystem.Spawn(message.GetInt(), message.GetInt(), message.GetInt(), message.GetUShort());
+        }
+    }
     #endregion
 }

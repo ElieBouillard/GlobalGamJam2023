@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using RiptideNetworking;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class ServerMessages : MonoBehaviour
         StartGame,
         InitializeGameplay,
         Movements,
+        SpawnEnemies,
     }
 
     #region Send
@@ -55,6 +57,23 @@ public class ServerMessages : MonoBehaviour
         message.AddUShort(id);
         message.AddVector3(pos);
         NetworkManager.Instance.Server.SendToAll(message, id);
+    }
+
+    public void SendSpawnEnemies(List<EnemySpawnData> enemiesSpawnData)
+    {
+        Message message = Message.Create(MessageSendMode.reliable, MessagesId.SpawnEnemies);
+
+        message.AddInt(enemiesSpawnData.Count);
+        
+        for (int i = 0; i < enemiesSpawnData.Count; i++)
+        {
+            message.AddInt(enemiesSpawnData[i].EnemyId);
+            message.AddInt(enemiesSpawnData[i].EnemyType);
+            message.AddInt(enemiesSpawnData[i].SpawnId);
+            message.AddUShort(enemiesSpawnData[i].PlayerId);
+        }
+        
+        NetworkManager.Instance.Server.SendToAll(message, NetworkManager.Instance.LocalPlayer.GetId);
     }
     #endregion
 

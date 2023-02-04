@@ -179,6 +179,9 @@ public class NetworkManager : Singleton<NetworkManager>
     public void JoinLobby()
     {
         if (UseSteam) return;
+        
+        if(!_useLocalHost && String.IsNullOrEmpty(IpAddress.Instance.GetIpAddress())) return;
+        
         Client.Connect( _useLocalHost ? $"127.0.0.1:{_port}" : $"{IpAddress.Instance.GetIpAddress()}:{_port}");
     }
     

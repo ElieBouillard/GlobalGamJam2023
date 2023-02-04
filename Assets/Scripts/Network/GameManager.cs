@@ -11,6 +11,14 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private GameObject _localPlayerPrefab;
     [SerializeField] private GameObject _otherPlayerPrefab;
 
+    private EnemySpawnersSystem _enemySpawners;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _enemySpawners = GetComponent<EnemySpawnersSystem>();
+    }
+
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -36,6 +44,8 @@ public class GameManager : Singleton<GameManager>
         {
             AddPlayerInGame(player.GetId, player.GetSteamId);
         }
+        
+        _enemySpawners.InitializeSpawn();
     }
     
     public void AddPlayerInGame(ushort playerId, ulong steamId)
