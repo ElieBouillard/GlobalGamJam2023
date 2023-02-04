@@ -1570,6 +1570,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459839368203618498, guid: 067fd73eb93f5c94e88f424d3ddb384b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8427563419864182531, guid: 067fd73eb93f5c94e88f424d3ddb384b, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1618,6 +1622,46 @@ PrefabInstance:
       propertyPath: _startingWeapon
       value: 
       objectReference: {fileID: 1525856866}
+    - target: {fileID: 8427563419864182536, guid: 067fd73eb93f5c94e88f424d3ddb384b, type: 3}
+      propertyPath: _slideSpeedDecrementCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427563419864182536, guid: 067fd73eb93f5c94e88f424d3ddb384b, type: 3}
+      propertyPath: _slideSpeedDecrementCurve.m_Curve.Array.data[1].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427563419864182536, guid: 067fd73eb93f5c94e88f424d3ddb384b, type: 3}
+      propertyPath: _slideSpeedDecrementCurve.m_Curve.Array.data[0].inSlope
+      value: -2.9559755
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427563419864182536, guid: 067fd73eb93f5c94e88f424d3ddb384b, type: 3}
+      propertyPath: _slideSpeedDecrementCurve.m_Curve.Array.data[1].inSlope
+      value: 0.0077539417
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427563419864182536, guid: 067fd73eb93f5c94e88f424d3ddb384b, type: 3}
+      propertyPath: _slideSpeedDecrementCurve.m_Curve.Array.data[0].outSlope
+      value: -2.9559755
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427563419864182536, guid: 067fd73eb93f5c94e88f424d3ddb384b, type: 3}
+      propertyPath: _slideSpeedDecrementCurve.m_Curve.Array.data[1].inWeight
+      value: 0.30416667
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427563419864182536, guid: 067fd73eb93f5c94e88f424d3ddb384b, type: 3}
+      propertyPath: _slideSpeedDecrementCurve.m_Curve.Array.data[1].outSlope
+      value: 0.0077539417
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427563419864182536, guid: 067fd73eb93f5c94e88f424d3ddb384b, type: 3}
+      propertyPath: _slideSpeedDecrementCurve.m_Curve.Array.data[0].outWeight
+      value: 0.0375
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427563419864182536, guid: 067fd73eb93f5c94e88f424d3ddb384b, type: 3}
+      propertyPath: _slideSpeedDecrementCurve.m_Curve.Array.data[0].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427563419864182536, guid: 067fd73eb93f5c94e88f424d3ddb384b, type: 3}
+      propertyPath: _slideSpeedDecrementCurve.m_Curve.Array.data[1].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8427563419864182537, guid: 067fd73eb93f5c94e88f424d3ddb384b, type: 3}
       propertyPath: m_Name
       value: LocalPlayer

@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Min(0f)] private float _slideSpeed = 30f;
     [SerializeField, Min(0f)] private float _slideCooldown = 0.5f;
     [SerializeField, Range(0f, 1f)] private float _slideTrauma = 0.5f;
+    [SerializeField, Min(0f)] private float _slideSpeedDecrementDuration = 3f;
+    [SerializeField] private AnimationCurve _slideSpeedDecrementCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
 
     [Header("Attack")]
     [SerializeField] private Weapon _startingWeapon = null;
@@ -31,6 +33,8 @@ public class PlayerController : MonoBehaviour
     // Slide.
     private Vector3? _slideDirection;
     private float _slideCooldownTimer;
+    private float _slideSpeedBuffer;
+    private Coroutine _slideSpeedBufferDecrementCoroutine;
 
     // Attack.
     private PlayerAttackModule _attackModule;
@@ -69,6 +73,9 @@ public class PlayerController : MonoBehaviour
         _slideDirection = new Vector3(direction.x, 0f, direction.y);
         yield return new WaitForSeconds(_slideDuration);
         _slideDirection = null;
+
+        _slideSpeedBuffer = _slideSpeed;
+        _slideSpeedBufferDecrementCoroutine = StartCoroutine(DecrementSlideSpeedBufferCoroutine());
     }
 
     private bool CanSlide()
@@ -80,6 +87,17 @@ public class PlayerController : MonoBehaviour
     {
         if (_slideDirection == null)
             _slideCooldownTimer -= Time.deltaTime;
+    }
+
+    private IEnumerator DecrementSlideSpeedBufferCoroutine()
+    {
+        float initialBuffer = _slideSpeedBuffer;
+
+        for (float t = 0f; t <= 1f; t += Time.deltaTime / _slideSpeedDecrementDuration)
+        {
+            _slideSpeedBuffer = Mathf.Lerp(0f, initialBuffer, _slideSpeedDecrementCurve.Evaluate(t));
+            yield return null;
+        }
     }
     #endregion // Slide
 
@@ -106,7 +124,21 @@ public class PlayerController : MonoBehaviour
 
     private float GetMovementSpeed()
     {
-        return _slideDirection != null ? _slideSpeed : _movementSpeed;
+        if (_slideDirection != null)
+            return _slideSpeed;
+
+        if (_movementInput.y == 0f || _movementInput.x != 0f)
+        {
+            if (_slideSpeedBufferDecrementCoroutine != null)
+            {
+                StopCoroutine(_slideSpeedBufferDecrementCoroutine);
+                _slideSpeedBufferDecrementCoroutine = null;
+            }
+        
+            _slideSpeedBuffer = 0f;
+        }
+
+        return _movementSpeed + _slideSpeedBuffer;
     }
 
     private void Move()

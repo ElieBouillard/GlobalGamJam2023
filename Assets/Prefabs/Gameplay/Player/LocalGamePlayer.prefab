@@ -347,6 +347,31 @@ MonoBehaviour:
   _slideSpeed: 50
   _slideCooldown: 0.25
   _slideTrauma: 0.6
+  _slideSpeedDecrementDuration: 3
+  _slideSpeedDecrementCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -2.9559755
+      outSlope: -2.9559755
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.0375
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0.0077539417
+      outSlope: 0.0077539417
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.30416667
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _startingWeapon: {fileID: 0}
   _canSlideAttack: 1
 --- !u!114 &5563274374730081184
