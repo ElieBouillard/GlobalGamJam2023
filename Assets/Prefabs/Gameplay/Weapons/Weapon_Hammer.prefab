@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1397787108480512219}
   - component: {fileID: 1397787108480512218}
   m_Layer: 0
-  m_Name: Sword_Pivot
+  m_Name: Hammer_Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,8 +164,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1397787108945641737}
   m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.08968, y: 0.23495, z: 0.1}
+  m_LocalPosition: {x: -0, y: 0.9178, z: -0}
+  m_LocalScale: {x: 0.3583614, y: 0.44363838, z: 0.26913002}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1397787108480512219}
@@ -247,8 +247,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1397787109125909247}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.118, z: -0}
-  m_LocalScale: {x: 0.04538207, y: 0.18868169, z: 0.1}
+  m_LocalPosition: {x: -0, y: -0.068, z: 0}
+  m_LocalScale: {x: 0.06510512, y: 0.18868169, z: 0.12342}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1397787108480512219}
@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 1397787109172244716}
   - component: {fileID: 1397787109172244719}
   m_Layer: 0
-  m_Name: Weapon_Sword
+  m_Name: Weapon_Hammer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -350,7 +350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 1397787108480512218}
-  _weaponType: 1
+  _weaponType: 2
   _radius: 1
   _distance: {x: 1, y: 0}
   _damage: 10

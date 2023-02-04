@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IHittable
@@ -23,7 +24,8 @@ public class PlayerController : MonoBehaviour, IHittable
     [SerializeField] private Material _slideLinesMaterial = null;
 
     [Header("Attack")]
-    [SerializeField] private Weapon _startingWeapon = null;
+    [SerializeField] private WeaponType _startingWeapon = WeaponType.None;
+    [SerializeField] private Weapon[] _weapons = null;
     [SerializeField] private bool _canSlideAttack = true;
 
     [Header("Health")]
@@ -256,7 +258,15 @@ public class PlayerController : MonoBehaviour, IHittable
     private void Start()
     {
         _attackModule = new PlayerAttackModule();
-        _attackModule.SetWeapon(_startingWeapon);
+
+        foreach (Weapon weapon in _weapons)
+        {
+            if (_startingWeapon == weapon.WeaponType)
+                _attackModule.SetWeapon(weapon);
+            else
+                weapon.OnUnequiped();
+        }
+
         _currentHealth = _maxHealth;
     }
 
@@ -286,6 +296,18 @@ public class PlayerController : MonoBehaviour, IHittable
     private void LateUpdate()
     {
         _cameraController.UpdateCamera(_mouseInput);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out WeaponSpawner weaponSpawner)
+            && weaponSpawner.CanPickup()
+            && _attackModule.CurrentWeapon == null)
+        {
+            WeaponSpawner.WeaponPickup weapon = weaponSpawner.Weapon;
+            weaponSpawner.OnWeaponPickedUp();
+            _attackModule.SetWeapon(_weapons.First(o => o.WeaponType == weapon.WeaponType));
+        }
     }
 
     private void OnDrawGizmos()
