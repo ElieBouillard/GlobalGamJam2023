@@ -8,12 +8,17 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: KingTreeLeaf_01a
-    second: {fileID: 2100000, guid: d90b016ae5e8e2a47878ea4fba485ae8, type: 2}
+    second: {fileID: 2100000, guid: b1c832e002f76f54d8b5e6478ada483c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: KingTreeTrunk_01a
     second: {fileID: 2100000, guid: ba2bf63da3338a84aabbd1c86ff3d948, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KingTree_01a_Bark
+    second: {fileID: 2100000, guid: 3d3fa74d64c14f54eb969ab0d8e18be4, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
