@@ -18,6 +18,7 @@ public class TreeBehaviour : MonoBehaviour, IHittable
     {
         _renderer = GetComponentInChildren<Renderer>();
         Position = transform.position;
+        _currLife = _initialLife;
     }
 
     public void OnHit(HitData hitData)
