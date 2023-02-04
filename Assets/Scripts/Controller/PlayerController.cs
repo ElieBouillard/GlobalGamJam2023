@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float _slideTrauma = 0.5f;
 
     [Header("Attack")]
+    [SerializeField] private Weapon _startingWeapon = null;
     [SerializeField] private bool _canSlideAttack = true;
 
     // Inputs.
@@ -86,7 +87,7 @@ public class PlayerController : MonoBehaviour
         if (!CanAttack())
             return;
 
-        Debug.Log("Attack");
+        _attackModule.CurrentWeapon.TriggerAttack();
     }
 
     private bool CanAttack()
@@ -118,12 +119,14 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _attackModule = new PlayerAttackModule();
+        _attackModule.SetWeapon(_startingWeapon);
     }
 
     private void Update()
     {
         RegisterInputs();
-        
+        _attackModule.Update();
+
         if (_slideInput)
             Slide();
 

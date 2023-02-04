@@ -4,7 +4,14 @@ public class PlayerAttackModule
 
     public bool SetWeapon(Weapon weapon)
     {
+        if (CurrentWeapon != null)
+            CurrentWeapon.OnUnequiped();
+
         CurrentWeapon = weapon;
+
+        if (CurrentWeapon != null)
+            CurrentWeapon.OnEquiped();
+
         return true;
     }
 
@@ -12,5 +19,9 @@ public class PlayerAttackModule
     {
         // TODO: Check attack cooldown.
         return CurrentWeapon != null;
+    }
+
+    public void Update()
+    {
     }
 }
