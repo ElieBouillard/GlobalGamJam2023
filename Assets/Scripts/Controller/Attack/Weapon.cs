@@ -16,6 +16,7 @@ public class Weapon : MonoBehaviour
     [SerializeField, Min(0f)] private float _radius = 1f;
     [SerializeField, Min(0f)] private Vector2 _distance = new Vector2(1f, 0f);
     [SerializeField, Min(0)] private int _damage = 1;
+    [SerializeField, Min(1)] private int _maximumHits = 5;
     [SerializeField, Min(0f)] private float _cooldown = 0.33f;
 
     [Header("Animation")]
@@ -29,20 +30,27 @@ public class Weapon : MonoBehaviour
 
     private Coroutine _backToIdleCoroutine;
     private IShakable _shookOnAttack;
+    private PlayerAttackModule _playerAttackModule;
 
     public WeaponType WeaponType => _weaponType;
 
+    public int MaximumHits => _maximumHits;
+
     public float Cooldown => _cooldown;
 
-    public virtual void PlayAttackAnimation(IShakable shookOnAttack = null)
+    public virtual void PlayAttackAnimation(PlayerAttackModule attackModule, IShakable shookOnAttack = null)
     {
         _animator.SetTrigger(ANIM_PARAM_ATTACK);
+        _playerAttackModule = attackModule;
         _shookOnAttack = shookOnAttack;
 
         Attack();
 
-        StopBackToIdleCoroutine();
-        _backToIdleCoroutine = StartCoroutine(BackToIdleCoroutine());
+        if (gameObject.activeSelf)
+        {
+            StopBackToIdleCoroutine();
+            _backToIdleCoroutine = StartCoroutine(BackToIdleCoroutine());
+        }
 
         // TODO: attack audio.
     }
@@ -64,6 +72,8 @@ public class Weapon : MonoBehaviour
 
         if (hittables.Any())
         {
+            _playerAttackModule.OnWeaponHit();
+
             FreezeFrameManager.FreezeFrame(_freezeFrameDelay, _freezeFrameDuration, 0f, true);
             _shookOnAttack?.SetTrauma(_hitTrauma);
             // TODO: any target hit audio.
@@ -76,7 +86,7 @@ public class Weapon : MonoBehaviour
 
     public virtual void OnEquiped()
     {
-        // Equip animation?
+        _animator.SetTrigger(ANIM_PARAM_IDLE); // Equip animation.
         gameObject.SetActive(true);
         // TODO: weapon audio.
     }

@@ -51,6 +51,8 @@ public class WeaponSpawner : MonoBehaviour
         Weapon = pickup;
         UnityEngine.Assertions.Assert.IsFalse(Weapon.IsEmpty, $"Generated an empty weapon!");
         Weapon.Preview.SetActive(true);
+
+        // TODO: Audio (spatialized).
     }
 
     private System.Collections.IEnumerator RespawnWeapon()

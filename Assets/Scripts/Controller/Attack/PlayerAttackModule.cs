@@ -2,7 +2,16 @@ public class PlayerAttackModule
 {
     public Weapon CurrentWeapon { get; private set; }
 
+    private int _currentWeaponHits;
     private float _cooldownTimer;
+
+    public void OnWeaponHit()
+    {
+        if (++_currentWeaponHits >= CurrentWeapon.MaximumHits)
+        {
+            SetWeapon(null);
+        }
+    }
 
     public bool SetWeapon(Weapon weapon)
     {
@@ -10,6 +19,7 @@ public class PlayerAttackModule
             CurrentWeapon.OnUnequiped();
 
         CurrentWeapon = weapon;
+        _currentWeaponHits = 0;
         ResetCooldown();
 
         if (CurrentWeapon != null)
@@ -23,7 +33,7 @@ public class PlayerAttackModule
         UnityEngine.Assertions.Assert.IsTrue(CanAttack(), $"Tried attacking though {nameof(CanAttack)} method returned false!");
 
         _cooldownTimer = CurrentWeapon.Cooldown;
-        CurrentWeapon.PlayAttackAnimation(shookOnAttack);
+        CurrentWeapon.PlayAttackAnimation(this, shookOnAttack);
     }
 
     public bool CanAttack()
