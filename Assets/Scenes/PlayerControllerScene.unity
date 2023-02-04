@@ -1662,6 +1662,10 @@ PrefabInstance:
       propertyPath: _playerController
       value: 
       objectReference: {fileID: 1105531171}
+    - target: {fileID: 4036782372948899425, guid: b08bb281df373634e90d245076db639e, type: 3}
+      propertyPath: _playerController
+      value: 
+      objectReference: {fileID: 1105531171}
     - target: {fileID: 5036165294059205861, guid: b08bb281df373634e90d245076db639e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

@@ -271,6 +271,9 @@ public class PlayerController : MonoBehaviour, IHittable
         if (_attackInput)
             Attack();
 
+        if (Input.GetKeyDown(KeyCode.Space))
+            OnHit(HitData.Empty);
+
         UpdateSlideCooldown();
     }
 
