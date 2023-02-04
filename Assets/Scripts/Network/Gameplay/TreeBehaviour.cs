@@ -28,9 +28,11 @@ public class TreeBehaviour : MonoBehaviour, IHittable
         StartCoroutine(ResetColor());
         _currLife -= _initialLife;
 
+        Debug.Log($"Tree Take Damage : Current Life -> {_currLife}");
+        
         if (_currLife <= 0)
         {
-            //Todo : Game Over
+            Debug.Log("Tree Is DEAD / GAME OVER");
         }
     }
     
