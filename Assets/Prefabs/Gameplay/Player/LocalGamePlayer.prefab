@@ -282,7 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 2275969424591581634}
-  _cameraRotationSpeed: {x: 45, y: 45}
+  _cameraRotationSpeed: {x: 8, y: 4}
   _cameraPitchLimit: {x: -60, y: 60}
   _cameraShaker: {fileID: 8712950339614292062}
   _shakeSettings:
@@ -380,11 +380,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _groundSnapDistance: 100
-  _slideDuration: 0.2
-  _slideSpeed: 50
-  _slideCooldown: 0.25
+  _slideDuration: 0.3
+  _slideSpeed: 25
+  _slideCooldown: 0.6
   _slideTrauma: 0.6
-  _slideSpeedDecrementDuration: 3
+  _slideSpeedDecrementDuration: 2
   _slideSpeedDecrementCurve:
     serializedVersion: 2
     m_Curve:
@@ -409,7 +409,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _slideFOV: 115
+  _slideFOV: 110
   _slideLinesMaterial: {fileID: 2100000, guid: e79a5b0bc2a579142b580f349bfcd48c, type: 2}
   _startingWeapon: 0
   _weapons:
