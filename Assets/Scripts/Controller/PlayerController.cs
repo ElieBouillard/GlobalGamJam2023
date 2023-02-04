@@ -55,6 +55,51 @@ public class PlayerController : MonoBehaviour, IHittable
     public delegate void HealthChangedEventHandler(int previousHealth, int currentHealth);
     public HealthChangedEventHandler HealthChanged;
 
+    #region Movement
+    private Vector3 GetMovementDirection()
+    {
+        return _slideDirection ?? new Vector3(_movementInput.x, _rigidbody.velocity.y, _movementInput.y);
+    }
+
+    private float GetMovementSpeed()
+    {
+        if (_slideDirection != null)
+            return _slideSpeed;
+
+        if (_movementInput.y == 0f || _movementInput.x != 0f)
+        {
+            if (_slideSpeedBufferDecrementCoroutine != null)
+            {
+                StopCoroutine(_slideSpeedBufferDecrementCoroutine);
+                _slideSpeedBufferDecrementCoroutine = null;
+            }
+
+            _slideSpeedBuffer = 0f;
+        }
+
+        return _movementSpeed + _slideSpeedBuffer;
+    }
+
+    private void Move()
+    {
+        Vector3 velocity = GetMovementDirection();
+        _cameraController.ModifyMovementVelocity(ref velocity);
+        velocity.Normalize();
+        velocity *= GetMovementSpeed();
+        _rigidbody.velocity = velocity;
+    }
+
+    private void SnapToGround()
+    {
+        Physics.Raycast(transform.position + Vector3.up * 0.5f, Vector3.down, out RaycastHit hit, _groundSnapDistance, _groundLayerMask);
+
+        if (hit.collider == null)
+            return;
+
+        transform.position = new Vector3(transform.position.x, hit.point.y + 0.05f, transform.position.z);
+    }
+    #endregion // Movement
+
     #region Inputs
     private void RegisterInputs()
     {
@@ -207,49 +252,6 @@ public class PlayerController : MonoBehaviour, IHittable
         HealthChanged?.Invoke(previousHealth, _currentHealth);
     }
     #endregion // Health
-
-    private Vector3 GetMovementDirection()
-    {
-        return _slideDirection ?? new Vector3(_movementInput.x, _rigidbody.velocity.y, _movementInput.y);
-    }
-
-    private float GetMovementSpeed()
-    {
-        if (_slideDirection != null)
-            return _slideSpeed;
-
-        if (_movementInput.y == 0f || _movementInput.x != 0f)
-        {
-            if (_slideSpeedBufferDecrementCoroutine != null)
-            {
-                StopCoroutine(_slideSpeedBufferDecrementCoroutine);
-                _slideSpeedBufferDecrementCoroutine = null;
-            }
-        
-            _slideSpeedBuffer = 0f;
-        }
-
-        return _movementSpeed + _slideSpeedBuffer;
-    }
-
-    private void Move()
-    {
-        Vector3 velocity = GetMovementDirection();
-        _cameraController.ModifyMovementVelocity(ref velocity);
-        velocity.Normalize();
-        velocity *= GetMovementSpeed();
-        _rigidbody.velocity = velocity;
-    }
-
-    private void SnapToGround()
-    {
-        Physics.Raycast(transform.position + Vector3.up * 0.5f, Vector3.down, out RaycastHit hit, _groundSnapDistance, _groundLayerMask);
-
-        if (hit.collider == null)
-            return;
-
-        transform.position = new Vector3(transform.position.x, hit.point.y + 0.05f, transform.position.z);
-    }
 
     private void Start()
     {
