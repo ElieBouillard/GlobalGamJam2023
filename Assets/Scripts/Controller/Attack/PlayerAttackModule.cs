@@ -10,6 +10,7 @@ public class PlayerAttackModule
             CurrentWeapon.OnUnequiped();
 
         CurrentWeapon = weapon;
+        ResetCooldown();
 
         if (CurrentWeapon != null)
             CurrentWeapon.OnEquiped();
@@ -17,17 +18,22 @@ public class PlayerAttackModule
         return true;
     }
 
-    public void Attack()
+    public void Attack(IShakable shookOnAttack = null)
     {
         UnityEngine.Assertions.Assert.IsTrue(CanAttack(), $"Tried attacking though {nameof(CanAttack)} method returned false!");
 
         _cooldownTimer = CurrentWeapon.Cooldown;
-        CurrentWeapon.PlayAttackAnimation();
+        CurrentWeapon.PlayAttackAnimation(shookOnAttack);
     }
 
     public bool CanAttack()
     {
         return CurrentWeapon != null && _cooldownTimer <= 0f;
+    }
+
+    private void ResetCooldown()
+    {
+        _cooldownTimer = 0f;
     }
 
     private void UpdateCooldown()

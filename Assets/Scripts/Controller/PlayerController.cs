@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
         if (!CanAttack())
             return;
 
-        _attackModule.Attack();
+        _attackModule.Attack(shookOnAttack: _cameraController);
     }
 
     private bool CanAttack()
