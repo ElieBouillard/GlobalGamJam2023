@@ -28,6 +28,10 @@ public class PlayerController : MonoBehaviour, IHittable
 
     [Header("Health")]
     [SerializeField] private int _maxHealth = 3;
+    [SerializeField, Range(0f, 1f)] private float _damageTrauma = 0.5f;
+    [SerializeField] private float _damageFreezeDuration = 0.1f;
+    [SerializeField, Range(0f, 1f)] private float _deathTrauma = 0.7f;
+    [SerializeField] private float _deathFreezeDuration = 0.15f;
 
     // Inputs.
     private Vector2 _movementInput;
@@ -169,8 +173,9 @@ public class PlayerController : MonoBehaviour, IHittable
         return (_slideDirection == null || _canSlideAttack)
                && _attackModule?.CanAttack() == true;
     }
-    #endregion Attack
+    #endregion // Attack
 
+    #region Health
     public void OnHit(HitData hitData)
     {
         // Ignore friendly fire.
@@ -183,16 +188,25 @@ public class PlayerController : MonoBehaviour, IHittable
 
         if (_currentHealth == 0)
         {
-            Debug.Log("Death.", gameObject);
+            _cameraController.AddTrauma(_deathTrauma);
+            FreezeFrameManager.FreezeFrame(0, _deathFreezeDuration, 0, true);
             // TODO: Death.
+        }
+        else
+        {
+            _cameraController.AddTrauma(_damageTrauma);
+            FreezeFrameManager.FreezeFrame(0, _damageFreezeDuration, 0, true);
+            // TODO: Damage VFX.
         }
     }
 
-    [ContextMenu("Hit")]
-    private void Hit()
+    public void RestoreHealth(int amount = 1)
     {
-        OnHit(HitData.Empty);
+        int previousHealth = _currentHealth;
+        _currentHealth = Mathf.Min(_currentHealth + amount, _maxHealth);
+        HealthChanged?.Invoke(previousHealth, _currentHealth);
     }
+    #endregion // Health
 
     private Vector3 GetMovementDirection()
     {
