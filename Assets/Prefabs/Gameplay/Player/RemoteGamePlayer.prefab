@@ -58,7 +58,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16d12050f50a2774195910748354c00d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _smooth: 10
+  _smoothMovements: 10
+  _smoothAnimations: 10
 --- !u!1001 &782298375313527518
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66,6 +67,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4399759002719680570}
     m_Modifications:
+    - target: {fileID: 674185249864383035, guid: fafb7d5d2e1313c4d8844b103efd55e2, type: 3}
+      propertyPath: _mainRoot
+      value: 
+      objectReference: {fileID: 4399759002719680570}
     - target: {fileID: 5588994692927885932, guid: fafb7d5d2e1313c4d8844b103efd55e2, type: 3}
       propertyPath: _mainRoot
       value: 
