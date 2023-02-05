@@ -2287,6 +2287,75 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3246193772221362358, guid: 13183bef80df62e4981500c105acc870, type: 3}
   m_PrefabInstance: {fileID: 671240459}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &671895234
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7366997767947667920, guid: 40e87d08a5e6a674cb2aac5593fbfaf1, type: 3}
+      propertyPath: _healthPercentage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366997767947667920, guid: 40e87d08a5e6a674cb2aac5593fbfaf1, type: 3}
+      propertyPath: _pulsedHealthPercentage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366997767947667920, guid: 40e87d08a5e6a674cb2aac5593fbfaf1, type: 3}
+      propertyPath: _treeMaterials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366997767947667921, guid: 40e87d08a5e6a674cb2aac5593fbfaf1, type: 3}
+      propertyPath: m_Name
+      value: KingTreeViewColorHandler
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366997767947667923, guid: 40e87d08a5e6a674cb2aac5593fbfaf1, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366997767947667923, guid: 40e87d08a5e6a674cb2aac5593fbfaf1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366997767947667923, guid: 40e87d08a5e6a674cb2aac5593fbfaf1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366997767947667923, guid: 40e87d08a5e6a674cb2aac5593fbfaf1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366997767947667923, guid: 40e87d08a5e6a674cb2aac5593fbfaf1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366997767947667923, guid: 40e87d08a5e6a674cb2aac5593fbfaf1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366997767947667923, guid: 40e87d08a5e6a674cb2aac5593fbfaf1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366997767947667923, guid: 40e87d08a5e6a674cb2aac5593fbfaf1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366997767947667923, guid: 40e87d08a5e6a674cb2aac5593fbfaf1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366997767947667923, guid: 40e87d08a5e6a674cb2aac5593fbfaf1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366997767947667923, guid: 40e87d08a5e6a674cb2aac5593fbfaf1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 40e87d08a5e6a674cb2aac5593fbfaf1, type: 3}
 --- !u!1001 &684208347
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2958,6 +3027,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 739743001}
     m_Modifications:
+    - target: {fileID: 7473285745650572396, guid: 93d30d11906e96b4281b0343f0264304, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3d3fa74d64c14f54eb969ab0d8e18be4, type: 2}
     - target: {fileID: 8104197206699346664, guid: 93d30d11906e96b4281b0343f0264304, type: 3}
       propertyPath: m_Convex
       value: 0

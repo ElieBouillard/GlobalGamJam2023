@@ -46,8 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _treeMaterials:
   - {fileID: 2100000, guid: 3d3fa74d64c14f54eb969ab0d8e18be4, type: 2}
-  - {fileID: 2100000, guid: 87cd264deefaa854fb095ddffbf98601, type: 2}
-  - {fileID: 2100000, guid: ebf0f421340ab0240a8a7a465153f49e, type: 2}
+  - {fileID: 2100000, guid: f7ad1bdf19d9d0a49bb027eb11f6261c, type: 2}
+  - {fileID: 2100000, guid: f7ad1bdf19d9d0a49bb027eb11f6261c, type: 2}
   _healthPercentage: 1
   _pulsedHealthPercentage: 1
   _progressionCurve:

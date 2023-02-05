@@ -54,7 +54,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _EmissivPower: 3
+    - _EmissivPower: 1
     - _NormalStrentgh: 2
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -66,7 +66,7 @@ Material:
     - _Tiling: 0.22
     - _TillingMask: 1
     m_Colors:
-    - _EmissivColor: {r: 3, g: 2.1067898, b: 0.3820755, a: 3}
+    - _EmissivColor: {r: 1, g: 0.7022633, b: 0.1273585, a: 1}
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &7907979214689571432
