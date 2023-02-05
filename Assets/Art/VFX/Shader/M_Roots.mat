@@ -64,6 +64,7 @@ Material:
     - _SpeedNoise: 0.005
     - _Threshold: 0.25
     - _Tiling: 0.22
+    - _Tiling_emissiv: 1
     - _TillingMask: 1
     m_Colors:
     - _EmissivColor: {r: 1, g: 0.7022633, b: 0.1273585, a: 1}
