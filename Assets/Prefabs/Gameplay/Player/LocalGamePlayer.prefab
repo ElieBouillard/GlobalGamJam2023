@@ -310,11 +310,11 @@ MonoBehaviour:
   _shakeSettings:
     PosAxes: 3
     RotAxes: 0
-    Speed: 16
-    Radius: 0.65
-    XRotMax: 15
-    YRotMax: 15
-    ZRotMax: 15
+    Speed: 25
+    Radius: 1.25
+    XRotMax: 25
+    YRotMax: 25
+    ZRotMax: 25
 --- !u!1 &8427563419864182537
 GameObject:
   m_ObjectHideFlags: 0
