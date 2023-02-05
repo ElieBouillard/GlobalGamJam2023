@@ -240,6 +240,9 @@ public class PlayerController : MonoBehaviour, IHittable
     #region Health
     public void OnHit(HitData hitData)
     {
+        if(IsDead)
+            return;
+
         // Ignore friendly fire.
         if (hitData.Team == Team.Player)
             return;
@@ -269,14 +272,13 @@ public class PlayerController : MonoBehaviour, IHittable
 
     private void OnDeath()
     {
+        NetworkManager.Instance.ClientMessages.SendDeath();
+
         _attackModule.SetWeapon(null);
         _cameraController.OnPlayerDeath();
 
         _cameraController.AddTrauma(_deathTrauma);
         FreezeFrameManager.FreezeFrame(2, _deathFreezeDuration, 0, true);
-
-        // TODO/TMP: Only call this when ALL players are dead.
-        GameEndPanel.Instance.OnGameEnd(false);
     }
     #endregion // Health
 
@@ -328,7 +330,7 @@ public class PlayerController : MonoBehaviour, IHittable
 
     private void Update()
     {
-        if (IsDead || InputLockBuffers > 0)
+        if (IsDead || GameEndPanel.Instance.AnyPanelOpen || InputLockBuffers > 0)
             return;
 
         RegisterInputs();
