@@ -37,10 +37,8 @@ public class GameEndPanel : Singleton<GameEndPanel>
             button.onClick.AddListener(OnLeaveButtonClicked);
     }
 
-    protected override void OnDestroy()
+    protected void OnDestroy()
     {
-        base.OnDestroy();
-
         foreach (Button button in _leaveButtons)
             button.onClick.RemoveListener(OnLeaveButtonClicked);
     }
