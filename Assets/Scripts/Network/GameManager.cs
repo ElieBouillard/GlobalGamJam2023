@@ -71,7 +71,13 @@ public class GameManager : Singleton<GameManager>
         if(networkManager.UseSteam) playerIdentityTemp.Initialize(playerId, steamId);
         else playerIdentityTemp.Initialize(playerId, $"Player : {playerId}");
 
-        if(playerId == networkManager.Client.Id) networkManager.LocalPlayer = playerIdentityTemp;
+        if (playerId == networkManager.Client.Id)
+        {
+            networkManager.LocalPlayer = playerIdentityTemp;
+            LocalPlayerHealth.Instance.SetPlayerController(playerTemp.GetComponent<PlayerController>());
+            DashScreenPanel.Instance.SetCamera(Camera.main);
+            LocalPlayerDamageFlash.Instance.Setup(Camera.main, playerTemp.GetComponent<PlayerController>());
+        }
 
         networkManager.Players[playerId] = playerIdentityTemp;
     }
