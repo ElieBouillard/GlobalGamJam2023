@@ -11,6 +11,9 @@ public class PanelManager : Singleton<PanelManager>
 
     private NetworkManager _networkManager;
     private bool _isPause;
+
+    public System.Action<PanelType> PanelEnabled;
+
     protected override void Awake()
     {
         base.Awake();
@@ -32,9 +35,10 @@ public class PanelManager : Singleton<PanelManager>
                 foreach (var panel in _panels)
                 {
                     if (panel.PanelType == PanelType.Pause) panel.gameObject.SetActive(!_isPause);
-                    _isPause = !_isPause;
                 }
-                
+
+                _isPause = !_isPause;
+                PanelEnabled?.Invoke(_isPause ? PanelType.Pause : PanelType.None);
                 CameraController.ToggleCursor(_isPause);
             }
         }
@@ -46,12 +50,15 @@ public class PanelManager : Singleton<PanelManager>
         {
             panel.gameObject.SetActive(panel.PanelType == panelType);
         }
+
+        PanelEnabled?.Invoke(panelType);
     }
 }
 
 public enum PanelType
 {
-    MainMenu = 1,
+    None,
+    MainMenu,
     Options,
     Lobby,
     Pause,

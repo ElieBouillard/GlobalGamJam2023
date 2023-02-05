@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -53,6 +54,18 @@ public class PlayerController : MonoBehaviour, IHittable
 
     // Current health.
     private int _currentHealth;
+
+    private int _inputLockBuffers;
+    public int InputLockBuffers
+    {
+        get => _inputLockBuffers;
+        set
+        {
+            _inputLockBuffers = value;
+            if (_inputLockBuffers > 0)
+                CleanupInputs();
+        }
+    }
 
     public delegate void HealthChangedEventHandler(int previousHealth, int currentHealth);
     public HealthChangedEventHandler HealthChanged;
@@ -278,6 +291,8 @@ public class PlayerController : MonoBehaviour, IHittable
 
         _currentHealth = _maxHealth;
 
+        PanelManager.Instance.PanelEnabled += OnPanelEnabled;
+
         // Debug.
         DebugConsole.OverrideCommand(new Command("player_kill", "Instantly kills the player.", true, false, () =>
         {
@@ -286,9 +301,28 @@ public class PlayerController : MonoBehaviour, IHittable
         }));
     }
 
+    private void OnDestroy()
+    {
+        if (PanelManager.Exists())
+            PanelManager.Instance.PanelEnabled -= OnPanelEnabled;
+    }
+
+    private void OnPanelEnabled(PanelType panelType)
+    {
+        InputLockBuffers += panelType switch
+        {
+            PanelType.MainMenu => 1,
+            PanelType.Options => 1,
+            PanelType.Pause => 1,
+            PanelType.None => -1,
+            PanelType.Lobby => -1,
+            _ => 0
+        };
+    }
+
     private void Update()
     {
-        if (IsDead)
+        if (IsDead || InputLockBuffers > 0)
             return;
 
         RegisterInputs();
