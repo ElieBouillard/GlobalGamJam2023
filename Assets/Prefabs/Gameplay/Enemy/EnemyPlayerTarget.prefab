@@ -2314,6 +2314,7 @@ MonoBehaviour:
   _attackRadius: 0.69
   _attackCooldown: 1
   _initialLife: 1
+  _meshRenderer: {fileID: 2815981548114140721}
 --- !u!195 &8745449452869519078
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3291,6 +3292,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbb9d018bc139cb49af237c91be4fdb9, type: 3}
+--- !u!137 &2815981548114140721 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5317913490850346660, guid: bbb9d018bc139cb49af237c91be4fdb9, type: 3}
+  m_PrefabInstance: {fileID: 7987528013749266581}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7068416903492703684 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bbb9d018bc139cb49af237c91be4fdb9, type: 3}

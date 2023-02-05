@@ -13,7 +13,8 @@ public class EnemyIdentity : MonoBehaviour, IHittable
     [SerializeField] protected float _attackRadius = 0.5f;
     [SerializeField] protected float _attackCooldown = 3f;
     [SerializeField] protected int _initialLife = 1;
-    
+    [SerializeField] private SkinnedMeshRenderer _meshRenderer = null;
+
     public int Id { private set; get; }
 
     [Header("References")]
@@ -110,6 +111,16 @@ public class EnemyIdentity : MonoBehaviour, IHittable
     private IEnumerator Delete()
     {
         yield return new WaitForSeconds(1.5f);
-        transform.DOMoveY(transform.position.y - 2f, 1f).SetEase(Ease.Linear).OnComplete(()=> Destroy(gameObject));
+
+        Material material = _meshRenderer.material;
+
+        for (float t = 0f; t <= 1f; t += Time.deltaTime)
+        {
+            Debug.LogError(t);
+            material.SetFloat("_CutoffHeight", (1f - t) * 3f);
+            yield return null;
+        }
+
+        Destroy(gameObject);
     }
 }

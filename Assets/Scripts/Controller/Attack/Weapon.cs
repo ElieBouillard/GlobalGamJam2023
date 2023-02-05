@@ -12,6 +12,7 @@ public class Weapon : MonoBehaviour
     [Header("References")]
     [SerializeField] private Animator _animator = null;
     [SerializeField] private Transform _mainRoot = null;
+    [SerializeField] private Material _material = null;
 
     [Header("Data")]
     [SerializeField, Min(0f)] private WeaponType _weaponType = WeaponType.None;
@@ -111,6 +112,14 @@ public class Weapon : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public void UpdateHitsFeedback(int currentHits)
+    {
+        float percentage = (MaximumHits - currentHits) / (float)MaximumHits;
+        
+        if (_material != null)
+            _material.SetFloat("_Threshold", 1f - percentage);
+    }
+    
     private void StopBackToIdleCoroutine()
     {
         if (_backToIdleCoroutine != null)

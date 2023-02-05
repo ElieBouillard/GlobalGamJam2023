@@ -7,10 +7,12 @@ public class PlayerAttackModule
 
     public void OnWeaponHit()
     {
-        if (++_currentWeaponHits >= CurrentWeapon.MaximumHits)
-        {
+        _currentWeaponHits++;
+
+        if (_currentWeaponHits >= CurrentWeapon.MaximumHits)
             SetWeapon(null);
-        }
+        else
+            CurrentWeapon.UpdateHitsFeedback(_currentWeaponHits);
     }
 
     public bool SetWeapon(Weapon weapon)
