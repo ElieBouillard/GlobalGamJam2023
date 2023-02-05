@@ -15,6 +15,6 @@ MonoBehaviour:
   _weapons:
   - WeaponType: 1
     Weight: 1
-  - WeaponType: 1
+  - WeaponType: 2
     Weight: 1
   _cooldownMinMax: {x: 8, y: 15}
