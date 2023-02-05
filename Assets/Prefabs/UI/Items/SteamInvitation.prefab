@@ -30,6 +30,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4180723556657300114}
   - {fileID: 4180723557328191571}
@@ -138,6 +139,7 @@ RectTransform:
   m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4180723556487278890}
   m_RootOrder: 0
@@ -210,6 +212,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4180723556487278890}
   m_RootOrder: 1
@@ -249,8 +252,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9cee81a4f4c06934e9708e05e4cd09d2, type: 2}
+  m_sharedMaterial: {fileID: -3442227372755665288, guid: 9cee81a4f4c06934e9708e05e4cd09d2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -582,11 +585,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9871355ff1e03b643ae6f5e9bab13147, type: 3}
---- !u!224 &1258916562913256019 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7367341721025477147, guid: 9871355ff1e03b643ae6f5e9bab13147, type: 3}
-  m_PrefabInstance: {fileID: 8594732531288348744}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1258916562913256018 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7367341721025477146, guid: 9871355ff1e03b643ae6f5e9bab13147, type: 3}
@@ -598,3 +596,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &1258916562913256019 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7367341721025477147, guid: 9871355ff1e03b643ae6f5e9bab13147, type: 3}
+  m_PrefabInstance: {fileID: 8594732531288348744}
+  m_PrefabAsset: {fileID: 0}

@@ -276,7 +276,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b880eef1d92185c43b7b77262af8464e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPersistant: 0
+  _dontDestroy: 0
+  _verbose: 0
   _panels:
   - {fileID: 7021559195126219907}
 --- !u!1001 &7021559195435773557
@@ -290,6 +291,14 @@ PrefabInstance:
       propertyPath: m_text
       value: Resume
       objectReference: {fileID: 0}
+    - target: {fileID: 7367341719494110503, guid: 9871355ff1e03b643ae6f5e9bab13147, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 9cee81a4f4c06934e9708e05e4cd09d2, type: 2}
+    - target: {fileID: 7367341719494110503, guid: 9871355ff1e03b643ae6f5e9bab13147, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -3442227372755665288, guid: 9cee81a4f4c06934e9708e05e4cd09d2, type: 2}
     - target: {fileID: 7367341721025477144, guid: 9871355ff1e03b643ae6f5e9bab13147, type: 3}
       propertyPath: m_Name
       value: ResumeButton
@@ -407,6 +416,14 @@ PrefabInstance:
       propertyPath: m_text
       value: Leave
       objectReference: {fileID: 0}
+    - target: {fileID: 7367341719494110503, guid: 9871355ff1e03b643ae6f5e9bab13147, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 9cee81a4f4c06934e9708e05e4cd09d2, type: 2}
+    - target: {fileID: 7367341719494110503, guid: 9871355ff1e03b643ae6f5e9bab13147, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -3442227372755665288, guid: 9cee81a4f4c06934e9708e05e4cd09d2, type: 2}
     - target: {fileID: 7367341721025477144, guid: 9871355ff1e03b643ae6f5e9bab13147, type: 3}
       propertyPath: m_Name
       value: DisconnectionButton
