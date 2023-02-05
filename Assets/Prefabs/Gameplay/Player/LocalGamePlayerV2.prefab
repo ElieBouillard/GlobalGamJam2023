@@ -82,7 +82,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 2706020144616450420}
   _cameraController: {fileID: 2706020145874924620}
-  _movementSpeed: 15
+  _movementSpeed: 13
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -123,7 +123,7 @@ MonoBehaviour:
   - {fileID: 8430130862868271856}
   - {fileID: 3474212364195855015}
   _canSlideAttack: 1
-  _maxHealth: 1
+  _maxHealth: 3
   _damageTrauma: 0.75
   _damageFreezeDuration: 0.1
   _deathTrauma: 1
@@ -214,17 +214,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 5687149786781775793}
   _animator: {fileID: 5446858273404037269}
-  _cameraRotationSpeed: {x: 8, y: 4}
+  _cameraRotationSpeed: {x: 9, y: 5}
   _cameraPitchLimit: {x: -60, y: 60}
   _cameraShaker: {fileID: 2995897128698166829}
   _shakeSettings:
     PosAxes: 3
     RotAxes: 0
-    Speed: 16
-    Radius: 0.65
-    XRotMax: 15
-    YRotMax: 15
-    ZRotMax: 15
+    Speed: 25
+    Radius: 1.25
+    XRotMax: 25
+    YRotMax: 25
+    ZRotMax: 25
 --- !u!1 &3206531738517200267
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,7 +452,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -1249,14 +1249,30 @@ PrefabInstance:
       propertyPath: _mainRoot
       value: 
       objectReference: {fileID: 2706020144616450416}
+    - target: {fileID: 674185249864383035, guid: fafb7d5d2e1313c4d8844b103efd55e2, type: 3}
+      propertyPath: _maximumHits
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5588994692927885932, guid: fafb7d5d2e1313c4d8844b103efd55e2, type: 3}
+      propertyPath: _cooldown
+      value: 0.12
+      objectReference: {fileID: 0}
     - target: {fileID: 5588994692927885932, guid: fafb7d5d2e1313c4d8844b103efd55e2, type: 3}
       propertyPath: _mainRoot
       value: 
       objectReference: {fileID: 2706020144616450416}
     - target: {fileID: 5588994692927885932, guid: fafb7d5d2e1313c4d8844b103efd55e2, type: 3}
+      propertyPath: _maximumHits
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5588994692927885932, guid: fafb7d5d2e1313c4d8844b103efd55e2, type: 3}
       propertyPath: _hitParticles
       value: 
       objectReference: {fileID: 108496, guid: 9acec412cf3cb0b4ea6bd5b99ee797bc, type: 3}
+    - target: {fileID: 5588994692927885932, guid: fafb7d5d2e1313c4d8844b103efd55e2, type: 3}
+      propertyPath: _backToIdleDelay
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 7042614040820152032, guid: fafb7d5d2e1313c4d8844b103efd55e2, type: 3}
       propertyPath: m_Name
       value: PlayerMesh
