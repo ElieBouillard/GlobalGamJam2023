@@ -36,7 +36,7 @@ public class Weapon : MonoBehaviour
     private IShakable _shookOnAttack;
     private PlayerAttackModule _playerAttackModule;
 
-    private ushort _playerId;
+    private ushort _id;
     
     public WeaponType WeaponType => _weaponType;
 
@@ -46,7 +46,7 @@ public class Weapon : MonoBehaviour
 
     private void Start()
     {
-        _playerId = _mainRoot.GetComponent<PlayerIdentity>().GetId;
+        _id = _mainRoot.GetComponent<PlayerIdentity>().GetId;
     }
 
     public virtual void PlayAttackAnimation(PlayerAttackModule attackModule, IShakable shookOnAttack = null)
@@ -75,7 +75,7 @@ public class Weapon : MonoBehaviour
         {
             Team = Team.Player,
             Damage = _damage,
-            PlayerSourceId = _playerId,
+            PlayerSourceId = _id,
         };
 
         foreach (IHittable hittable in hittables)
