@@ -118,9 +118,10 @@ MonoBehaviour:
     m_RotationOrder: 4
   _slideFOV: 110
   _slideLinesMaterial: {fileID: 2100000, guid: e79a5b0bc2a579142b580f349bfcd48c, type: 2}
-  _startingWeapon: 1
+  _startingWeapon: 0
   _weapons:
   - {fileID: 8430130862868271856}
+  - {fileID: 3474212364195855015}
   _canSlideAttack: 1
   _maxHealth: 1
   _damageTrauma: 0.75
@@ -1244,6 +1245,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2706020145874924659}
     m_Modifications:
+    - target: {fileID: 674185249864383035, guid: fafb7d5d2e1313c4d8844b103efd55e2, type: 3}
+      propertyPath: _mainRoot
+      value: 
+      objectReference: {fileID: 2706020144616450416}
     - target: {fileID: 5588994692927885932, guid: fafb7d5d2e1313c4d8844b103efd55e2, type: 3}
       propertyPath: _mainRoot
       value: 
@@ -1302,6 +1307,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fafb7d5d2e1313c4d8844b103efd55e2, type: 3}
+--- !u!114 &3474212364195855015 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 674185249864383035, guid: fafb7d5d2e1313c4d8844b103efd55e2, type: 3}
+  m_PrefabInstance: {fileID: 4138190498580955292}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdc53352e080c7f41ae496b2a7b14947, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6024262493438979270 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7707827769449851994, guid: fafb7d5d2e1313c4d8844b103efd55e2, type: 3}
