@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6675511212902508993
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -7,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_HitFeedback
+  m_Name: Roots_UI_Sh_HitFeedback
   m_Shader: {fileID: -6465566751694194690, guid: 898dfa1f79ad6b241b66642eae2917cb, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -21,7 +34,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Noise:
-        m_Texture: {fileID: 2800000, guid: a8548cf399c9dc649b27df33d0930998, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6913f329d63213448afa17e3a86e65fb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Noise_2:
+        m_Texture: {fileID: 2800000, guid: ce22b6217948fc34d93a3483c7ddd662, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -38,29 +55,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Center_maskedge: 0.5
-    - _Center_masksize: 0.06
+    - _Alpha: 0.5
+    - _Center_maskedge: 0.44
+    - _Center_masksize: -0.1
     - _Line_Count: 20
-    - _Line_Density: 0.5
-    - _Line_Falloff: 0.25
+    - _Line_Density: 1
+    - _Line_Falloff: 0.71
     - _NumberofFrame: 12
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _SpeedFrame: 1
+    - _SpeedFrame: 1.43
+    - _Tiling: 1.63
     m_Colors:
     - _Center: {r: 0.5, g: 0.5, b: 0, a: 0}
-    - _Color: {r: 0, g: 1, b: 0.95205396, a: 0}
+    - _Color: {r: 1, g: 0, b: 0.44515038, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &7547361512336145135
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 5
