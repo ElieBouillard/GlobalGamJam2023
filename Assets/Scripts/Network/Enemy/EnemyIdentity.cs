@@ -116,7 +116,6 @@ public class EnemyIdentity : MonoBehaviour, IHittable
 
         for (float t = 0f; t <= 1f; t += Time.deltaTime)
         {
-            Debug.LogError(t);
             material.SetFloat("_CutoffHeight", (1f - t) * 3f);
             yield return null;
         }
