@@ -352,7 +352,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23a51e59db55162409b70ae82dc4f65f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPersistant: 0
+  _dontDestroy: 0
+  _verbose: 0
   _spawnPoints:
   - {fileID: 1284155164}
   - {fileID: 1501275106}
@@ -372,12 +373,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cae7c1f55f53b2b4a9f6595936a8b853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPersistant: 0
-  _spawnTime: 9999
+  _dontDestroy: 0
+  _verbose: 0
+  _spawnTime: 3
   _enemyCount: 5
   _difficultyIncreaseStage: 20
   _difficultyPercentageAdder: 25
   _spawnTimeIncreaseValue: 0.2
+  _enemyToWin: 6
   _spawnPoints:
   - {fileID: 1500766363}
   - {fileID: 844970444}

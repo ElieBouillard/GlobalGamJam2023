@@ -13,7 +13,8 @@ public class EnemySpawnersSystem : Singleton<EnemySpawnersSystem>
     [SerializeField] private float _difficultyIncreaseStage = 20f;
     [SerializeField] private float _difficultyPercentageAdder = 25f;
     [SerializeField] private float _spawnTimeIncreaseValue = 0.2f;
-
+    [SerializeField] private int _enemyToWin = 100;
+    
     [Space(20)] [Header("References")]
     [SerializeField] private Transform[] _spawnPoints;
     [SerializeField] private GameObject _enemyTreeTargetPrefab;
@@ -103,17 +104,20 @@ public class EnemySpawnersSystem : Singleton<EnemySpawnersSystem>
                 }
             }
             
-            Spawn(_enemyIdCount, randomEnemyType, randomSpawnPoint, bestUshort);
+            if(_enemyIdCount < _enemyToWin * _networkManager.Players.Count)
+            {
+                Spawn(_enemyIdCount, randomEnemyType, randomSpawnPoint, bestUshort);
 
-            EnemySpawnData enemySpawnData = new EnemySpawnData();
-            enemySpawnData.EnemyId = _enemyIdCount;
-            enemySpawnData.EnemyType = randomEnemyType;
-            enemySpawnData.SpawnId = randomSpawnPoint;
-            enemySpawnData.PlayerId = bestUshort;
+                EnemySpawnData enemySpawnData = new EnemySpawnData();
+                enemySpawnData.EnemyId = _enemyIdCount;
+                enemySpawnData.EnemyType = randomEnemyType;
+                enemySpawnData.SpawnId = randomSpawnPoint;
+                enemySpawnData.PlayerId = bestUshort;
             
-            enemiesSpawnData.Add(enemySpawnData);
+                enemiesSpawnData.Add(enemySpawnData);
             
-            _enemyIdCount++;
+                _enemyIdCount++;
+            }
         }
 
         _networkManager.ServerMessages.SendSpawnEnemies(enemiesSpawnData);
@@ -144,6 +148,17 @@ public class EnemySpawnersSystem : Singleton<EnemySpawnersSystem>
     {
         Enemies.Remove(enemy);
         _enemyDead++;
+        
+        if (NetworkManager.Instance.Server.IsRunning)
+        {
+            if (_enemyIdCount >= _enemyToWin * _networkManager.Players.Count)
+            {
+                if (Enemies.Count == 0)
+                {
+                    ServerMessages.SendGameOver(true);
+                }
+            }
+        }
     }
 
     public EnemyIdentity GetEnemy(int id)
