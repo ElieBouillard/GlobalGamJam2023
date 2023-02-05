@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: axe
-    second: {fileID: 2100000, guid: f55443b2c9ba9a048ba7e0b9e7f076f5, type: 2}
+    second: {fileID: 2100000, guid: 5463ebab22a321448b667a5a70f08a5d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
