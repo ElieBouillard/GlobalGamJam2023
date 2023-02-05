@@ -28,6 +28,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: c241185bd6a12694bbb00f2f0b2818dd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_57bb361d9f3648e8b8e73dd733d7f582_Out_0:
+        m_Texture: {fileID: 2800000, guid: 5f5afd3398e25034db53dcdb6d4ab0d7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -51,7 +55,7 @@ Material:
     m_Colors:
     - _Albedo: {r: 0, g: 0, b: 0, a: 1}
     - _EdgeColor: {r: 1.4980392, g: 0.15686275, b: 0.27450982, a: 1}
-    - _EmissiveColor: {r: 1.8509806, g: 0.19381997, b: 0.33918494, a: 1}
+    - _EmissiveColor: {r: 1.4980392, g: 0.15686275, b: 0.27450982, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &1910072421232363994
 MonoBehaviour:
