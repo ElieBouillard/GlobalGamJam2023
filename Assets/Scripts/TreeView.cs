@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class TreeView : MonoBehaviour
@@ -7,7 +8,12 @@ public class TreeView : MonoBehaviour
 
     [Header("General")]
     [SerializeField, Range(0f, 1f)] private float _healthPercentage = 1f;
+    [SerializeField, Range(0f, 1f)] private float _pulsedHealthPercentage = 1f;
     [SerializeField] private AnimationCurve _progressionCurve = null;
+
+    [Header("Pulse")]
+    [SerializeField] private float _pulseValue = 0.15f;
+    [SerializeField] private float _pulseDuration = 0.5f;
 
     [Header("Shader data")]
     [SerializeField] private Color _emissiveColorStart = Color.yellow;
@@ -22,12 +28,20 @@ public class TreeView : MonoBehaviour
     [SerializeField, Range(0f, 0.1f)] private float _noiseSpeedStart = 0.01f;
     [SerializeField, Range(0f, 0.1f)] private float _noiseSpeedEnd = 0.1f;
 
-    private void OnValidate()
-    {
-        if (_treeMaterials == null || _treeMaterials.Length == 0)
-            return;
+    private Tween _pulseTween;
 
-        float t = 1f - _progressionCurve.Evaluate(_healthPercentage);
+    public void SetHealthPercentage(float percentage)
+    {
+        _healthPercentage = Mathf.Clamp01(percentage);
+
+        _pulseTween?.Kill();
+        _pulseTween = DOTween.To(() => Mathf.Clamp01(percentage - _pulseValue), UpdateShaderData, percentage, _pulseDuration);
+    }
+
+    private void UpdateShaderData(float t)
+    {
+        _pulsedHealthPercentage = t;
+        t = 1f - _progressionCurve.Evaluate(t);
 
         Color color = Color.Lerp(_emissiveColorStart, _emissiveColorEnd, t);
         float emissiveIntensity = Mathf.Lerp(_emissiveIntensityStart, _emissiveIntensityEnd, t);
@@ -41,5 +55,18 @@ public class TreeView : MonoBehaviour
             material.SetFloat("_Threshold", threshold);
             material.SetFloat("_SpeedNoise", noise);
         }
+    }
+
+    private void Start()
+    {
+        DebugConsole.OverrideCommand(new Command<float>("tree_health_percentage", "Sets tree health percentage.", SetHealthPercentage));
+    }
+
+    private void OnValidate()
+    {
+        if (_treeMaterials == null || _treeMaterials.Length == 0)
+            return;
+
+        UpdateShaderData(_healthPercentage);
     }
 }
