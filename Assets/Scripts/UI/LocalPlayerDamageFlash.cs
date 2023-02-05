@@ -4,8 +4,9 @@ using UnityEngine;
 public class LocalPlayerDamageFlash : MonoBehaviour
 {
     [SerializeField] private PlayerController _playerController = null;
-    [SerializeField] private CanvasGroup _canvasGroup = null;
-    [SerializeField] private float _flashAlpha = 0.5f;
+    [SerializeField] private Material _material = null;
+    [SerializeField] private float _startingFalloff = 0.1f;
+    [SerializeField] private float _targetFalloff = 10f;
     [SerializeField] private float _flashDuration = 0.5f;
     [SerializeField] private Ease _flashEase = Ease.OutCirc;
 
@@ -16,23 +17,41 @@ public class LocalPlayerDamageFlash : MonoBehaviour
         if (currentHealth >= previousHealth)
             return;
 
+        PlayFlashAnimation();
+    }
+
+    private void PlayFlashAnimation()
+    {
         _flashTween?.Kill();
 
-        _canvasGroup.alpha = _flashAlpha;
-        _flashTween = _canvasGroup.DOFade(0f, _flashDuration).SetEase(_flashEase);
+        SetFalloff(_startingFalloff);
+        _flashTween = DOTween.To(() => _startingFalloff, SetFalloff, _targetFalloff, _flashDuration).SetEase(_flashEase);
         _flashTween.Play();
+    }
+
+    private void SetFalloff(float falloff)
+    {
+        Debug.Log(falloff);
+        _material.SetFloat("_Falloff", falloff);
     }
 
     private void Start()
     {
         if (_playerController == null)
         {
-            Debug.LogError($"{nameof(LocalPlayerHealth)} reference is missing!");
+            Debug.LogError($"{nameof(LocalPlayerDamageFlash)} reference is missing!");
             return;
         }
 
         _playerController.HealthChanged += OnHealthChanged;
-        _canvasGroup.alpha = 0f;
+        SetFalloff(_targetFalloff);
+
+        DebugConsole.OverrideCommand(new Command("dmg_flash", "Plays damage flash feedback.", () =>
+        {
+            FreezeFrameManager.FreezeFrame(2, 0.15f);
+            FindObjectOfType<CameraController>().SetTrauma(1f);
+            PlayFlashAnimation();
+        }));
     }
 
     private void OnDestroy()

@@ -112,7 +112,7 @@ public class Shake
 			(Settings.RotAxes & CoordinateAxes.Z) != CoordinateAxes.Z ? 0 : (Mathf.PerlinNoise(Time.time * Settings.Speed + 4f, 0f) - 0.5f) * 2f * Settings.ZRotMax * sqrTrauma
 		);
 
-		Trauma -= Time.unscaledDeltaTime;
+		Trauma -= Time.deltaTime;
 		Trauma = Mathf.Max(Trauma, 0f);
 
 		return (offsetPos, offsetRot);

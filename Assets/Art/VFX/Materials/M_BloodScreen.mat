@@ -54,8 +54,8 @@ Material:
     - _Alpha: 0.5
     - _Center_maskedge: 13.76
     - _Center_masksize: 0.01
-    - _Density: 1.22
-    - _Falloff: 0.28
+    - _Density: 1
+    - _Falloff: 10
     - _Line_Count: 25.74
     - _Line_Density: 57.15
     - _Line_Falloff: 1
@@ -63,9 +63,9 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SpeedFrame: 0
-    - _maskedge: 0.57
-    - _masksize: 0.06
+    - _maskedge: 0.73
+    - _masksize: -0.19
     m_Colors:
     - _Center: {r: 0.5, g: 0.5, b: 0, a: 0}
-    - _Color: {r: 0.7924528, g: 0.018689923, b: 0.06707224, a: 0}
+    - _Color: {r: 0.7921569, g: 0.01960786, b: 0.1185286, a: 0}
   m_BuildTextureStacks: []

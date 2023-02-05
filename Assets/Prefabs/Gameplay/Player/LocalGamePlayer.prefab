@@ -309,9 +309,9 @@ MonoBehaviour:
   _cameraShaker: {fileID: 8712950339614292062}
   _shakeSettings:
     PosAxes: 3
-    RotAxes: 0
-    Speed: 16
-    Radius: 0.65
+    RotAxes: 4
+    Speed: 15
+    Radius: 1
     XRotMax: 15
     YRotMax: 15
     ZRotMax: 15

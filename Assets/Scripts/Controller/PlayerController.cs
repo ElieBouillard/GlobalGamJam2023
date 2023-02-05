@@ -264,7 +264,7 @@ public class PlayerController : MonoBehaviour, IHittable
     private void OnDamaged()
     {
         _cameraController.AddTrauma(_damageTrauma);
-        FreezeFrameManager.FreezeFrame(0, _damageFreezeDuration, 0, true);
+        FreezeFrameManager.FreezeFrame(2, _damageFreezeDuration, 0, true);
     }
 
     private void OnDeath()
@@ -273,7 +273,7 @@ public class PlayerController : MonoBehaviour, IHittable
         _cameraController.OnPlayerDeath();
 
         _cameraController.AddTrauma(_deathTrauma);
-        FreezeFrameManager.FreezeFrame(0, _deathFreezeDuration, 0, true);
+        FreezeFrameManager.FreezeFrame(2, _deathFreezeDuration, 0, true);
 
         // TODO/TMP: Only call this when ALL players are dead.
         GameEndPanel.Instance.OnGameEnd(false);
