@@ -92,6 +92,7 @@ MonoBehaviour:
   _attackRadius: 0.5
   _attackCooldown: 5
   _initialLife: 1
+  _meshRenderer: {fileID: 4321937979328441812}
 --- !u!1001 &9137339021755879063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -143,12 +144,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4236547098373840061, guid: e0e13e4aaa22b9e47a96500c5132df0f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 61178758c69f7a14da840eb6355941a4, type: 2}
     - target: {fileID: 919132149155446097, guid: e0e13e4aaa22b9e47a96500c5132df0f, type: 3}
       propertyPath: m_Name
       value: FungusMonster_02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0e13e4aaa22b9e47a96500c5132df0f, type: 3}
+--- !u!137 &4321937979328441812 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -4236547098373840061, guid: e0e13e4aaa22b9e47a96500c5132df0f, type: 3}
+  m_PrefabInstance: {fileID: 9137339021755879063}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8218841430531912646 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e0e13e4aaa22b9e47a96500c5132df0f, type: 3}

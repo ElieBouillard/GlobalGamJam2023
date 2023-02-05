@@ -12,6 +12,7 @@ public class ClientMessages : MonoBehaviour
         Animations,
         Attack,
         Death,
+        ChangeWeapon,
         EnemyDeath,
     }
     
@@ -54,7 +55,6 @@ public class ClientMessages : MonoBehaviour
     {
         Message message = Message.Create(MessageSendMode.reliable, MessagesId.Attack);
         NetworkManager.Instance.Client.Send(message);
-        //ToDo Send Attack
     }
 
     public void SendDeath()
@@ -63,6 +63,13 @@ public class ClientMessages : MonoBehaviour
         NetworkManager.Instance.Client.Send(message);
     }
 
+    public void SendChangeWeapon(int weaponIndex)
+    {
+        Message message = Message.Create(MessageSendMode.reliable, MessagesId.ChangeWeapon);
+        message.AddInt(weaponIndex);
+        NetworkManager.Instance.Client.Send(message);
+    }
+    
     public void SendEnemyDeath(int id)
     {
         Message message = Message.Create(MessageSendMode.reliable, MessagesId.EnemyDeath);
@@ -119,11 +126,23 @@ public class ClientMessages : MonoBehaviour
         ((PlayerGameIdentity)NetworkManager.Instance.Players[message.GetUShort()]).MovementReceiver.SetAnimations(message.GetVector3());
     }
 
+    [MessageHandler((ushort)ServerMessages.MessagesId.Attack)]
+    private static void OnServerClientAttack(Message message)
+    {
+        ((PlayerGameIdentity)NetworkManager.Instance.Players[message.GetUShort()]).MovementReceiver.SetAttackTrigger();
+    }
+    
     [MessageHandler((ushort)ServerMessages.MessagesId.Death)]
     private static void OnServerDeathClient(Message message)
     {
         //tODO Retarget Enemies
         ((PlayerGameIdentity)NetworkManager.Instance.Players[message.GetUShort()]).MovementReceiver.SetDeathAnim(true);
+    }
+
+    [MessageHandler((ushort)ServerMessages.MessagesId.ChangeWeapon)]
+    private static void OnServerClientChangeWeapon(Message message)
+    {
+        ((PlayerGameIdentity)NetworkManager.Instance.Players[message.GetUShort()]).RemoteSelection.SetWeapon(message.GetInt());
     }
     
     [MessageHandler((ushort)ServerMessages.MessagesId.SpawnEnemies)]

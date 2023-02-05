@@ -230,6 +230,8 @@ public class PlayerController : MonoBehaviour, IHittable
         if (!CanAttack())
             return;
 
+        NetworkManager.Instance.ClientMessages.SendAttack();
+        
         _attackModule.Attack(shookOnAttack: _cameraController);
     }
 

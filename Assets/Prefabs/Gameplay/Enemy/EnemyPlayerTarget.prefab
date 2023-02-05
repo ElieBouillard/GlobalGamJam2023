@@ -2314,6 +2314,7 @@ MonoBehaviour:
   _attackRadius: 0.69
   _attackCooldown: 1
   _initialLife: 1
+  _meshRenderer: {fileID: 2815981548114140721}
 --- !u!195 &8745449452869519078
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3141,6 +3142,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.8174646
       objectReference: {fileID: 0}
+    - target: {fileID: 5317913490850346660, guid: bbb9d018bc139cb49af237c91be4fdb9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5914b909b5403224080774d2b3869ce3, type: 2}
     - target: {fileID: 5372056943023685468, guid: bbb9d018bc139cb49af237c91be4fdb9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 29.213943
@@ -3287,6 +3292,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbb9d018bc139cb49af237c91be4fdb9, type: 3}
+--- !u!137 &2815981548114140721 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5317913490850346660, guid: bbb9d018bc139cb49af237c91be4fdb9, type: 3}
+  m_PrefabInstance: {fileID: 7987528013749266581}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7068416903492703684 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bbb9d018bc139cb49af237c91be4fdb9, type: 3}

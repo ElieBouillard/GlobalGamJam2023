@@ -12,6 +12,7 @@ public class Weapon : MonoBehaviour
     [Header("References")]
     [SerializeField] private Animator _animator = null;
     [SerializeField] private Transform _mainRoot = null;
+    [SerializeField] private MeshRenderer _meshRenderer = null;
 
     [Header("Data")]
     [SerializeField, Min(0f)] private WeaponType _weaponType = WeaponType.None;
@@ -47,6 +48,10 @@ public class Weapon : MonoBehaviour
     private void Start()
     {
         _id = _mainRoot.GetComponent<PlayerIdentity>().GetId;
+
+        Material material = _meshRenderer.material;
+        if (material != null)
+            material.SetFloat("_Threshold", 0.5f);
     }
 
     public virtual void PlayAttackAnimation(PlayerAttackModule attackModule, IShakable shookOnAttack = null)
@@ -111,6 +116,15 @@ public class Weapon : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public void UpdateHitsFeedback(int currentHits)
+    {
+        float percentage = (MaximumHits - currentHits) / (float)MaximumHits;
+
+        Material material = _meshRenderer.material;
+        if (material != null)
+            material.SetFloat("_Threshold", (1f - percentage) * 0.5f);
+    }
+    
     private void StopBackToIdleCoroutine()
     {
         if (_backToIdleCoroutine != null)
