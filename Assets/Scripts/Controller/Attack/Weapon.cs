@@ -120,7 +120,7 @@ public class Weapon : MonoBehaviour
         float percentage = (MaximumHits - currentHits) / (float)MaximumHits;
 
         if (_meshRenderer != null)
-            _meshRenderer.material.SetFloat("_Threshold", (1f - percentage) * 0.5f);
+            _meshRenderer.material.SetFloat("_Threshold", (percentage) * 0.5f);
     }
     
     private void StopBackToIdleCoroutine()
