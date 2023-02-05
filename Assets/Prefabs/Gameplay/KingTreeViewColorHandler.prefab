@@ -46,7 +46,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _treeMaterials:
   - {fileID: 2100000, guid: 3d3fa74d64c14f54eb969ab0d8e18be4, type: 2}
+  - {fileID: 2100000, guid: 87cd264deefaa854fb095ddffbf98601, type: 2}
+  - {fileID: 2100000, guid: ebf0f421340ab0240a8a7a465153f49e, type: 2}
   _healthPercentage: 1
+  _pulsedHealthPercentage: 1
   _progressionCurve:
     serializedVersion: 2
     m_Curve:
@@ -71,11 +74,13 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _pulseValue: 0.15
+  _pulseDuration: 0.5
   _emissiveColorStart: {r: 1, g: 0.7022633, b: 0.1273585, a: 1}
   _emissiveColorEnd: {r: 1, g: 0, b: 0.07060623, a: 1}
   _emissiveIntensityStart: 1
   _emissiveIntensityEnd: 8
-  _thresholdStart: 0.35
+  _thresholdStart: 0.25
   _thresholdEnd: 0
   _noiseSpeedStart: 0.005
   _noiseSpeedEnd: 0.04

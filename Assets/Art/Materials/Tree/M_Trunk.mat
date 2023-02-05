@@ -108,7 +108,7 @@ Material:
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EmissivPower: 1
+    - _EmissivPower: 3
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -130,7 +130,7 @@ Material:
     - _SpeedNoise: 0.005
     - _SrcBlend: 1
     - _Surface: 0
-    - _Threshold: 0.35
+    - _Threshold: 0.25
     - _TillingMask: 1
     - _WorkflowMode: 1
     - _ZWrite: 1
@@ -138,7 +138,7 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _EmissivColor: {r: 1, g: 0.7022633, b: 0.1273585, a: 1}
+    - _EmissivColor: {r: 3, g: 2.1067898, b: 0.3820755, a: 3}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}
     - _Tiling_mask: {r: 1, g: 1, b: 0, a: 0}
