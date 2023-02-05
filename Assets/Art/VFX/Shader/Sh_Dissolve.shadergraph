@@ -757,7 +757,7 @@
     "m_CustomColors": {
         "m_SerializableColors": []
     },
-    "m_Space": 2,
+    "m_Space": 0,
     "m_PositionSource": 0
 }
 
@@ -2228,8 +2228,8 @@
     "m_ShaderOutputName": "InMinMax",
     "m_StageCapability": 3,
     "m_Value": {
-        "x": 0.0,
-        "y": 2.0
+        "x": 1.0,
+        "y": 4.0
     },
     "m_DefaultValue": {
         "x": 0.0,
