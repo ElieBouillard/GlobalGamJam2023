@@ -10,7 +10,10 @@ public class EnemySpawnersSystem : Singleton<EnemySpawnersSystem>
     [Header("Parameters")]
     [SerializeField] private float _spawnTime = 5f;
     [SerializeField] private int _enemyCount = 5;
-    
+    [SerializeField] private float _difficultyIncreaseStage = 20f;
+    [SerializeField] private float _difficultyPercentageAdder = 25f;
+    [SerializeField] private float _spawnTimeIncreaseValue = 0.2f;
+
     [Space(20)] [Header("References")]
     [SerializeField] private Transform[] _spawnPoints;
     [SerializeField] private GameObject _enemyTreeTargetPrefab;
@@ -24,6 +27,7 @@ public class EnemySpawnersSystem : Singleton<EnemySpawnersSystem>
 
     private int _enemyIdCount = 0;
 
+    private int _enemySpawnedCounter = 0;
 
     protected override void Awake()
     {
@@ -49,6 +53,15 @@ public class EnemySpawnersSystem : Singleton<EnemySpawnersSystem>
         {
             _spawnClock = _spawnTime;
             ChooseSpawn();
+        }
+
+        if (_enemySpawnedCounter >= _difficultyIncreaseStage)
+        {
+            _enemySpawnedCounter = 0;
+            _difficultyIncreaseStage += _difficultyIncreaseStage * _difficultyPercentageAdder / 100;
+            _enemyCount += 1;
+            _spawnTime += _spawnTimeIncreaseValue;
+            //Debug.Log($"DIFFICULTE AUGMENTE : {_difficultyIncreaseStage}");
         }
     }
 
@@ -113,6 +126,9 @@ public class EnemySpawnersSystem : Singleton<EnemySpawnersSystem>
         }
         
         Enemies.Add(enemyInstance.GetComponent<EnemyIdentity>());
+
+        _enemySpawnedCounter++;
+        //Debug.Log($"ENNEMI SPAWNED : {_enemySpawnedCounter}");
     }
 
     public void RemoveEnemy(EnemyIdentity enemy)
