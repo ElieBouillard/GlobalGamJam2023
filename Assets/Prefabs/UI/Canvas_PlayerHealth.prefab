@@ -200,6 +200,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3516263040234669653}
+  - component: {fileID: 1922146177852890037}
   - component: {fileID: 3516263040234669651}
   - component: {fileID: 3516263040234669650}
   m_Layer: 5
@@ -232,6 +233,27 @@ RectTransform:
   m_AnchoredPosition: {x: 30, y: 30}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0}
+--- !u!223 &1922146177852890037
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3516263040234669652}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!114 &3516263040234669651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,6 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fd72454e2978d94a9d7b737039ba3bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canvas: {fileID: 1922146177852890037}
   _playerController: {fileID: 0}
   _hearts:
   - {fileID: 1773960225494215615}

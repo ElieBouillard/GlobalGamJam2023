@@ -274,8 +274,24 @@ public class PlayerController : MonoBehaviour, IHittable
 
         _cameraController.AddTrauma(_deathTrauma);
         FreezeFrameManager.FreezeFrame(0, _deathFreezeDuration, 0, true);
+
+        // TODO/TMP: Only call this when ALL players are dead.
+        GameEndPanel.Instance.OnGameEnd(false);
     }
     #endregion // Health
+
+    private void OnPanelEnabled(PanelType panelType)
+    {
+        InputLockBuffers += panelType switch
+        {
+            PanelType.MainMenu => 1,
+            PanelType.Options => 1,
+            PanelType.Pause => 1,
+            PanelType.None => -1,
+            PanelType.Lobby => -1,
+            _ => 0
+        };
+    }
 
     private void Start()
     {
@@ -291,12 +307,15 @@ public class PlayerController : MonoBehaviour, IHittable
 
         _currentHealth = _maxHealth;
 
-        PanelManager.Instance.PanelEnabled += OnPanelEnabled;
+        if (PanelManager.Exists())
+            PanelManager.Instance.PanelEnabled += OnPanelEnabled;
 
         // Debug.
         DebugConsole.OverrideCommand(new Command("player_kill", "Instantly kills the player.", true, false, () =>
         {
+            int previousHealth = _currentHealth;
             _currentHealth = 0;
+            HealthChanged?.Invoke(previousHealth, _currentHealth);
             OnDeath();
         }));
     }
@@ -305,19 +324,6 @@ public class PlayerController : MonoBehaviour, IHittable
     {
         if (PanelManager.Exists())
             PanelManager.Instance.PanelEnabled -= OnPanelEnabled;
-    }
-
-    private void OnPanelEnabled(PanelType panelType)
-    {
-        InputLockBuffers += panelType switch
-        {
-            PanelType.MainMenu => 1,
-            PanelType.Options => 1,
-            PanelType.Pause => 1,
-            PanelType.None => -1,
-            PanelType.Lobby => -1,
-            _ => 0
-        };
     }
 
     private void Update()
