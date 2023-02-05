@@ -40,7 +40,7 @@ public class EnemyIdentity : MonoBehaviour, IHittable
 
         _networkManager = NetworkManager.Instance;
 
-        //_meshRenderer.material.SetFloat("_CutoffHeight", 3f);
+        _meshRenderer.material.SetFloat("_CutoffHeight", 3f);
     }
 
     protected void Initialize(int id)
@@ -118,7 +118,7 @@ public class EnemyIdentity : MonoBehaviour, IHittable
 
         for (float t = 0f; t <= 1f; t += Time.deltaTime)
         {
-            //material.SetFloat("_CutoffHeight", (1f - t) * 3f);
+            material.SetFloat("_CutoffHeight", (1f - t) * 3f);
             yield return null;
         }
 
