@@ -3103,7 +3103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00456ed79e0d6f44da02d6641b9000dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialLife: 10
+  _initialLife: 25
 --- !u!136 &911414546
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6198,7 +6198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPersistant: 0
   _spawnTime: 2
-  _enemyCount: 1
+  _enemyCount: 0
   _difficultyIncreaseStage: 25
   _difficultyPercentageAdder: 25
   _spawnTimeIncreaseValue: 0.2

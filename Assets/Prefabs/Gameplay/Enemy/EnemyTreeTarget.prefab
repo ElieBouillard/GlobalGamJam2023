@@ -950,7 +950,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackRange: 1.25
   _attackRadius: 0.5
-  _attackCooldown: 4
+  _attackCooldown: 5
+  _initialLife: 1
 --- !u!195 &3755498120140851512
 NavMeshAgent:
   m_ObjectHideFlags: 0
