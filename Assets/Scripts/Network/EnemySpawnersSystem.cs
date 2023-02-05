@@ -59,12 +59,10 @@ public class EnemySpawnersSystem : Singleton<EnemySpawnersSystem>
             ChooseSpawn();
         }
         
-        
-        
-        if (_enemySpawnedCounter >= _difficultyIncreaseStage)
+        if (_enemyDead >= _difficultyIncreaseStage)
         {
-            _waveCounter++; 
-            _enemySpawnedCounter = 0;
+            _waveCounter++;
+            _enemyDead = 0;
             _difficultyIncreaseStage += _difficultyIncreaseStage * _difficultyPercentageAdder / 100;
             if(_waveCounter % 2 != 0)
             {
@@ -138,7 +136,7 @@ public class EnemySpawnersSystem : Singleton<EnemySpawnersSystem>
         
         Enemies.Add(enemyInstance.GetComponent<EnemyIdentity>());
 
-        _enemySpawnedCounter++;
+        //_enemySpawnedCounter++;
         //Debug.Log($"ENNEMI SPAWNED : {_enemySpawnedCounter}");
     }
 
