@@ -19,6 +19,7 @@ public class MovementReceiver : MonoBehaviour
     private static readonly int VelocityY = Animator.StringToHash("VelocityY");
     private static readonly int VelocityX = Animator.StringToHash("VelocityX");
     private static readonly int Die = Animator.StringToHash("Die");
+    private static readonly int Attack = Animator.StringToHash("Attack");
 
     private void Awake()
     {
@@ -39,6 +40,11 @@ public class MovementReceiver : MonoBehaviour
     public void SetDeathAnim(bool value)
     {
         _animator.SetBool(Die, value);
+    }
+
+    public void SetAttackTrigger()
+    {
+        _animator.SetTrigger(Attack);
     }
     
     private void Update()

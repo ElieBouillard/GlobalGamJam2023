@@ -103,7 +103,7 @@ public class EnemyIdentity : MonoBehaviour, IHittable
         GetComponent<Collider>().enabled = false;
         _agent.enabled = false;
         GameManager.Instance.EnemySpawners.RemoveEnemy(this);
-
+        
         StartCoroutine(Delete());
     }
 

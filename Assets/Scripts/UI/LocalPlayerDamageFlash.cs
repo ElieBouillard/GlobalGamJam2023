@@ -49,7 +49,6 @@ public class LocalPlayerDamageFlash : Singleton<LocalPlayerDamageFlash>
 
     private void SetFalloff(float falloff)
     {
-        Debug.Log(falloff);
         _material.SetFloat("_Falloff", falloff);
     }
 

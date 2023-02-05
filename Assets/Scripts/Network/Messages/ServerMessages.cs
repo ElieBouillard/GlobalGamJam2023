@@ -3,6 +3,7 @@ using System.Security.Cryptography.X509Certificates;
 using HoudiniEngineUnity;
 using RiptideNetworking;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ServerMessages : MonoBehaviour
 {
@@ -14,7 +15,9 @@ public class ServerMessages : MonoBehaviour
         InitializeGameplay,
         Movements,
         Animations,
+        Attack,
         Death,
+        ChangeWeapon,
         SpawnEnemies,
         EnemyDeath,
         GameOver,
@@ -73,11 +76,26 @@ public class ServerMessages : MonoBehaviour
         NetworkManager.Instance.Server.SendToAll(message, id);
     }
 
+    private static void SendClientAttack(ushort id)
+    {
+        Message message = Message.Create(MessageSendMode.reliable, MessagesId.Attack);
+        message.AddUShort(id);
+        NetworkManager.Instance.Server.SendToAll(message, id);
+    }
+    
     private static void SendClientDie(ushort playerId)
     {
         Message message = Message.Create(MessageSendMode.reliable, MessagesId.Death);
         message.AddUShort(playerId);
         NetworkManager.Instance.Server.SendToAll(message, playerId);
+    }
+
+    private static void SendClientChangeWeapon(ushort id, int weaponId)
+    {
+        Message message = Message.Create(MessageSendMode.reliable, MessagesId.ChangeWeapon);
+        message.AddUShort(id);
+        message.AddInt(weaponId);
+        NetworkManager.Instance.Server.SendToAll(message, id);
     }
     
     public void SendSpawnEnemies(List<EnemySpawnData> enemiesSpawnData)
@@ -155,6 +173,12 @@ public class ServerMessages : MonoBehaviour
         SendClientAnimations(id, message.GetVector3());
     }
 
+    [MessageHandler((ushort)ClientMessages.MessagesId.Attack)]
+    private static void OnClientAttack(ushort id, Message message)
+    {
+        SendClientAttack(id);
+    }
+    
     [MessageHandler((ushort)ClientMessages.MessagesId.Death)]
     private static void OnClientDeath(ushort id, Message message)
     {
@@ -167,6 +191,12 @@ public class ServerMessages : MonoBehaviour
         }
         
         SendClientDie(id);
+    }
+
+    [MessageHandler((ushort)ClientMessages.MessagesId.ChangeWeapon)]
+    private static void OnClientChangeWeapon(ushort id, Message message)
+    {
+        SendClientChangeWeapon(id, message.GetInt());
     }
     
     [MessageHandler((ushort)ClientMessages.MessagesId.EnemyDeath)]
