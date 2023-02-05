@@ -39,7 +39,10 @@ public class EnemyIdentity : MonoBehaviour, IHittable
         _audioSource = GetComponent<AudioSource>();
 
         _networkManager = NetworkManager.Instance;
+    }
 
+    private void Start()
+    {
         _meshRenderer.material.SetFloat("_CutoffHeight", 3f);
     }
 
@@ -50,7 +53,9 @@ public class EnemyIdentity : MonoBehaviour, IHittable
         _currLife = _initialLife;
     }
 
-    protected virtual void Update() { }
+    protected virtual void Update()
+    {
+    }
 
     protected void AttackFeedback()
     {
