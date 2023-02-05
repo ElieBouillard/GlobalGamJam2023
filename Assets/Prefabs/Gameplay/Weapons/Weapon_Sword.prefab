@@ -368,7 +368,7 @@ MonoBehaviour:
   _radius: 0.79
   _distance: {x: 1.39, y: 0}
   _damage: 10
-  _maximumHits: 15
+  _maximumHits: 9999999
   _cooldown: 0.5
   _backToIdleDelay: 0.4
   _hitParticles: {fileID: 108496, guid: 9acec412cf3cb0b4ea6bd5b99ee797bc, type: 3}

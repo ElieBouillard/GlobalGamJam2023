@@ -807,6 +807,7 @@ GameObject:
   - component: {fileID: 4579422238541071838}
   - component: {fileID: 586237429758610043}
   - component: {fileID: 3442523214995799729}
+  - component: {fileID: 5588994692927885932}
   m_Layer: 0
   m_Name: sword
   m_TagString: Untagged
@@ -879,6 +880,33 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5588994692927885932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3802921479234101092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdc53352e080c7f41ae496b2a7b14947, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 7042614040820152035}
+  _mainRoot: {fileID: 0}
+  _weaponType: 1
+  _radius: 1
+  _distance: {x: 1, y: 1}
+  _damage: 1
+  _maximumHits: 9999
+  _cooldown: 0.33
+  _backToIdleDelay: 0.5
+  _hitParticles: {fileID: 0}
+  _hitForwardAdd: 1
+  _noHitTrauma: 0.1
+  _hitTrauma: 0.2
+  _freezeFrameDelay: 0
+  _freezeFrameDuration: 0.05
 --- !u!1 &3970506232317594109
 GameObject:
   m_ObjectHideFlags: 0

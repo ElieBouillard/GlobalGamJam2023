@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour, IHittable
     public bool IsDead => _currentHealth <= 0;
 
     #region Movement
-    private Vector3 GetMovementDirection()
+    public Vector3 GetMovementDirection()
     {
         return _slideDirection ?? new Vector3(_movementInput.x, _rigidbody.velocity.y, _movementInput.y);
     }

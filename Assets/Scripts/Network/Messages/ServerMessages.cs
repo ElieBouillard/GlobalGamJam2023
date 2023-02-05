@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
+using HoudiniEngineUnity;
 using RiptideNetworking;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ public class ServerMessages : MonoBehaviour
         StartGame,
         InitializeGameplay,
         Movements,
+        Animations,
         SpawnEnemies,
         EnemyDeath,
     }
@@ -52,14 +54,23 @@ public class ServerMessages : MonoBehaviour
         NetworkManager.Instance.Server.Send(message, id);
     }
 
-    private static void SendClientMovements(ushort id, Vector3 pos)
+    private static void SendClientMovements(ushort id, Vector3 pos, float y)
     {
         Message message = Message.Create(MessageSendMode.unreliable, MessagesId.Movements);
         message.AddUShort(id);
         message.AddVector3(pos);
+        message.AddFloat(y);
         NetworkManager.Instance.Server.SendToAll(message, id);
     }
 
+    private static void SendClientAnimations(ushort id, Vector3 input)
+    {
+        Message message = Message.Create(MessageSendMode.unreliable, MessagesId.Animations);
+        message.AddUShort(id);
+        message.AddVector3(input);
+        NetworkManager.Instance.Server.SendToAll(message, id);
+    }
+    
     public void SendSpawnEnemies(List<EnemySpawnData> enemiesSpawnData)
     {
         Message message = Message.Create(MessageSendMode.reliable, MessagesId.SpawnEnemies);
@@ -119,9 +130,15 @@ public class ServerMessages : MonoBehaviour
     [MessageHandler((ushort)ClientMessages.MessagesId.Movements)]
     private static void OnClientMovements(ushort id, Message message)
     {
-        SendClientMovements(id, message.GetVector3());
+        SendClientMovements(id, message.GetVector3(), message.GetFloat());
     }
 
+    [MessageHandler((ushort)ClientMessages.MessagesId.Animations)]
+    private static void OnClientAnimations(ushort id, Message message)
+    {
+        SendClientAnimations(id, message.GetVector3());
+    }
+    
     [MessageHandler((ushort)ClientMessages.MessagesId.EnemyDeath)]
     private static void OnEnemyDeath(ushort id, Message message)
     {

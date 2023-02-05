@@ -11,6 +11,7 @@ public class Weapon : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Animator _animator = null;
+    [SerializeField] private Transform _mainRoot = null;
 
     [Header("Data")]
     [SerializeField, Min(0f)] private WeaponType _weaponType = WeaponType.None;
@@ -43,9 +44,9 @@ public class Weapon : MonoBehaviour
 
     public float Cooldown => _cooldown;
 
-    private void Awake()
+    private void Start()
     {
-        _playerId = GetComponentInParent<PlayerIdentity>().GetId;
+        _playerId = _mainRoot.GetComponent<PlayerIdentity>().GetId;
     }
 
     public virtual void PlayAttackAnimation(PlayerAttackModule attackModule, IShakable shookOnAttack = null)
@@ -65,7 +66,7 @@ public class Weapon : MonoBehaviour
 
     public void Attack()
     {
-        Vector3 attackPosition = transform.position + transform.forward * _distance.x + transform.up * _distance.y;
+        Vector3 attackPosition = _mainRoot.transform.position + Camera.main.transform.forward.WithY(0).normalized * _distance.x + _mainRoot.transform.up * _distance.y;
         Collider[] targets = Physics.OverlapSphere(attackPosition, _radius);
         IEnumerable<IHittable> hittables = targets.Where(o => o.TryGetComponent<IHittable>(out _) && !o.TryGetComponent<PlayerController>(out _))
                                                   .Select(o => o.GetComponent<IHittable>());
@@ -85,7 +86,7 @@ public class Weapon : MonoBehaviour
             _playerAttackModule.OnWeaponHit();
     
             if (_hitParticles != null)
-                Instantiate(_hitParticles, attackPosition + transform.forward * _hitForwardAdd, _hitParticles.transform.rotation);
+                Instantiate(_hitParticles, attackPosition + Camera.main.transform.forward.WithY(0).normalized * _hitForwardAdd, _hitParticles.transform.rotation);
             
             FreezeFrameManager.FreezeFrame(_freezeFrameDelay, _freezeFrameDuration, 0f, true);
             _shookOnAttack?.SetTrauma(_hitTrauma);
@@ -99,7 +100,7 @@ public class Weapon : MonoBehaviour
 
     public virtual void OnEquiped()
     {
-        _animator.SetTrigger(ANIM_PARAM_IDLE); // Equip animation.
+        // _animator.SetTrigger(ANIM_PARAM_IDLE); // Equip animation.
         gameObject.SetActive(true);
         // TODO: weapon audio.
     }
@@ -122,7 +123,7 @@ public class Weapon : MonoBehaviour
     private IEnumerator BackToIdleCoroutine()
     {
         yield return new WaitForSeconds(_backToIdleDelay);
-        _animator.SetTrigger(ANIM_PARAM_IDLE);
+        // _animator.SetTrigger(ANIM_PARAM_IDLE);
     }
 
     private void Reset()
@@ -134,6 +135,6 @@ public class Weapon : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position + transform.forward * _distance.x + transform.up * _distance.y, _radius);
+        Gizmos.DrawWireSphere(_mainRoot.transform.position + Camera.main.transform.forward.WithY(0).normalized * _distance.x + _mainRoot.transform.up * _distance.y, _radius);
     }
 }

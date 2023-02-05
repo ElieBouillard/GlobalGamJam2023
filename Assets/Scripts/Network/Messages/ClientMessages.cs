@@ -9,6 +9,7 @@ public class ClientMessages : MonoBehaviour
         StartGame,
         Ready,
         Movements,
+        Animations,
         EnemyDeath,
     }
     
@@ -32,13 +33,21 @@ public class ClientMessages : MonoBehaviour
         NetworkManager.Instance.Client.Send(message);
     }
 
-    public void SendMovements(Vector3 pos)
+    public void SendMovements(Vector3 pos, float y)
     {
         Message message = Message.Create(MessageSendMode.unreliable, MessagesId.Movements);
         message.AddVector3(pos);
+        message.AddFloat(y);
         NetworkManager.Instance.Client.Send(message);
     }
 
+    public void SendAnimations(Vector3 input)
+    {
+        Message message = Message.Create(MessageSendMode.unreliable, MessagesId.Animations);
+        message.AddVector3(input);
+        NetworkManager.Instance.Client.Send(message);
+    }
+    
     public void SendEnemyDeath(int id)
     {
         Message message = Message.Create(MessageSendMode.reliable, MessagesId.EnemyDeath);
@@ -86,9 +95,15 @@ public class ClientMessages : MonoBehaviour
     [MessageHandler((ushort)ServerMessages.MessagesId.Movements)]
     private static void OnServerMovementsClient(Message message)
     {
-        ((PlayerGameIdentity)NetworkManager.Instance.Players[message.GetUShort()]).MovementReceiver.SetMovements(message.GetVector3());
+        ((PlayerGameIdentity)NetworkManager.Instance.Players[message.GetUShort()]).MovementReceiver.SetMovements(message.GetVector3(), message.GetFloat());
     }
 
+    [MessageHandler((ushort)ServerMessages.MessagesId.Animations)]
+    private static void OnServerAnimationsClient(Message message)
+    {
+        ((PlayerGameIdentity)NetworkManager.Instance.Players[message.GetUShort()]).MovementReceiver.SetAnimations(message.GetVector3());
+    }
+    
     [MessageHandler((ushort)ServerMessages.MessagesId.SpawnEnemies)]
     private static void OnServerSpawnEnemies(Message message)
     {

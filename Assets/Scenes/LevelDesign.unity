@@ -408,6 +408,10 @@ PrefabInstance:
       propertyPath: _generateOnStartChance
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 4928930289783441486, guid: 2892ed6329e27324d95f2976db18cd35, type: 3}
+      propertyPath: _previews.Array.data[1].WeaponType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4928930289783441487, guid: 2892ed6329e27324d95f2976db18cd35, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -530,6 +534,10 @@ PrefabInstance:
     - target: {fileID: 4928930289783441486, guid: 2892ed6329e27324d95f2976db18cd35, type: 3}
       propertyPath: _generateOnStartChance
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928930289783441486, guid: 2892ed6329e27324d95f2976db18cd35, type: 3}
+      propertyPath: _previews.Array.data[1].WeaponType
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4928930289783441487, guid: 2892ed6329e27324d95f2976db18cd35, type: 3}
       propertyPath: m_RootOrder
@@ -839,6 +847,10 @@ PrefabInstance:
     - target: {fileID: 4928930289783441486, guid: 2892ed6329e27324d95f2976db18cd35, type: 3}
       propertyPath: _generateOnStartChance
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928930289783441486, guid: 2892ed6329e27324d95f2976db18cd35, type: 3}
+      propertyPath: _previews.Array.data[1].WeaponType
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4928930289783441487, guid: 2892ed6329e27324d95f2976db18cd35, type: 3}
       propertyPath: m_RootOrder
@@ -2994,6 +3006,10 @@ PrefabInstance:
       propertyPath: _generateOnStartChance
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 4928930289783441486, guid: 2892ed6329e27324d95f2976db18cd35, type: 3}
+      propertyPath: _previews.Array.data[1].WeaponType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4928930289783441487, guid: 2892ed6329e27324d95f2976db18cd35, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -3555,6 +3571,10 @@ PrefabInstance:
     - target: {fileID: 4928930289783441486, guid: 2892ed6329e27324d95f2976db18cd35, type: 3}
       propertyPath: _generateOnStartChance
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928930289783441486, guid: 2892ed6329e27324d95f2976db18cd35, type: 3}
+      propertyPath: _previews.Array.data[1].WeaponType
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4928930289783441487, guid: 2892ed6329e27324d95f2976db18cd35, type: 3}
       propertyPath: m_RootOrder
@@ -4520,6 +4540,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2429074422282016148, guid: 5ac83ee66f3657b4fa0ef3429a7905bd, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429074422282016150, guid: 5ac83ee66f3657b4fa0ef3429a7905bd, type: 3}
+      propertyPath: m_PixelPerfect
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2429074422282016151, guid: 5ac83ee66f3657b4fa0ef3429a7905bd, type: 3}
@@ -5843,8 +5867,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPersistant: 0
-  _spawnTime: 5
-  _enemyCount: 5
+  _spawnTime: 2
+  _enemyCount: 1
+  _difficultyIncreaseStage: 25
+  _difficultyPercentageAdder: 25
+  _spawnTimeIncreaseValue: 0.2
   _spawnPoints:
   - {fileID: 441424693}
   - {fileID: 278882272}
