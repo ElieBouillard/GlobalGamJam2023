@@ -4,12 +4,6 @@
     "m_ObjectId": "54d5886124e64526a9bd7b94cf4aecea",
     "m_Properties": [
         {
-            "m_Id": "4495fe0ddcaf4d3ab9f6726c4c95351a"
-        },
-        {
-            "m_Id": "321463e8b7b04c49bc4437311a2d24d4"
-        },
-        {
             "m_Id": "8c550a038e1d4ccda747456a6ccfa481"
         },
         {
@@ -42,9 +36,6 @@
         },
         {
             "m_Id": "f4e83efdb22743e6bafba5128bd94f68"
-        },
-        {
-            "m_Id": "9d2b3dd2f1104b7c9703fcad2342d0eb"
         }
     ],
     "m_Nodes": [
@@ -925,33 +916,6 @@
 }
 
 {
-    "m_SGVersion": 1,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
-    "m_ObjectId": "321463e8b7b04c49bc4437311a2d24d4",
-    "m_Guid": {
-        "m_GuidSerialized": "269de6f0-c481-457c-b53b-3a910be18770"
-    },
-    "m_Name": "SpeedFrame",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "SpeedFrame",
-    "m_DefaultReferenceName": "_SpeedFrame",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_Value": 1.0,
-    "m_FloatType": 0,
-    "m_RangeValues": {
-        "x": 0.0,
-        "y": 1.0
-    }
-}
-
-{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "35c6fea3c5f0438c888c2a3e532f5433",
@@ -1090,33 +1054,6 @@
     },
     "isMainColor": false,
     "m_ColorMode": 0
-}
-
-{
-    "m_SGVersion": 1,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
-    "m_ObjectId": "4495fe0ddcaf4d3ab9f6726c4c95351a",
-    "m_Guid": {
-        "m_GuidSerialized": "b541fe13-d2ef-4f2e-a870-051d6004c67d"
-    },
-    "m_Name": "NumberofFrame",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "NumberofFrame",
-    "m_DefaultReferenceName": "_NumberofFrame",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_Value": 12.0,
-    "m_FloatType": 0,
-    "m_RangeValues": {
-        "x": 0.0,
-        "y": 1.0
-    }
 }
 
 {
@@ -2108,21 +2045,6 @@
         "m_Guid": ""
     },
     "m_DefaultType": 0
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.CategoryData",
-    "m_ObjectId": "9d2b3dd2f1104b7c9703fcad2342d0eb",
-    "m_Name": "Rate",
-    "m_ChildObjectList": [
-        {
-            "m_Id": "4495fe0ddcaf4d3ab9f6726c4c95351a"
-        },
-        {
-            "m_Id": "321463e8b7b04c49bc4437311a2d24d4"
-        }
-    ]
 }
 
 {
