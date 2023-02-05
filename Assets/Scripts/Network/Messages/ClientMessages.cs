@@ -10,6 +10,8 @@ public class ClientMessages : MonoBehaviour
         Ready,
         Movements,
         Animations,
+        Attack,
+        Death,
         EnemyDeath,
     }
     
@@ -47,7 +49,20 @@ public class ClientMessages : MonoBehaviour
         message.AddVector3(input);
         NetworkManager.Instance.Client.Send(message);
     }
-    
+
+    public void SendAttack()
+    {
+        Message message = Message.Create(MessageSendMode.reliable, MessagesId.Attack);
+        NetworkManager.Instance.Client.Send(message);
+        //ToDo Send Attack
+    }
+
+    public void SendDeath()
+    {
+        Message message = Message.Create(MessageSendMode.reliable, MessagesId.Death);
+        NetworkManager.Instance.Client.Send(message);
+    }
+
     public void SendEnemyDeath(int id)
     {
         Message message = Message.Create(MessageSendMode.reliable, MessagesId.EnemyDeath);
@@ -103,6 +118,13 @@ public class ClientMessages : MonoBehaviour
     {
         ((PlayerGameIdentity)NetworkManager.Instance.Players[message.GetUShort()]).MovementReceiver.SetAnimations(message.GetVector3());
     }
+
+    [MessageHandler((ushort)ServerMessages.MessagesId.Death)]
+    private static void OnServerDeathClient(Message message)
+    {
+        //tODO Retarget Enemies
+        ((PlayerGameIdentity)NetworkManager.Instance.Players[message.GetUShort()]).MovementReceiver.SetDeathAnim(true);
+    }
     
     [MessageHandler((ushort)ServerMessages.MessagesId.SpawnEnemies)]
     private static void OnServerSpawnEnemies(Message message)
@@ -121,6 +143,12 @@ public class ClientMessages : MonoBehaviour
     private static void OnServerEnemyDeath(Message message)
     {
         GameManager.Instance.EnemySpawners.GetEnemy(message.GetInt()).Death(message.GetUShort());
+    }
+
+    [MessageHandler((ushort)ServerMessages.MessagesId.GameOver)]
+    private static void OnServerGameOver(Message message)
+    {
+        GameEndPanel.Instance.OnGameEnd(message.GetBool());
     }
     #endregion
 }

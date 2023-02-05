@@ -18,6 +18,7 @@ public class MovementReceiver : MonoBehaviour
     
     private static readonly int VelocityY = Animator.StringToHash("VelocityY");
     private static readonly int VelocityX = Animator.StringToHash("VelocityX");
+    private static readonly int Die = Animator.StringToHash("Die");
 
     private void Awake()
     {
@@ -33,6 +34,11 @@ public class MovementReceiver : MonoBehaviour
     public void SetAnimations(Vector3 input)
     {
         _targetInput = input;
+    }
+
+    public void SetDeathAnim(bool value)
+    {
+        _animator.SetBool(Die, value);
     }
     
     private void Update()
