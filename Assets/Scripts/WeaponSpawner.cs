@@ -37,6 +37,8 @@ public class WeaponSpawner : MonoBehaviour
         Weapon = WeaponPickup.Empty;
 
         StartCoroutine(RespawnWeapon());
+
+        // TODO: Audio (spatialized).
     }
 
     public bool CanPickup()
