@@ -205,6 +205,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: c2e81c616846b3d4f84c995b0b6f7cd3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cf1e20bf8de02d54b8fe95f2aa671b58, type: 2}
     - target: {fileID: 919132149155446097, guid: c2e81c616846b3d4f84c995b0b6f7cd3, type: 3}
       propertyPath: m_Name
       value: HalfWall_01a
