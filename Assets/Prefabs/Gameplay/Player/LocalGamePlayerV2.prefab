@@ -123,7 +123,7 @@ MonoBehaviour:
   - {fileID: 8430130862868271856}
   - {fileID: 3474212364195855015}
   _canSlideAttack: 1
-  _maxHealth: 3
+  _maxHealth: 15
   _iFrameDuration: 1
   _damageTrauma: 0.75
   _damageFreezeDuration: 0.1
@@ -635,6 +635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weapon: {fileID: 6370156041807346043}
+  _isLocal: 0
 --- !u!1 &6370156041807346041
 GameObject:
   m_ObjectHideFlags: 0
@@ -1241,6 +1242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weapon: {fileID: 7831463082157521479}
+  _isLocal: 0
 --- !u!1001 &4138190498580955292
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1380,6 +1382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weapon: {fileID: 8430130862868271856}
+  _isLocal: 1
 --- !u!95 &6400084001357559423 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 7042614040820152035, guid: fafb7d5d2e1313c4d8844b103efd55e2, type: 3}

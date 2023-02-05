@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class PlayerAttackModule
 {
     public Weapon CurrentWeapon { get; private set; }
@@ -17,6 +19,15 @@ public class PlayerAttackModule
 
     public bool SetWeapon(Weapon weapon)
     {
+        if (weapon == null)
+        {
+            NetworkManager.Instance.ClientMessages.SendChangeWeapon(0);
+        }
+        else
+        {
+            NetworkManager.Instance.ClientMessages.SendChangeWeapon((int)weapon.WeaponType);
+        }
+        
         if (CurrentWeapon != null)
             CurrentWeapon.OnUnequiped();
 
