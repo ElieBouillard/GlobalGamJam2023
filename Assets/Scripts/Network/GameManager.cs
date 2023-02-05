@@ -78,6 +78,10 @@ public class GameManager : Singleton<GameManager>
             DashScreenPanel.Instance.SetCamera(Camera.main);
             LocalPlayerDamageFlash.Instance.Setup(Camera.main, playerTemp.GetComponent<PlayerController>());
         }
+        else
+        {
+            playerIdentityTemp.SetName(playerIdentityTemp.name);
+        }
 
         networkManager.Players[playerId] = playerIdentityTemp;
     }

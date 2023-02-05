@@ -10,6 +10,7 @@ public class PlayerIdentity : MonoBehaviour
     private ushort _id;
     protected ulong _steamId;
     private bool _isLocalPlayer;
+    protected string _name;
     #endregion
     
     #region Getters
@@ -25,6 +26,8 @@ public class PlayerIdentity : MonoBehaviour
         if (_id == NetworkManager.Instance.Client.Id) { _isLocalPlayer = true; }
 
         gameObject.name = newName;
+
+        _name = newName;
     }
     
     public virtual void Initialize(ushort id, ulong steamId)

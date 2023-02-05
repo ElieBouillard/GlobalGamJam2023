@@ -49,9 +49,8 @@ public class Weapon : MonoBehaviour
     {
         _id = _mainRoot.GetComponent<PlayerIdentity>().GetId;
 
-        Material material = _meshRenderer.material;
-        if (material != null)
-            material.SetFloat("_Threshold", 0.5f);
+        if (_meshRenderer != null)
+            _meshRenderer.material.SetFloat("_Threshold", 0.5f);
     }
 
     public virtual void PlayAttackAnimation(PlayerAttackModule attackModule, IShakable shookOnAttack = null)
@@ -120,9 +119,8 @@ public class Weapon : MonoBehaviour
     {
         float percentage = (MaximumHits - currentHits) / (float)MaximumHits;
 
-        Material material = _meshRenderer.material;
-        if (material != null)
-            material.SetFloat("_Threshold", (1f - percentage) * 0.5f);
+        if (_meshRenderer != null)
+            _meshRenderer.material.SetFloat("_Threshold", (1f - percentage) * 0.5f);
     }
     
     private void StopBackToIdleCoroutine()
