@@ -122,7 +122,7 @@ MonoBehaviour:
   _weapons:
   - {fileID: 8430130862868271856}
   _canSlideAttack: 1
-  _maxHealth: 99999
+  _maxHealth: 1
   _damageTrauma: 0.75
   _damageFreezeDuration: 0.1
   _deathTrauma: 1

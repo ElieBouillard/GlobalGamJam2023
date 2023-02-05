@@ -7,6 +7,8 @@ public class GameEndPanel : Singleton<GameEndPanel>
     [SerializeField] private GameObject _defeatPanel = null;
     [SerializeField] private Button[] _leaveButtons = null;
 
+    public bool AnyPanelOpen => _victoryPanel.activeSelf || _defeatPanel.activeSelf;
+    
     public void OnGameEnd(bool isVictory)
     {
         _victoryPanel.SetActive(isVictory);
