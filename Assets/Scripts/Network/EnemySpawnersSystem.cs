@@ -44,6 +44,8 @@ public class EnemySpawnersSystem : Singleton<EnemySpawnersSystem>
     public void InitializeSpawn()
     {
         _spawnClock = 0;
+        
+        EnemyRemaining.Instance.SetText(_enemyToWin * _networkManager.Players.Count);
     }
     
     private void Update()
@@ -148,6 +150,8 @@ public class EnemySpawnersSystem : Singleton<EnemySpawnersSystem>
     {
         Enemies.Remove(enemy);
         _enemyDead++;
+        
+        EnemyRemaining.Instance.SetText(_enemyToWin * _networkManager.Players.Count - _enemyDead);
         
         if (NetworkManager.Instance.Server.IsRunning)
         {
