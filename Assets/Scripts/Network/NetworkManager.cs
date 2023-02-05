@@ -30,6 +30,8 @@ public class NetworkManager : Singleton<NetworkManager>
     public ServerMessages ServerMessages { private set; get; }
 
     public int PlayersReady = 0;
+
+    public int PlayersDead = 0;
     #endregion
     
     protected override void Awake()
@@ -123,6 +125,7 @@ public class NetworkManager : Singleton<NetworkManager>
         GameState = GameState.OffLine;
 
         PlayersReady = 0;
+        PlayersDead = 0;
         
         if(!UseSteam) return;
         SteamLobbyManager.Instance.LeaveLobby();
@@ -221,6 +224,15 @@ public class NetworkManager : Singleton<NetworkManager>
             }
         }
         throw new Exception("No network adapters with an IPv4 address in the system!");
+    }
+
+    [ContextMenu("DebugPlayers")]
+    private void DebugPlayer()
+    {
+        foreach (var player in Players.Values)
+        {
+            Debug.Log(player.GetId);
+        }
     }
 }
 

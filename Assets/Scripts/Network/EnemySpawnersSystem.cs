@@ -29,6 +29,8 @@ public class EnemySpawnersSystem : Singleton<EnemySpawnersSystem>
 
     private int _enemySpawnedCounter = 0;
 
+    private int _waveCounter = 1;
+
     protected override void Awake()
     {
         base.Awake();
@@ -57,9 +59,14 @@ public class EnemySpawnersSystem : Singleton<EnemySpawnersSystem>
 
         if (_enemySpawnedCounter >= _difficultyIncreaseStage)
         {
+            _waveCounter++; 
             _enemySpawnedCounter = 0;
             _difficultyIncreaseStage += _difficultyIncreaseStage * _difficultyPercentageAdder / 100;
-            _enemyCount += 1;
+            if(_waveCounter % 2 != 0)
+            {
+                _enemyCount += 1;
+                Debug.Log($"AUGMENTATION DU NOMBRE D'ENNEMIS PAR SPAWN : {_enemyCount}");
+            }
             _spawnTime += _spawnTimeIncreaseValue;
             //Debug.Log($"DIFFICULTE AUGMENTE : {_difficultyIncreaseStage}");
         }

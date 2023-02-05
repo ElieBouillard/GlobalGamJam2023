@@ -14,8 +14,10 @@ public class ServerMessages : MonoBehaviour
         InitializeGameplay,
         Movements,
         Animations,
+        Death,
         SpawnEnemies,
         EnemyDeath,
+        GameOver,
     }
 
     #region Send
@@ -70,6 +72,13 @@ public class ServerMessages : MonoBehaviour
         message.AddVector3(input);
         NetworkManager.Instance.Server.SendToAll(message, id);
     }
+
+    private static void SendClientDie(ushort playerId)
+    {
+        Message message = Message.Create(MessageSendMode.reliable, MessagesId.Death);
+        message.AddUShort(playerId);
+        NetworkManager.Instance.Server.SendToAll(message, playerId);
+    }
     
     public void SendSpawnEnemies(List<EnemySpawnData> enemiesSpawnData)
     {
@@ -94,6 +103,13 @@ public class ServerMessages : MonoBehaviour
         message.AddInt(enemyId);
         message.AddUShort(playerId);
         NetworkManager.Instance.Server.SendToAll(message, playerId);
+    }
+
+    public static void SendGameOver(bool isVictory)
+    {
+        Message message = Message.Create(MessageSendMode.reliable, MessagesId.GameOver);
+        message.AddBool(isVictory);
+        NetworkManager.Instance.Server.SendToAll(message);
     }
     #endregion
 
@@ -137,6 +153,20 @@ public class ServerMessages : MonoBehaviour
     private static void OnClientAnimations(ushort id, Message message)
     {
         SendClientAnimations(id, message.GetVector3());
+    }
+
+    [MessageHandler((ushort)ClientMessages.MessagesId.Death)]
+    private static void OnClientDeath(ushort id, Message message)
+    {
+        NetworkManager networkManager = NetworkManager.Instance;        
+        networkManager.PlayersDead++;
+
+        if (networkManager.PlayersDead >= networkManager.Players.Count)
+        {
+            SendGameOver(false);
+        }
+        
+        SendClientDie(id);
     }
     
     [MessageHandler((ushort)ClientMessages.MessagesId.EnemyDeath)]

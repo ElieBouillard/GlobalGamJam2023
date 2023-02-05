@@ -6,9 +6,7 @@ public class WeaponAnimEvents : MonoBehaviour
 
     public void OnAttackFrame()
     {
-        if (_weapon == null)
-            _weapon = GetComponentInParent<Weapon>();
-
+        _weapon = GetComponentInChildren<Weapon>(false);
         _weapon.Attack();
     }
 }

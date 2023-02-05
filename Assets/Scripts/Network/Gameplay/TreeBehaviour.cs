@@ -28,12 +28,14 @@ public class TreeBehaviour : MonoBehaviour, IHittable
         _renderer.material.color = Color.red;
         StartCoroutine(ResetColor());
         _currLife -= hitData.Damage;
-
-        Debug.Log($"Tree Take Damage : Current Life -> {_currLife}");
+        
+        //todo: CHANGE TREE MAT DAMAGE
         
         if (_currLife <= 0)
         {
-            Debug.Log("Tree Is DEAD / GAME OVER");
+            if (!NetworkManager.Instance.Server.IsRunning) return;
+            
+            ServerMessages.SendGameOver(false);
         }
     }
     
