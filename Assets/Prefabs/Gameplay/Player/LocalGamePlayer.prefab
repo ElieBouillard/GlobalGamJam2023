@@ -309,7 +309,7 @@ MonoBehaviour:
   _cameraShaker: {fileID: 8712950339614292062}
   _shakeSettings:
     PosAxes: 3
-    RotAxes: 0
+    RotAxes: 4
     Speed: 25
     Radius: 1.25
     XRotMax: 25
@@ -439,7 +439,7 @@ MonoBehaviour:
   - {fileID: 657061071093415688}
   _canSlideAttack: 1
   _maxHealth: 3
-  _damageTrauma: 0.75
+  _damageTrauma: 0.4
   _damageFreezeDuration: 0.1
   _deathTrauma: 1
   _deathFreezeDuration: 0.15
@@ -467,6 +467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7609e7e181c924049bd80a215d822a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rotationRoot: {fileID: 0}
 --- !u!1 &9009148808758287352
 GameObject:
   m_ObjectHideFlags: 0
