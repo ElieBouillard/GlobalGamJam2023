@@ -124,6 +124,7 @@ MonoBehaviour:
   - {fileID: 3474212364195855015}
   _canSlideAttack: 1
   _maxHealth: 3
+  _iFrameDuration: 1
   _damageTrauma: 0.75
   _damageFreezeDuration: 0.1
   _deathTrauma: 1
@@ -1303,7 +1304,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7707827769449851994, guid: fafb7d5d2e1313c4d8844b103efd55e2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.3
+      value: 0.51
       objectReference: {fileID: 0}
     - target: {fileID: 7707827769449851994, guid: fafb7d5d2e1313c4d8844b103efd55e2, type: 3}
       propertyPath: m_LocalPosition.y
