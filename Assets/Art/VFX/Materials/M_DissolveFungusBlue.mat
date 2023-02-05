@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Dissolve
+  m_Name: M_DissolveFungusBlue
   m_Shader: {fileID: -6465566751694194690, guid: 9fd5e187ac41367459f2876d36aadb5e, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -20,6 +20,14 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _EmissiveMap:
+        m_Texture: {fileID: 2800000, guid: 7f58db69c7da7ec4eb3949a77a0b2874, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: bdcaf099d6ce3e44b9bb897de6382986, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -34,7 +42,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _CutoffHeight: 1.34
+    - _CutoffHeight: 4.05
     - _EdgeWidth: 0.3
     - _NoiseScale: 47.53
     - _NoiseStrength: 1.19
@@ -42,7 +50,8 @@ Material:
     - _QueueOffset: 0
     m_Colors:
     - _Albedo: {r: 0, g: 0, b: 0, a: 1}
-    - _EdgeColor: {r: 23.968628, g: 0, b: 0, a: 1}
+    - _EdgeColor: {r: 0, g: 1.0431373, b: 1.4980392, a: 1}
+    - _EmissiveColor: {r: 0, g: 1.0509804, b: 1.4980392, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &1910072421232363994
 MonoBehaviour:
