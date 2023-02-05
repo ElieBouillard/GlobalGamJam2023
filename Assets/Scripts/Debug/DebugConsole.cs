@@ -1038,9 +1038,8 @@ public class DebugConsole : Singleton<DebugConsole>
         }
     }
 
-    protected override void OnDestroy()
+    protected void OnDestroy()
     {
-        base.OnDestroy();
         UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }
