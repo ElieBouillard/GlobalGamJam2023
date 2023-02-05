@@ -52,8 +52,9 @@ public class PlayerController : MonoBehaviour, IHittable
     // Attack.
     private PlayerAttackModule _attackModule;
 
-    // Current health.
+    // Health.
     private int _currentHealth;
+    private bool _godMode;
 
     private int _inputLockBuffers;
     public int InputLockBuffers
@@ -240,7 +241,7 @@ public class PlayerController : MonoBehaviour, IHittable
     #region Health
     public void OnHit(HitData hitData)
     {
-        if(IsDead)
+        if (IsDead || _godMode)
             return;
 
         // Ignore friendly fire.
@@ -295,6 +296,11 @@ public class PlayerController : MonoBehaviour, IHittable
         };
     }
 
+    private void ToggleGodMode()
+    {
+        _godMode = !_godMode;
+    }
+
     private void Start()
     {
         _attackModule = new PlayerAttackModule();
@@ -320,6 +326,7 @@ public class PlayerController : MonoBehaviour, IHittable
             HealthChanged?.Invoke(previousHealth, _currentHealth);
             OnDeath();
         }));
+        DebugConsole.OverrideCommand(new Command("tgm", "Toggles god mode", true, false, ToggleGodMode));
     }
 
     private void OnDestroy()

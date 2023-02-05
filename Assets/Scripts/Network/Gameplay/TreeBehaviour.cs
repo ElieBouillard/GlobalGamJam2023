@@ -6,6 +6,9 @@ using UnityEngine.UIElements;
 
 public class TreeBehaviour : MonoBehaviour, IHittable
 {
+    [Header("References")]
+    [SerializeField] private TreeView _treeView = null;
+
     [Header("Parameters")]
     [SerializeField] private int _initialLife;
 
@@ -16,32 +19,27 @@ public class TreeBehaviour : MonoBehaviour, IHittable
     
     private void Awake()
     {
-        _renderer = GetComponentInChildren<Renderer>();
         Position = transform.position;
         _currLife = _initialLife;
+
+        if (_treeView == null)
+            _treeView = FindObjectOfType<TreeView>();
     }
 
     public void OnHit(HitData hitData)
     {
-        if (hitData.Team != Team.Enemy) return;
+        if (hitData.Team != Team.Enemy)
+            return;
         
-        _renderer.material.color = Color.red;
-        StartCoroutine(ResetColor());
-        _currLife -= hitData.Damage;
-        
-        //todo: CHANGE TREE MAT DAMAGE
-        
+        _currLife = Mathf.Max(0, _currLife - hitData.Damage);
+        _treeView.SetHealthPercentage(_currLife / (float)_initialLife);
+
         if (_currLife <= 0)
         {
-            if (!NetworkManager.Instance.Server.IsRunning) return;
+            if (!NetworkManager.Instance.Server.IsRunning)
+                return;
             
             ServerMessages.SendGameOver(false);
         }
-    }
-    
-    private IEnumerator ResetColor()
-    {
-        yield return new WaitForSeconds(0.25f);
-        _renderer.material.color = Color.white;
     }
 }
