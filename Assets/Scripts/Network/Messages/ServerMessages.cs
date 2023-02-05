@@ -105,7 +105,7 @@ public class ServerMessages : MonoBehaviour
         NetworkManager.Instance.Server.SendToAll(message, playerId);
     }
 
-    private static void SendGameOver(bool isVictory)
+    public static void SendGameOver(bool isVictory)
     {
         Message message = Message.Create(MessageSendMode.reliable, MessagesId.GameOver);
         message.AddBool(isVictory);
@@ -158,8 +158,6 @@ public class ServerMessages : MonoBehaviour
     [MessageHandler((ushort)ClientMessages.MessagesId.Death)]
     private static void OnClientDeath(ushort id, Message message)
     {
-        Debug.Log("swag");
-        
         NetworkManager networkManager = NetworkManager.Instance;        
         networkManager.PlayersDead++;
 
