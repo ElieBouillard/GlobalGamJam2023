@@ -349,7 +349,10 @@ public class PlayerController : MonoBehaviour, IHittable
     private void Update()
     {
         if (IsDead || GameEndPanel.Instance.AnyPanelOpen || InputLockBuffers > 0)
+        {
+            CleanupInputs();
             return;
+        }
 
         RegisterInputs();
         _attackModule.Update();
