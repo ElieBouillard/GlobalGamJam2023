@@ -220,6 +220,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Panel_GameEnd_Defeat
       objectReference: {fileID: 0}
+    - target: {fileID: 8712991567227337802, guid: d6728369ee8ed974c8e4b0a586ffd063, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8712991567969521797, guid: d6728369ee8ed974c8e4b0a586ffd063, type: 3}
       propertyPath: m_text
       value: Defeat...
@@ -361,6 +365,10 @@ PrefabInstance:
     - target: {fileID: 8712991567227337802, guid: d6728369ee8ed974c8e4b0a586ffd063, type: 3}
       propertyPath: m_Name
       value: Panel_GameEnd_Victory
+      objectReference: {fileID: 0}
+    - target: {fileID: 8712991567227337802, guid: d6728369ee8ed974c8e4b0a586ffd063, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8712991567969521797, guid: d6728369ee8ed974c8e4b0a586ffd063, type: 3}
       propertyPath: m_text
