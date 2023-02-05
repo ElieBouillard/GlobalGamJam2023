@@ -31,6 +31,8 @@ public class EnemySpawnersSystem : Singleton<EnemySpawnersSystem>
 
     private int _waveCounter = 1;
 
+    private int _enemyDead = 0;
+
     protected override void Awake()
     {
         base.Awake();
@@ -56,7 +58,9 @@ public class EnemySpawnersSystem : Singleton<EnemySpawnersSystem>
             _spawnClock = _spawnTime;
             ChooseSpawn();
         }
-
+        
+        
+        
         if (_enemySpawnedCounter >= _difficultyIncreaseStage)
         {
             _waveCounter++; 
@@ -76,7 +80,7 @@ public class EnemySpawnersSystem : Singleton<EnemySpawnersSystem>
     {
         List<EnemySpawnData> enemiesSpawnData = new List<EnemySpawnData>();
 
-        for (int i = 0; i < _enemyCount; i++)
+        for (int i = 0; i < _enemyCount * _networkManager.Players.Count; i++)
         {
             int randomEnemyType = Random.Range(0, 2);
             
@@ -141,6 +145,7 @@ public class EnemySpawnersSystem : Singleton<EnemySpawnersSystem>
     public void RemoveEnemy(EnemyIdentity enemy)
     {
         Enemies.Remove(enemy);
+        _enemyDead++;
     }
 
     public EnemyIdentity GetEnemy(int id)
