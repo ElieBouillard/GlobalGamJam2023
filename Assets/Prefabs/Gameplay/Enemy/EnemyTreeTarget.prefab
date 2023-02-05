@@ -55,6 +55,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyTreeTarget
       objectReference: {fileID: 0}
+    - target: {fileID: 8745449452869519078, guid: 16d858d210b26f942acbba9ffac5a237, type: 3}
+      propertyPath: m_Speed
+      value: 2.5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2491705532332616651, guid: 16d858d210b26f942acbba9ffac5a237, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 16d858d210b26f942acbba9ffac5a237, type: 3}
