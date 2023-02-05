@@ -34,14 +34,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FogDensity: 0.18
-    - _Height: -0.31
+    - _FogDensity: 0.21
+    - _Height: 0.54
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Speed: 0.01
     - _Tiling: 0
     m_Colors:
-    - _Color: {r: 0.0039215707, g: 0.046155125, b: 0.14117648, a: 0.92156863}
+    - _Color: {r: 0.078431346, g: 0.12156858, b: 0.16862741, a: 0.45490196}
     - _Color_1: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &3227117215958096702
