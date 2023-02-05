@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour, IHittable
 
     [Header("Health")]
     [SerializeField] private int _maxHealth = 3;
+    [SerializeField] private float _iFrameDuration = 1f;
     [SerializeField, Range(0f, 1f)] private float _damageTrauma = 0.5f;
     [SerializeField] private float _damageFreezeDuration = 0.1f;
     [SerializeField, Range(0f, 1f)] private float _deathTrauma = 0.7f;
@@ -55,6 +56,7 @@ public class PlayerController : MonoBehaviour, IHittable
     // Health.
     private int _currentHealth;
     private bool _godMode;
+    private bool _iFrame;
 
     private int _inputLockBuffers;
     public int InputLockBuffers
@@ -241,7 +243,7 @@ public class PlayerController : MonoBehaviour, IHittable
     #region Health
     public void OnHit(HitData hitData)
     {
-        if (IsDead || _godMode)
+        if (IsDead || _godMode || _iFrame)
             return;
 
         // Ignore friendly fire.
@@ -280,6 +282,13 @@ public class PlayerController : MonoBehaviour, IHittable
 
         _cameraController.AddTrauma(_deathTrauma);
         FreezeFrameManager.FreezeFrame(2, _deathFreezeDuration, 0, true);
+    }
+
+    private IEnumerator IFrameCoroutine()
+    {
+        _iFrame = true;
+        yield return new WaitForSeconds(_iFrameDuration);
+        _iFrame = false;
     }
     #endregion // Health
 
