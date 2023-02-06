@@ -42,9 +42,8 @@ public class CameraController : MonoBehaviour, IShakable
 
     public void Rotate(Vector2 mouseInput)
     {
-        Vector2 speed = _cameraRotationSpeed / 0.016f;
+        Vector2 speed = _cameraRotationSpeed * SettingsManager.Instance.MouseSensitivity;
         Vector3 angularVelocity = new Vector3(mouseInput.x * speed.x, mouseInput.y * speed.y) * Time.deltaTime;
-        angularVelocity *= Time.deltaTime;
 
         Vector3 eulerAngles = transform.localEulerAngles;
         eulerAngles.y += angularVelocity.x;
