@@ -8,6 +8,7 @@ public class MainMenuPanel : Panel
     [SerializeField] private Button _joinGameButton;
     [SerializeField] private Button _optionsButton;
     [SerializeField] private Button _quitButton;
+    [SerializeField] private RSLib.Framework.GUI.EnterSubmitInputField _submitIPInputField;
 
     private void Start()
     {
@@ -21,6 +22,7 @@ public class MainMenuPanel : Panel
         _joinGameButton.onClick.AddListener(OnClickJoinGame);
         _optionsButton.onClick.AddListener(OnClickOptions);
         _quitButton.onClick.AddListener(OnClickQuit);
+        _submitIPInputField.onSubmit.AddListener(_ => this.OnClickJoinGame());
     }
 
     private void OnClickCreateGame()
@@ -40,6 +42,10 @@ public class MainMenuPanel : Panel
 
     private void OnClickQuit()
     {
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #else
         Application.Quit();
+        #endif
     }
 }
