@@ -37,7 +37,7 @@ Material:
     - _Center_maskedge: 0.5
     - _Center_masksize: 0.06
     - _Line_Count: 30
-    - _Line_Density: 0.42549592
+    - _Line_Density: 0
     - _Line_Falloff: 0.25
     - _NumberofFrame: 12
     - _QueueControl: 0
