@@ -32,8 +32,10 @@ public class EnemySpawnersSystem : Singleton<EnemySpawnersSystem>
 
     private int _waveCounter = 1;
 
-    private int _enemyDead = 0;
+    private int _enemyDeadPerWave = 0;
 
+    private int _enemyDead;
+    
     protected override void Awake()
     {
         base.Awake();
@@ -62,10 +64,10 @@ public class EnemySpawnersSystem : Singleton<EnemySpawnersSystem>
             ChooseSpawn();
         }
         
-        if (_enemyDead >= _difficultyIncreaseStage)
+        if (_enemyDeadPerWave >= _difficultyIncreaseStage * _networkManager.Players.Count)
         {
             _waveCounter++;
-            _enemyDead = 0;
+            _enemyDeadPerWave = 0;
             _difficultyIncreaseStage += _difficultyIncreaseStage * _difficultyPercentageAdder / 100;
             if(_waveCounter % 2 != 0)
             {
@@ -142,13 +144,14 @@ public class EnemySpawnersSystem : Singleton<EnemySpawnersSystem>
         
         Enemies.Add(enemyInstance.GetComponent<EnemyIdentity>());
 
-        //_enemySpawnedCounter++;
+        // _enemySpawnedCounter++;
         //Debug.Log($"ENNEMI SPAWNED : {_enemySpawnedCounter}");
     }
 
     public void RemoveEnemy(EnemyIdentity enemy)
     {
         Enemies.Remove(enemy);
+        _enemyDeadPerWave++;
         _enemyDead++;
         
         EnemyRemaining.Instance.SetText(_enemyToWin * _networkManager.Players.Count - _enemyDead);
