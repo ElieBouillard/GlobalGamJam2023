@@ -16,7 +16,7 @@ public class PausePanel : Panel
 
     private void ResumeGame()
     {
-        PanelManager.Instance.EnablePanel(PanelType.MainMenu);
+        PanelManager.Instance.EnablePanel(PanelType.None);
         CameraController.ToggleCursor(false);
     }
 

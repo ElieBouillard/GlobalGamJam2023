@@ -4,11 +4,15 @@ using System.Collections.Generic;
 using Steamworks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PanelManager : Singleton<PanelManager>
 {
     [SerializeField] private Panel[] _panels;
-
+    [SerializeField] private GameObject _joinGameButton;
+    [SerializeField] private GameObject _ipAddressRoot;
+    
+    
     private NetworkManager _networkManager;
     private bool _isPause;
 
@@ -24,6 +28,13 @@ public class PanelManager : Singleton<PanelManager>
     private void Start()
     {
         _networkManager = NetworkManager.Instance;
+        
+        if(_networkManager.GameState == GameState.Gameplay) return;
+        
+        bool useSteam = _networkManager.UseSteam;
+        
+        _joinGameButton.SetActive(!useSteam);
+        _ipAddressRoot.SetActive(!useSteam);
     }
 
     private void Update()
